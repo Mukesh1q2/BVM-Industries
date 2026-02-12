@@ -1,0 +1,96 @@
+/* App-specific styles */
+
+/* Disable smooth scroll — conflicts with ScrollTrigger and causes CLS */
+html {
+  scroll-behavior: auto;
+}
+
+/* Ensure pinned sections stack correctly */
+.section-pinned {
+  will-change: transform;
+  contain: layout style;
+}
+
+/* Hide scrollbar for cleaner look while maintaining functionality */
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #0B0F17;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Ensure pinned sections stack correctly */
+.section-pinned {
+  will-change: transform;
+  contain: layout style;
+}
+
+
+
+/* Transition for all interactive elements */
+button,
+a,
+input,
+textarea,
+select {
+  transition: all 0.2s ease;
+}
+
+/* Focus states */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #2F8FFF;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 1024px) {
+  .headline-xl {
+    font-size: clamp(32px, 8vw, 44px);
+  }
+
+  .headline-lg {
+    font-size: clamp(28px, 6vw, 32px);
+  }
+
+  .headline-md {
+    font-size: clamp(24px, 5vw, 28px);
+  }
+}
+
+@media (max-width: 768px) {
+  .section-pinned {
+    min-height: 100vh;
+    height: auto;
+  }
+
+  .headline-xl,
+  .headline-lg,
+  .headline-md {
+    max-width: 100% !important;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
