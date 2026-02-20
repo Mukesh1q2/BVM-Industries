@@ -31,84 +31,8 @@ interface QuotationFormData {
     notes: string;
 }
 
-// SHA-256 hash of admin password — never store plaintext in bundle
-const ADMIN_HASH = '18d3c013b79667d6308dd11c53d33252882832a33c852a6b2992722051951109';
-
-const hashPassword = async (pwd: string): Promise<string> => {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(pwd + 'bvm_salt_2026');
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-};
-
 const QuotationPage = () => {
     const printRef = useRef<HTMLDivElement>(null);
-    const [isAuthenticated, setIsAuthenticated] = useState(() => {
-        return sessionStorage.getItem('bvm_quotation_auth') === 'true';
-    });
-    const [password, setPassword] = useState('');
-    const [authError, setAuthError] = useState('');
-    const [attempts, setAttempts] = useState(0);
-    const [isLocked, setIsLocked] = useState(false);
-
-    const handleAuth = async (e: React.FormEvent) => {
-        e.preventDefault();
-        if (isLocked) return;
-
-        const hashed = await hashPassword(password);
-        if (hashed === ADMIN_HASH) {
-            setIsAuthenticated(true);
-            sessionStorage.setItem('bvm_quotation_auth', 'true');
-            setAuthError('');
-        } else {
-            const newAttempts = attempts + 1;
-            setAttempts(newAttempts);
-            if (newAttempts >= 3) {
-                setIsLocked(true);
-                setAuthError('Too many attempts. Locked for 30 seconds.');
-                setTimeout(() => { setIsLocked(false); setAttempts(0); setAuthError(''); }, 30000);
-            } else {
-                setAuthError(`Incorrect password. ${3 - newAttempts} attempts remaining.`);
-            }
-        }
-        setPassword('');
-    };
-
-    if (!isAuthenticated) {
-        return (
-            <div className="min-h-screen bg-bvm-navy flex items-center justify-center px-4">
-                <div className="max-w-md w-full bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-sm">
-                    <div className="text-center mb-8">
-                        <div className="w-16 h-16 bg-bvm-blue/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <FileText className="w-8 h-8 text-bvm-blue" />
-                        </div>
-                        <h1 className="text-2xl font-display font-bold text-white mb-2">Internal Access</h1>
-                        <p className="text-bvm-gray text-sm">This tool is for BVM staff only. Enter your password to continue.</p>
-                    </div>
-                    <form onSubmit={handleAuth} className="space-y-4">
-                        <div>
-                            <input
-                                type="password"
-                                value={password}
-                                onChange={(e) => { setPassword(e.target.value); setAuthError(''); }}
-                                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-bvm-gray focus:outline-none focus:border-bvm-blue/50 focus:ring-1 focus:ring-bvm-blue/50 transition-all"
-                                placeholder="Enter admin password"
-                                autoFocus
-                            />
-                            {authError && <p className="text-red-400 text-sm mt-2">{authError}</p>}
-                        </div>
-                        <button
-                            type="submit"
-                            className="w-full bg-bvm-blue text-white font-medium py-3 rounded-lg hover:bg-blue-600 transition-colors"
-                        >
-                            Access Quotation Tool
-                        </button>
-                    </form>
-                </div>
-            </div>
-        );
-    }
 
     const [formData, setFormData] = useState<QuotationFormData>({
         clientName: '',

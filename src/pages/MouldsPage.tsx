@@ -29,32 +29,32 @@ const MouldsPage = () => {
 
     const moulds = [
         {
-            title: "BFS Moulds",
-            description: "High-precision moulds for Blow-Fill-Seal machines, engineered for optimal parison control and wall thickness distribution.",
+            title: "Aluminium Bronze Moulds",
+            description: "Premium material chosen for superior heat transfer, strength, and wear resistance. Ideal for high-speed FFS & BFS operations.",
             icon: <Box className="w-6 h-6" />,
-            image: "/new_assets/optimized/mould-lvp.webp", // Using machine image as context for now
-            features: ["Beryllium Copper inserts", "Optimized cooling channels", "Long service life"]
+            image: "/new_assets/optimized/mould-lvp.webp",
+            features: ["Superior heat transfer (Faster cycle times)", "High corrosion resistance", "Excellent durability"]
         },
         {
-            title: "PET Bottle Moulds",
-            description: "Advanced moulds for single and two-stage PET processing. Designed for clarity, strength and material savings.",
+            title: "Stavax (Stainless Tool Steel)",
+            description: "High-grade stainless tool steel known for exceptional polishability. Recommended for sterile and hygienic pharmaceutical applications.",
             icon: <Layers className="w-6 h-6" />,
             image: "/products/pet-mould-100ml.jpg",
-            features: ["High-grade Aluminum/Steel", "Fast cycle times", "Quick changeover design"]
+            features: ["Resistant to rust & chemicals", "High surface finish for clarity", "Strong dimensional stability"]
         },
         {
-            title: "Injection Moulds",
-            description: "Precision injection moulds for caps, closures, and diverse pharmaceutical components.",
+            title: "Custom Design & Development",
+            description: "Complete customization for Bottles, Vials, and Ampoules. Our engineering team optimizes mould design for cycle time and quality.",
             icon: <Zap className="w-6 h-6" />,
             image: "/products/injection-mould.jpg",
-            features: ["Multi-cavity high output", "Hot runner compatible", "Micron-level accuracy"]
+            features: ["Reverse engineering capabilities", "Multi-cavity configurations", "Specialized neck & closure designs"]
         },
         {
-            title: "Respules & Ampoules",
-            description: "Specialized mould designs for small volume parenterals, ensuring sterility and perfect sealing.",
+            title: "Quality Assurance",
+            description: "Every mould undergoes rigorous inspection for dimensional accuracy, leak-proof sealing, and smooth demoulding performance.",
             icon: <PenTool className="w-6 h-6" />,
             image: "/new_assets/optimized/mould-svp.webp",
-            features: ["SMED compliant design", "Surface treatment options", "Custom logo engraving"]
+            features: ["Strict dimensional validation", "Surface polishing options", "Long operational life"]
         }
     ];
 

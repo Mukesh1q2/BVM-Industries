@@ -2,40 +2,8 @@
 
 /* Disable smooth scroll — conflicts with ScrollTrigger and causes CLS */
 html {
-  scroll-behavior: auto;
+  scroll-behavior: auto !important;
 }
-
-/* Ensure pinned sections stack correctly */
-.section-pinned {
-  will-change: transform;
-  contain: layout style;
-}
-
-/* Hide scrollbar for cleaner look while maintaining functionality */
-body::-webkit-scrollbar {
-  width: 8px;
-}
-
-body::-webkit-scrollbar-track {
-  background: #0B0F17;
-}
-
-body::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 4px;
-}
-
-body::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.25);
-}
-
-/* Ensure pinned sections stack correctly */
-.section-pinned {
-  will-change: transform;
-  contain: layout style;
-}
-
-
 
 /* Transition for all interactive elements */
 button,
@@ -70,9 +38,16 @@ select:focus {
 }
 
 @media (max-width: 768px) {
-  .section-pinned {
+
+  .section-pinned,
+  .hero-section {
     min-height: 100vh;
     height: auto;
+  }
+
+  .hero-headline,
+  .hero-body {
+    max-width: 100% !important;
   }
 
   .headline-xl,

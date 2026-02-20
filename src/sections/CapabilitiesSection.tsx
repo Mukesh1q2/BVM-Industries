@@ -1,9 +1,4 @@
-import { useRef, useLayoutEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Compass, Cog, ClipboardCheck } from 'lucide-react';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const capabilities = [
   {
@@ -30,64 +25,14 @@ const capabilities = [
 ];
 
 const CapabilitiesSection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const headingRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      // Heading animation
-      gsap.fromTo(headingRef.current,
-        { y: 24, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: headingRef.current,
-            start: 'top 75%',
-            toggleActions: 'play none none reverse'
-          }
-        }
-      );
-
-      // Cards animation
-      cardsRef.current.forEach((card, index) => {
-        if (!card) return;
-
-        gsap.fromTo(card,
-          { y: '10vh', rotate: -2, opacity: 0 },
-          {
-            y: 0,
-            rotate: 0,
-            opacity: 1,
-            duration: 0.8,
-            delay: index * 0.12,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: card,
-              start: 'top 80%',
-              toggleActions: 'play none none reverse'
-            }
-          }
-        );
-      });
-
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <section
-      ref={sectionRef}
       id="capabilities"
       className="relative bg-bvm-light py-20 lg:py-32"
     >
       <div className="px-4 sm:px-8 lg:px-[8vw]">
         {/* Heading block */}
-        <div ref={headingRef} className="mb-12">
+        <div className="mb-12">
           <h2 className="headline-md text-bvm-navy mb-4">
             Capabilities
           </h2>
@@ -98,12 +43,11 @@ const CapabilitiesSection = () => {
 
         {/* Process steps */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-[3vw]">
-          {capabilities.map((capability, index) => {
+          {capabilities.map((capability) => {
             const Icon = capability.icon;
             return (
               <div
                 key={capability.id}
-                ref={el => { cardsRef.current[index] = el; }}
                 className="group relative bg-white rounded-xl overflow-hidden shadow-card hover:shadow-xl transition-shadow"
               >
                 {/* Image */}

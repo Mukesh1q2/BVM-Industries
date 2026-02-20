@@ -1,9 +1,4 @@
-import { useRef, useLayoutEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Shield, Clock, Headphones } from 'lucide-react';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const qualityPoints = [
   {
@@ -27,92 +22,25 @@ const qualityPoints = [
 ];
 
 const QualitySection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const headingRef = useRef<HTMLHeadingElement>(null);
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const scrollTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: '+=130%',
-          pin: true,
-          scrub: 0.6,
-          anticipatePin: 1,
-        }
-      });
-
-      // ENTRANCE (0-30%)
-      // Heading fades in
-      scrollTl.fromTo(headingRef.current,
-        { y: -20, opacity: 0 },
-        { y: 0, opacity: 1, ease: 'none' },
-        0
-      );
-
-      // Cards scale in with stagger
-      cardsRef.current.forEach((card, index) => {
-        if (!card) return;
-        scrollTl.fromTo(card,
-          { scale: 0.92, rotate: -2, opacity: 0 },
-          { scale: 1, rotate: 0, opacity: 1, ease: 'none' },
-          0.05 + index * 0.05
-        );
-      });
-
-      // SETTLE (30-70%): Hold positions
-
-      // EXIT (70-100%)
-      scrollTl.fromTo(headingRef.current,
-        { y: 0, opacity: 1 },
-        { y: '-10vh', opacity: 0, ease: 'power2.in' },
-        0.70
-      );
-
-      cardsRef.current.forEach((card, index) => {
-        if (!card) return;
-        scrollTl.fromTo(card,
-          { y: 0, opacity: 1 },
-          { y: '-16vh', opacity: 0, ease: 'power2.in' },
-          0.72 + index * 0.02
-        );
-      });
-
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <section
-      ref={sectionRef}
       id="about"
-      className="section-pinned bg-bvm-navy flex flex-col justify-center"
+      className="relative bg-bvm-navy py-24 lg:py-32"
     >
       {/* Heading */}
-      <h2
-        ref={headingRef}
-        className="headline-md text-white px-4 sm:px-8 lg:px-[8vw] mb-12"
-      >
+      <h2 className="headline-md text-white px-4 sm:px-8 lg:px-[8vw] mb-12">
         Quality & Trust
       </h2>
 
       {/* Quality cards */}
       <div className="px-4 sm:px-8 lg:px-[8vw]">
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-[3vw]">
-          {qualityPoints.map((point, index) => {
+          {qualityPoints.map((point) => {
             const Icon = point.icon;
             return (
               <div
                 key={point.id}
-                ref={el => { cardsRef.current[index] = el; }}
-                className="group relative bg-white/5 border border-white/10 rounded-xl p-8 hover:bg-white/10 hover:border-bvm-blue/30 transition-all duration-300"
-                style={{
-                  width: '100%',
-                  height: '46vh',
-                }}
+                className="group relative bg-white/5 border border-white/10 rounded-xl p-8 hover:bg-white/10 hover:border-bvm-blue/30 transition-all duration-300 flex-1 min-h-[280px]"
               >
                 {/* Icon */}
                 <div className="w-14 h-14 bg-bvm-blue/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-bvm-blue/20 transition-colors">

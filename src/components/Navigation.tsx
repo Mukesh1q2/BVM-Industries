@@ -1,7 +1,28 @@
 import { useState, useEffect, useRef } from 'react';
-import { Menu, X, Phone, Sun, Moon, ChevronDown } from 'lucide-react';
+import { Menu, X, Sun, Moon, ChevronDown, ArrowRight, Box, Settings, Activity, Droplet, PenTool, Layers, Factory, RefreshCw, ShieldCheck } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
+
+interface SubItem {
+  label: string;
+  href: string;
+  icon?: LucideIcon;
+  desc?: string;
+}
+
+interface MegaMenuColumn {
+  title: string;
+  items: SubItem[];
+}
+
+interface NavItem {
+  label: string;
+  href?: string;
+  type?: 'mega' | 'dropdown';
+  columns?: MegaMenuColumn[]; // For mega menu
+  items?: SubItem[]; // For simple dropdown
+}
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -9,27 +30,23 @@ const Navigation = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu when route changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
     setActiveDropdown(null);
   }, [location.pathname]);
 
-  // Handle click outside to close dropdowns
+  // Close dropdown on click outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
         setActiveDropdown(null);
       }
     };
@@ -37,233 +54,231 @@ const Navigation = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const navLinks = [
+  const navStructure: NavItem[] = [
     { label: 'Home', href: '/' },
     {
-      label: 'Applications',
-      href: '/machines',
-      dropdown: [
-        { label: 'Injectables (SVP/LVP)', href: '/machines?filter=injectables' },
-        { label: 'Ophthalmic', href: '/machines?filter=ophthalmic' },
-        { label: 'Respiratory', href: '/machines?filter=respiratory' },
-        { label: 'Oral Liquids', href: '/machines?filter=oral' },
+      label: 'Solutions',
+      type: 'mega',
+      columns: [
+        {
+          title: 'Core Machinery',
+          items: [
+            { label: 'F.F.S Machines', href: '/machines/ffs', icon: Box, desc: 'Form Fill Seal Systems' },
+            { label: 'B.F.S Machines', href: '/machines/bfs', icon: Activity, desc: 'Blow Fill Seal Technology' },
+            { label: 'Euro Cap Sealing', href: '/machines/euro-cap-sealing', icon: Settings, desc: 'Sealing & Welding' },
+          ]
+        },
+        {
+          title: 'Applications',
+          items: [
+            { label: 'Injectables (SVP/LVP)', href: '/machines?filter=injectables', icon: Droplet },
+            { label: 'Ophthalmic', href: '/machines?filter=ophthalmic', icon: Activity },
+            { label: 'Respiratory', href: '/machines?filter=respiratory', icon: Factory },
+          ]
+        },
+        {
+          title: 'Ancillary',
+          items: [
+            { label: 'Precision Moulds', href: '/moulds', icon: Layers },
+            { label: 'General Products', href: '/products', icon: PenTool },
+          ]
+        }
       ]
     },
     {
-      label: 'Machines',
-      href: '/machines',
-      dropdown: [
-        { label: 'F.F.S Machines', href: '/machines/ffs' },
-        { label: 'B.F.S Machines', href: '/machines/bfs' },
-        { label: 'Euro Cap Sealing', href: '/machines/euro-cap-sealing' },
+      label: 'Services',
+      type: 'dropdown',
+      items: [
+        { label: 'Turnkey Projects', href: '/services/turnkey', icon: Factory },
+        { label: 'Refurbishment', href: '/services/refurbishment', icon: RefreshCw },
+        { label: 'Quality Assurance', href: '/quality', icon: ShieldCheck },
       ]
     },
-    { label: 'Moulds', href: '/moulds' },
-    { label: 'Products', href: '/products' },
-    { label: 'Gallery', href: '/gallery' },
-    { label: 'About', href: '/about' },
-    { label: 'Careers', href: '/career' },
-    { label: 'Contact', href: '/contact' },
+    {
+      label: 'Company',
+      type: 'dropdown',
+      items: [
+        { label: 'About Us', href: '/about' },
+        { label: 'Gallery', href: '/gallery' },
+        { label: 'Careers', href: '/career' },
+      ]
+    }
   ];
 
-  const isActive = (path: string) => {
-    if (path === '/') return location.pathname === '/';
-    return location.pathname.startsWith(path);
-  };
-
-  const toggleDropdown = (label: string) => {
-    if (activeDropdown === label) {
-      setActiveDropdown(null);
-    } else {
-      setActiveDropdown(label);
-    }
-  };
+  const handleMouseEnter = (label: string) => setActiveDropdown(label);
+  const handleMouseLeave = () => setActiveDropdown(null);
+  const toggleMobileDropdown = (label: string) => setActiveDropdown(activeDropdown === label ? null : label);
 
   return (
     <>
-      {/* Top contact bar */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-bvm-navy/90 backdrop-blur-sm border-b border-white/5">
-        <div className="flex items-center justify-between px-4 sm:px-8 py-2 text-xs">
-          <div className="flex items-center gap-4 text-bvm-gray">
-            <a href="mailto:sales@bvmindustries.com" className="hover:text-bvm-blue transition-colors">
-              sales@bvmindustries.com
-            </a>
-            <span className="hidden sm:inline">|</span>
-            <a href="tel:+917949303163" className="flex items-center gap-1 hover:text-bvm-blue transition-colors">
-              <Phone className="w-3 h-3" />
-              +91-79493-03163
-            </a>
+      {/* Top Bar — always visible, pinned at top */}
+      <div className="fixed top-0 w-full z-50 bg-white/95 dark:bg-bvm-navy/95 border-b border-gray-200 dark:border-white/5 text-gray-600 dark:text-bvm-text-muted shadow-sm dark:shadow-none">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-8 py-2 flex justify-between items-center text-xs">
+          <div className="flex gap-4">
+            <a href="mailto:sales@bvmindustries.com" className="hover:text-bvm-blue transition-colors">sales@bvmindustries.com</a>
+            <span className="text-gray-300 dark:text-white/20">|</span>
+            <a href="tel:+917949303163" className="hover:text-bvm-blue transition-colors">+91-79493-03163</a>
           </div>
-          <div className="hidden sm:block text-bvm-gray">
-            Baddi, Himachal Pradesh, India
-          </div>
+          <div className="hidden sm:block">Global Leader in Aseptic Packaging Technology</div>
         </div>
       </div>
 
-      {/* Main navigation */}
+      {/* Main Nav — pinned below top bar, consistent size */}
       <nav
-        className={`fixed left-0 right-0 z-40 transition-all duration-300 ${isScrolled
-          ? 'top-0 bg-bvm-navy/95 backdrop-blur-md border-b border-white/10 shadow-lg'
-          : 'top-10 bg-transparent'
-          }`}
+        ref={navRef}
+        className={`fixed top-[36px] left-0 right-0 z-40 h-16 flex items-center bg-white/90 dark:bg-bvm-navy/80 backdrop-blur-xl border-b border-gray-200/50 dark:border-white/5 transition-shadow duration-300 ${isScrolled ? 'shadow-lg' : 'shadow-none'}`}
       >
-        <div className="flex items-center justify-between px-4 sm:px-8 py-4">
-          {/* Logo */}
-          <Link to="/" className="flex items-center">
+        <div className="max-w-[1920px] w-full mx-auto px-4 sm:px-8 flex items-center justify-between">
+
+          {/* Logo — theme-aware */}
+          <Link to="/" className="relative z-50 flex items-center">
             <img
               src={theme === 'dark' ? '/new_assets/optimized/bvm-logo-dark.webp' : '/new_assets/optimized/bvm-logo-light.webp'}
-              alt="BVM Industries"
-              width={320}
-              height={112}
-              className="h-14 w-auto object-contain"
-              fetchPriority="high"
+              alt="BVM Logo"
+              className="w-auto object-contain h-10"
             />
           </Link>
 
-          {/* Desktop navigation */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-8" ref={dropdownRef}>
-            {navLinks.map((link) => (
-              <div key={link.label} className="relative group">
-                {link.dropdown ? (
-                  <button
-                    onClick={() => toggleDropdown(link.label)}
-                    onMouseEnter={() => setActiveDropdown(link.label)}
-                    className={`flex items-center gap-1 text-sm font-medium transition-colors ${isActive(link.href) || activeDropdown === link.label
-                      ? 'text-bvm-blue'
-                      : 'text-gray-700 dark:text-white/80 hover:text-gray-900 dark:hover:text-white'
-                      }`}
-                  >
-                    {link.label}
-                    <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === link.label ? 'rotate-180' : ''}`} />
-                  </button>
-                ) : (
-                  <Link
-                    to={link.href}
-                    className={`text-sm font-medium transition-colors ${isActive(link.href)
-                      ? 'text-bvm-blue'
-                      : 'text-gray-700 dark:text-white/80 hover:text-gray-900 dark:hover:text-white'
-                      }`}
-                  >
-                    {link.label}
-                  </Link>
-                )}
+          {/* Desktop Menu */}
+          <div className="hidden lg:flex items-center gap-1 xl:gap-2">
+            {navStructure.map((item) => (
+              <div
+                key={item.label}
+                className="relative"
+                onMouseEnter={() => item.type && handleMouseEnter(item.label)}
+                onMouseLeave={handleMouseLeave}
+              >
+                <div className="px-3 py-2 cursor-pointer group flex items-center gap-1">
+                  {item.href ? (
+                    <Link to={item.href} className="text-sm font-medium transition-colors uppercase tracking-wide text-gray-700 dark:text-white/90 hover:text-bvm-blue">
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <button className="text-sm font-medium group-hover:text-bvm-blue transition-colors uppercase tracking-wide flex items-center gap-1 text-gray-700 dark:text-white/90">
+                      {item.label}
+                      <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${activeDropdown === item.label ? 'rotate-180' : ''}`} />
+                    </button>
+                  )}
 
-                {/* Dropdown Menu */}
-                {link.dropdown && activeDropdown === link.label && (
-                  <div
-                    className="absolute top-full left-0 w-56 pt-4"
-                    onMouseLeave={() => setActiveDropdown(null)}
-                  >
-                    <div className="bg-bvm-navy border border-white/10 rounded-xl shadow-xl overflow-hidden backdrop-blur-xl">
-                      {link.dropdown.map((item) => (
-                        <Link
-                          key={item.href}
-                          to={item.href}
-                          className="block px-4 py-3 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors"
-                        >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </div>
+                  {/* Active Indicator */}
+                  <span className={`absolute bottom-0 left-3 right-3 h-0.5 bg-bvm-blue scale-x-0 transition-transform duration-300 origin-left ${activeDropdown === item.label || (item.href && location.pathname === item.href) ? 'scale-x-100' : 'group-hover:scale-x-100'}`} />
+                </div>
+
+                {/* Dropdowns */}
+                {activeDropdown === item.label && (
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-max">
+                    {item.type === 'mega' ? (
+                      /* Mega Menu */
+                      <div className="bg-white/95 dark:bg-bvm-navy/95 backdrop-blur-2xl border border-gray-200 dark:border-white/10 rounded-2xl p-8 shadow-2xl grid grid-cols-3 gap-12 w-[800px] animate-in fade-in slide-in-from-top-2 duration-200">
+                        {item.columns?.map((col, idx) => (
+                          <div key={idx} className="space-y-4">
+                            <h4 className="text-xs font-bold text-bvm-blue uppercase tracking-wider mb-4 border-b border-gray-100 dark:border-white/10 pb-2">{col.title}</h4>
+                            <ul className="space-y-3">
+                              {col.items.map((subItem) => (
+                                <li key={subItem.label}>
+                                  <Link to={subItem.href} className="group/item block" onClick={handleMouseLeave}>
+                                    <div className="flex items-start gap-3">
+                                      {subItem.icon && (
+                                        <div className="p-2 rounded-lg bg-gray-50 dark:bg-white/5 group-hover/item:bg-bvm-blue/10 dark:group-hover/item:bg-bvm-blue/20 text-gray-500 dark:text-white/70 group-hover/item:text-bvm-blue transition-colors mt-0.5">
+                                          <subItem.icon className="w-4 h-4" />
+                                        </div>
+                                      )}
+                                      <div>
+                                        <div className="text-sm font-medium text-gray-900 dark:text-white group-hover/item:text-bvm-blue transition-colors">{subItem.label}</div>
+                                        {subItem.desc && <div className="text-xs text-gray-500 dark:text-white/40 group-hover/item:text-gray-700 dark:group-hover/item:text-white/60 transition-colors mt-0.5">{subItem.desc}</div>}
+                                      </div>
+                                    </div>
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      /* Simple Dropdown */
+                      <div className="bg-white/95 dark:bg-bvm-navy/95 backdrop-blur-2xl border border-gray-200 dark:border-white/10 rounded-xl p-4 shadow-xl min-w-[220px] animate-in fade-in slide-in-from-top-2 duration-200">
+                        <ul className="space-y-1">
+                          {item.items?.map((subItem) => (
+                            <li key={subItem.label}>
+                              <Link to={subItem.href} className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 group/dItem transition-colors" onClick={handleMouseLeave}>
+                                {subItem.icon && <subItem.icon className="w-4 h-4 text-gray-500 dark:text-white/50 group-hover/dItem:text-bvm-blue" />}
+                                <span className="text-sm text-gray-700 dark:text-white/80 group-hover/dItem:text-gray-900 dark:group-hover/dItem:text-white">{subItem.label}</span>
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
             ))}
           </div>
 
-          {/* Right side actions */}
-          <div className="hidden md:flex items-center gap-4">
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleTheme}
-              className="w-10 h-10 bg-white/5 hover:bg-white/10 rounded-lg flex items-center justify-center text-bvm-gray hover:text-white transition-colors"
-              aria-label="Toggle theme"
-            >
-              {theme === 'dark' ? (
-                <Sun className="w-5 h-5" />
-              ) : (
-                <Moon className="w-5 h-5" />
-              )}
+          {/* Action Buttons */}
+          <div className="hidden lg:flex items-center gap-6">
+            <button onClick={toggleTheme} className="p-2 transition-colors text-gray-500 dark:text-white/60 hover:text-bvm-blue dark:hover:text-white">
+              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
-
-            {/* CTA Button */}
-            <Link to="/contact" className="btn-primary text-sm whitespace-nowrap">
-              Request a Quote
+            <Link to="/contact" className="group relative px-6 py-2.5 overflow-hidden rounded-full font-semibold text-sm transition-all shadow-lg bg-bvm-blue text-white hover:bg-bvm-blue-dark">
+              <span className="relative z-10 flex items-center gap-2">
+                Get in Touch <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </span>
             </Link>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="flex items-center gap-2 md:hidden">
-            <button
-              onClick={toggleTheme}
-              className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center text-bvm-gray"
-              aria-label="Toggle theme"
-            >
-              {theme === 'dark' ? (
-                <Sun className="w-5 h-5" />
-              ) : (
-                <Moon className="w-5 h-5" />
-              )}
+          {/* Mobile Toggle */}
+          <div className="lg:hidden flex items-center gap-4">
+            <button onClick={toggleTheme} className="p-2 text-gray-500 dark:text-white/60">
+              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-white"
-            >
+            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2 text-gray-900 dark:text-white">
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden bg-bvm-navy/98 backdrop-blur-md border-t border-white/10 h-screen overflow-y-auto pb-40">
-            <div className="px-4 py-6 space-y-2">
-              {navLinks.map((link) => (
-                <div key={link.label}>
-                  {link.dropdown ? (
-                    <>
-                      <button
-                        onClick={() => toggleDropdown(link.label)}
-                        className={`flex items-center justify-between w-full text-left text-lg font-medium py-2 transition-colors ${isActive(link.href) ? 'text-bvm-blue' : 'text-gray-700 dark:text-white/80'
-                          }`}
-                      >
-                        {link.label}
-                        <ChevronDown className={`w-5 h-5 transition-transform ${activeDropdown === link.label ? 'rotate-180' : ''}`} />
-                      </button>
-
-                      {activeDropdown === link.label && (
-                        <div className="pl-4 border-l border-white/10 ml-2 space-y-2 mt-2 mb-4">
-                          {link.dropdown.map((item) => (
-                            <Link
-                              key={item.href}
-                              to={item.href}
-                              className="block py-2 text-base text-gray-400 hover:text-white transition-colors"
-                            >
-                              {item.label}
-                            </Link>
-                          ))}
-                        </div>
+        {/* Mobile Menu Overlay */}
+        <div className={`lg:hidden fixed inset-0 z-30 bg-white dark:bg-bvm-navy transition-transform duration-500 pt-24 px-6 overflow-y-auto ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+          <div className="space-y-6">
+            {navStructure.map((item) => (
+              <div key={item.label} className="border-b border-gray-100 dark:border-white/5 pb-4">
+                {item.type ? (
+                  <div>
+                    <button onClick={() => toggleMobileDropdown(item.label)} className="flex items-center justify-between w-full text-xl font-display font-medium text-gray-900 dark:text-white mb-4">
+                      {item.label}
+                      <ChevronDown className={`w-5 h-5 transition-transform ${activeDropdown === item.label ? 'rotate-180' : ''}`} />
+                    </button>
+                    <div className={`space-y-4 pl-4 overflow-hidden transition-all ${activeDropdown === item.label ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                      {item.columns ? (
+                        // Mega Menu Mobile
+                        item.columns.map(col => (
+                          <div key={col.title} className="space-y-2">
+                            <div className="text-xs font-bold text-bvm-blue uppercase">{col.title}</div>
+                            {col.items.map(sub => (
+                              <Link key={sub.label} to={sub.href} className="block text-gray-600 dark:text-white/70 py-1" onClick={() => setIsMobileMenuOpen(false)}>{sub.label}</Link>
+                            ))}
+                          </div>
+                        ))
+                      ) : (
+                        // Dropdown Mobile
+                        item.items?.map(sub => (
+                          <Link key={sub.label} to={sub.href} className="block text-gray-600 dark:text-white/70 py-1" onClick={() => setIsMobileMenuOpen(false)}>{sub.label}</Link>
+                        ))
                       )}
-                    </>
-                  ) : (
-                    <Link
-                      to={link.href}
-                      className={`block w-full text-left text-lg font-medium py-2 transition-colors ${isActive(link.href)
-                        ? 'text-bvm-blue'
-                        : 'text-gray-700 dark:text-white/80 hover:text-gray-900 dark:hover:text-white'
-                        }`}
-                    >
-                      {link.label}
-                    </Link>
-                  )}
-                </div>
-              ))}
-              <Link to="/contact" className="btn-primary w-full mt-6 text-center block">
-                Request a Quote
-              </Link>
-            </div>
+                    </div>
+                  </div>
+                ) : (
+                  item.href && <Link to={item.href} className="block text-xl font-display font-medium text-gray-900 dark:text-white" onClick={() => setIsMobileMenuOpen(false)}>{item.label}</Link>
+                )}
+              </div>
+            ))}
+            <Link to="/contact" className="block w-full py-4 text-center bg-bvm-blue text-white rounded-xl font-bold mt-8" onClick={() => setIsMobileMenuOpen(false)}>
+              Request a Quote
+            </Link>
           </div>
-        )}
+        </div>
       </nav>
     </>
   );

@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect, Suspense, lazy } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from './contexts/ThemeContext';
 import ErrorBoundary from './components/ErrorBoundary';
 import Navigation from './components/Navigation';
@@ -15,9 +16,10 @@ const GalleryPage = lazy(() => import('./pages/GalleryPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const QuotationPage = lazy(() => import('./pages/QuotationPage'));
 const MachinesPage = lazy(() => import('./pages/MachinesPage'));
-const FFSPage = lazy(() => import('./pages/machines/FFSPage'));
-const BFSPage = lazy(() => import('./pages/machines/BFSPage'));
-const CapSealingPage = lazy(() => import('./pages/machines/CapSealingPage'));
+const MachineDetailsPage = lazy(() => import('./pages/MachineDetailsPage')); // Unified Template
+const TurnkeyPage = lazy(() => import('./pages/TurnkeyPage'));
+const RefurbishmentPage = lazy(() => import('./pages/RefurbishmentPage'));
+const QualityPage = lazy(() => import('./pages/QualityPage'));
 const MouldsPage = lazy(() => import('./pages/MouldsPage'));
 const CareerPage = lazy(() => import('./pages/CareerPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
@@ -43,45 +45,53 @@ const PageLoader = () => (
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider>
-        <Router>
-          <ScrollToTop />
-          <div className="relative min-h-screen bg-bvm-navy">
-            {/* Grain overlay */}
-            <div className="grain-overlay" />
+      <HelmetProvider>
+        <ThemeProvider>
+          <Router>
+            <ScrollToTop />
+            <div className="relative min-h-screen bg-bvm-navy">
+              {/* Grain overlay REMOVED for cleaner professional look */}
+              {/* <div className="grain-overlay" /> */}
 
-            {/* Navigation */}
-            <Navigation />
+              {/* Navigation */}
+              <Navigation />
 
-            {/* Main content */}
-            <main className="relative">
-              <Suspense fallback={<PageLoader />}>
-                <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/products" element={<ProductsPage />} />
-                  <Route path="/about" element={<AboutPage />} />
-                  <Route path="/gallery" element={<GalleryPage />} />
-                  <Route path="/contact" element={<ContactPage />} />
-                  <Route path="/quotation" element={<QuotationPage />} />
-                  <Route path="/machines" element={<MachinesPage />} />
-                  <Route path="/machines/ffs" element={<FFSPage />} />
-                  <Route path="/machines/bfs" element={<BFSPage />} />
-                  <Route path="/machines/euro-cap-sealing" element={<CapSealingPage />} />
-                  <Route path="/moulds" element={<MouldsPage />} />
-                  <Route path="/career" element={<CareerPage />} />
-                  <Route path="*" element={<NotFoundPage />} />
-                </Routes>
-              </Suspense>
-            </main>
+              {/* Main content */}
+              <main className="relative">
+                <Suspense fallback={<PageLoader />}>
+                  <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/products" element={<ProductsPage />} />
+                    <Route path="/about" element={<AboutPage />} />
+                    <Route path="/gallery" element={<GalleryPage />} />
+                    <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/quotation" element={<QuotationPage />} />
+                    <Route path="/machines" element={<MachinesPage />} />
 
-            {/* Footer */}
-            <Footer />
+                    {/* Dynamic Machine Route replaces hardcoded pages */}
+                    <Route path="/machines/:slug" element={<MachineDetailsPage />} />
 
-            {/* AI Chatbot */}
-            <AIChatbot />
-          </div>
-        </Router>
-      </ThemeProvider>
+                    {/* New Service Pages */}
+                    <Route path="/services/turnkey" element={<TurnkeyPage />} />
+                    <Route path="/services/refurbishment" element={<RefurbishmentPage />} />
+                    <Route path="/quality" element={<QualityPage />} />
+
+                    <Route path="/moulds" element={<MouldsPage />} />
+                    <Route path="/career" element={<CareerPage />} />
+                    <Route path="*" element={<NotFoundPage />} />
+                  </Routes>
+                </Suspense>
+              </main>
+
+              {/* Footer */}
+              <Footer />
+
+              {/* AI Chatbot */}
+              <AIChatbot />
+            </div>
+          </Router>
+        </ThemeProvider>
+      </HelmetProvider>
     </ErrorBoundary>
   );
 }

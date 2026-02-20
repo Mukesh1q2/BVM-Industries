@@ -38,6 +38,8 @@ const Footer = () => {
     { label: 'Products', href: '/products' },
     { label: 'Gallery', href: '/gallery' },
     { label: 'About Us', href: '/about' },
+    { label: 'Turnkey Projects', href: '/services/turnkey' },
+    { label: 'Refurbishment', href: '/services/refurbishment' },
     { label: 'Contact', href: '/contact' },
   ];
 

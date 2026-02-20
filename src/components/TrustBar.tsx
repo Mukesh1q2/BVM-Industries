@@ -12,7 +12,7 @@ const TrustBar = () => {
                             <div className="p-3 rounded-full bg-bvm-blue/10 text-bvm-blue group-hover:scale-110 transition-transform duration-300">
                                 <Globe2 className="w-6 h-6" />
                             </div>
-                            <h3 className="text-3xl font-display font-bold text-white">500+</h3>
+                            <h3 className="text-3xl font-display font-bold text-white">12+</h3>
                         </div>
                         <p className="text-bvm-gray text-sm uppercase tracking-wider font-medium">Global Installations</p>
                     </div>
@@ -23,9 +23,9 @@ const TrustBar = () => {
                             <div className="p-3 rounded-full bg-bvm-blue/10 text-bvm-blue group-hover:scale-110 transition-transform duration-300">
                                 <Award className="w-6 h-6" />
                             </div>
-                            <h3 className="text-3xl font-display font-bold text-white">Certified</h3>
+                            <h3 className="text-3xl font-display font-bold text-white">ISO & CGMP</h3>
                         </div>
-                        <p className="text-bvm-gray text-sm uppercase tracking-wider font-medium">US FDA & cGMP Compliant</p>
+                        <p className="text-bvm-gray text-sm uppercase tracking-wider font-medium">Certified Excellence</p>
                     </div>
 
                     {/* Stat 3 */}
