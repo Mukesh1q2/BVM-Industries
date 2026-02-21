@@ -1,10 +1,7 @@
-import { useRef, useLayoutEffect, useState, useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useState, useEffect } from 'react';
 import { ArrowRight, Filter } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
-
-gsap.registerPlugin(ScrollTrigger);
+import RevealSection from '../components/RevealSection';
 
 const machineCategories = [
     {
@@ -45,8 +42,6 @@ const filters = [
 ];
 
 const MachinesPage = () => {
-    const headerRef = useRef<HTMLDivElement>(null);
-    const categoriesRef = useRef<HTMLDivElement>(null);
     const [searchParams, setSearchParams] = useSearchParams();
     const [activeFilter, setActiveFilter] = useState('all');
 
@@ -64,43 +59,6 @@ const MachinesPage = () => {
         setSearchParams(filterId === 'all' ? {} : { filter: filterId });
     };
 
-    useLayoutEffect(() => {
-        const ctx = gsap.context(() => {
-            // Header Animation (only on first mount)
-            gsap.from(headerRef.current, {
-                y: 50,
-                opacity: 0,
-                duration: 1,
-                ease: "power3.out"
-            });
-        }, headerRef);
-
-        return () => ctx.revert();
-    }, []);
-
-    // Separate effect for card animations — runs on every filter change
-    useLayoutEffect(() => {
-        const cards = gsap.utils.toArray('.machine-card') as HTMLElement[];
-        if (cards.length === 0) return;
-
-        const ctx = gsap.context(() => {
-            // Directly animate cards in (no ScrollTrigger) so they always become visible
-            gsap.fromTo(cards,
-                { y: 40, opacity: 0 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    duration: 0.6,
-                    stagger: 0.1,
-                    ease: "power3.out",
-                    clearProps: "all" // Clean up inline styles after animation completes
-                }
-            );
-        });
-
-        return () => ctx.revert();
-    }, [activeFilter]); // Re-run animation on filter change
-
     const filteredMachines = activeFilter === 'all'
         ? machineCategories
         : machineCategories.filter(m => m.categories.includes(activeFilter));
@@ -108,14 +66,14 @@ const MachinesPage = () => {
     return (
         <div className="pt-24 pb-20 bg-bvm-navy min-h-screen">
             {/* Header Section */}
-            <div ref={headerRef} className="max-w-4xl mx-auto text-center mb-12 px-4">
+            <RevealSection className="max-w-4xl mx-auto text-center mb-12 px-4">
                 <h1 className="text-4xl md:text-6xl font-display font-bold text-white mb-6">
                     Advanced Pharmaceutical <span className="text-bvm-blue">Solutions</span>
                 </h1>
                 <p className="text-xl text-bvm-gray max-w-2xl mx-auto leading-relaxed">
                     Discover our range of precision machinery designed for aseptic integrity and high-speed performance.
                 </p>
-            </div>
+            </RevealSection>
 
             {/* Filter Tabs */}
             <div className="flex flex-wrap justify-center gap-2 mb-16 px-4 sm:px-8 max-w-5xl mx-auto">
@@ -137,10 +95,14 @@ const MachinesPage = () => {
             </div>
 
             {/* Machine Categories */}
-            <div ref={categoriesRef} className="grid grid-cols-1 gap-12 px-4 sm:px-8 lg:px-[8vw]">
+            <div className="grid grid-cols-1 gap-12 px-4 sm:px-8 lg:px-[8vw]">
                 {filteredMachines.length > 0 ? (
                     filteredMachines.map((category, index) => (
-                        <div key={category.id} className={`machine-card group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 hover:border-bvm-blue/50 transition-all duration-500`}>
+                        <RevealSection
+                            key={`${category.id}-${activeFilter}`}
+                            delay={index * 150}
+                            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 hover:border-bvm-blue/50 transition-colors duration-500"
+                        >
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
                                 {/* Image Section */}
                                 <div className={`relative h-64 lg:h-auto overflow-hidden ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
@@ -164,7 +126,7 @@ const MachinesPage = () => {
                                     </Link>
                                 </div>
                             </div>
-                        </div>
+                        </RevealSection>
                     ))
                 ) : (
                     <div className="text-center py-20">

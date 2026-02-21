@@ -1,0 +1,36 @@
+
+> bvm-next@0.1.0 build
+> next build
+
+ΓÜá Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\Users\crypt\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\bvm-next\package-lock.json
+   * C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\package-lock.json
+
+Γû▓ Next.js 16.1.6 (Turbopack)
+
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 6.5s
+  Running TypeScript ...
+  Collecting page data using 15 workers ...
+  Generating static pages using 15 workers (0/16) ...
+ΓÜá metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+  Generating static pages using 15 workers (4/16) 
+  Generating static pages using 15 workers (8/16) 
+Γ¿» useSearchParams() should be wrapped in a suspense boundary at page "/machines". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+    at Q (C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\bvm-next\.next\server\chunks\ssr\06252_a3850a10._.js:2:2111)
+    at o (C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\bvm-next\.next\server\chunks\ssr\06252_a3850a10._.js:4:5284)
+    at C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\bvm-next\.next\server\chunks\ssr\Downloads_Ai projects_websites_Inprogress_BVM_app_bvm-next_src_a07a221b._.js:1:2174
+    at an (C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\bvm-next\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:84360)
+    at ai (C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\bvm-next\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:86179)
+    at al (C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\bvm-next\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:107953)
+    at as (C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\bvm-next\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:105368)
+    at aa (C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\bvm-next\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:84712)
+    at ai (C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\bvm-next\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:86228)
+    at ai (C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\bvm-next\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:104708)
+Error occurred prerendering page "/machines". Read more: https://nextjs.org/docs/messages/prerender-error
+Export encountered an error on /machines/page: /machines, exiting the build.
+Γ¿» Next.js build worker exited with code: 1 and signal: null

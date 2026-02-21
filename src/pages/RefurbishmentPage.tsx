@@ -1,33 +1,11 @@
-import { useRef, useLayoutEffect, useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect } from 'react';
 import { RefreshCw, ShieldCheck, Cpu, DollarSign, Clock, Leaf } from 'lucide-react';
 import SEO from '../components/SEO';
-
-gsap.registerPlugin(ScrollTrigger);
+import RevealSection from '../components/RevealSection';
 
 const RefurbishmentPage = () => {
-    const mainRef = useRef<HTMLDivElement>(null);
-
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, []);
-
-    useLayoutEffect(() => {
-        const ctx = gsap.context(() => {
-            gsap.utils.toArray('.animate-section').forEach((section: any) => {
-                gsap.from(section, {
-                    y: 50,
-                    opacity: 0,
-                    duration: 0.8,
-                    scrollTrigger: {
-                        trigger: section,
-                        start: "top 80%",
-                    }
-                });
-            });
-        }, mainRef);
-        return () => ctx.revert();
     }, []);
 
     const processSteps = [
@@ -43,9 +21,9 @@ const RefurbishmentPage = () => {
                 title="Refurbishment & Resale Services"
                 description="Expert refurbishment of FFS and BFS machines. Cost-effective solutions with performance guarantees and PLC upgrades."
             />
-            <div ref={mainRef} className="pt-24 pb-20 bg-bvm-navy min-h-screen">
+            <div className="pt-24 pb-20 bg-bvm-navy min-h-screen">
                 {/* Hero */}
-                <div className="px-4 sm:px-8 lg:px-[8vw] mb-20 animate-section text-center">
+                <RevealSection className="px-4 sm:px-8 lg:px-[8vw] mb-20 text-center">
                     <span className="text-bvm-blue font-medium tracking-wider uppercase">Lifecycle Solutions</span>
                     <h1 className="text-4xl md:text-6xl font-display font-bold text-white mt-4 mb-6">
                         Refurbishment & <span className="text-bvm-blue">Resale</span>
@@ -53,10 +31,10 @@ const RefurbishmentPage = () => {
                     <p className="text-xl text-bvm-gray max-w-3xl mx-auto leading-relaxed">
                         Extending the operational life of your machinery. We specialize in the professional refurbishment of F.F.S and B.F.S machines, delivering reliable, cost-effective solutions.
                     </p>
-                </div>
+                </RevealSection>
 
                 {/* Benefits Grid */}
-                <div className="px-4 sm:px-8 lg:px-[8vw] grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 animate-section">
+                <RevealSection className="px-4 sm:px-8 lg:px-[8vw] grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
                     <div className="bg-white/5 p-8 rounded-2xl border border-white/10 hover:border-bvm-blue/50 transition-colors">
                         <DollarSign className="w-10 h-10 text-bvm-blue mb-4" />
                         <h3 className="text-xl font-bold text-white mb-2">Significant Cost Savings</h3>
@@ -72,10 +50,10 @@ const RefurbishmentPage = () => {
                         <h3 className="text-xl font-bold text-white mb-2">Sustainable Choice</h3>
                         <p className="text-bvm-text-muted">Promoting the sustainable reuse of industrial assets and reducing carbon footprint.</p>
                     </div>
-                </div>
+                </RevealSection>
 
                 {/* Process Section */}
-                <div className="px-4 sm:px-8 lg:px-[8vw] mb-24 animate-section">
+                <RevealSection className="px-4 sm:px-8 lg:px-[8vw] mb-24">
                     <h2 className="text-3xl font-bold text-white mb-12 border-l-4 border-bvm-blue pl-4">Our Refurbishment Process</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {processSteps.map((step, idx) => (
@@ -88,10 +66,10 @@ const RefurbishmentPage = () => {
                             </div>
                         ))}
                     </div>
-                </div>
+                </RevealSection>
 
                 {/* Resale & Buyback */}
-                <div className="px-4 sm:px-8 lg:px-[8vw] animate-section">
+                <RevealSection className="px-4 sm:px-8 lg:px-[8vw]">
                     <div className="bg-gradient-to-br from-bvm-blue/20 to-bvm-navy border border-bvm-blue/30 rounded-3xl p-8 md:p-12 relative overflow-hidden">
                         <div className="relative z-10">
                             <h2 className="text-3xl font-bold text-white mb-6">Resale & Buyback Services</h2>
@@ -103,7 +81,7 @@ const RefurbishmentPage = () => {
                             </button>
                         </div>
                     </div>
-                </div>
+                </RevealSection>
             </div>
         </>
     );

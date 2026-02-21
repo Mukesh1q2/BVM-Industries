@@ -1,0 +1,37 @@
+
+> bvm-next@0.1.0 build
+> next build
+
+ΓÜá Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\Users\crypt\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\bvm-next\package-lock.json
+   * C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\package-lock.json
+
+Γû▓ Next.js 16.1.6 (Turbopack)
+
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 6.7s
+  Running TypeScript ...
+  Collecting page data using 15 workers ...
+Error: Failed to collect configuration for /about
+    at ignore-listed frames {
+  [cause]: TypeError: w.createContext is not a function
+      at module evaluation (C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\bvm-next\.next\server\chunks\ssr\71876_websites_Inprogress_BVM_app_bvm-next_src_app_about_page_tsx_d67801a8._.js:1:3653)
+      at instantiateModule (C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\bvm-next\.next\server\chunks\ssr\[turbopack]_runtime.js:740:9)
+      at getOrInstantiateModuleFromParent (C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\bvm-next\.next\server\chunks\ssr\[turbopack]_runtime.js:763:12)
+      at Context.esmImport [as i] (C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\bvm-next\.next\server\chunks\ssr\[turbopack]_runtime.js:228:20)
+      at module evaluation (C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\bvm-next\.next\server\chunks\ssr\Downloads_Ai projects_websites_Inprogress_BVM_app_bvm-next_84ceb858._.js:1:33)
+      at instantiateModule (C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\bvm-next\.next\server\chunks\ssr\[turbopack]_runtime.js:740:9)
+      at getOrInstantiateModuleFromParent (C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\bvm-next\.next\server\chunks\ssr\[turbopack]_runtime.js:763:12)
+      at Context.commonJsRequire [as r] (C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\bvm-next\.next\server\chunks\ssr\[turbopack]_runtime.js:249:12)
+      at I.children.children.page (C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\bvm-next\.next\server\chunks\ssr\Downloads_Ai projects_websites_Inprogress_BVM_app_bvm-next_84ceb858._.js:1:608)
+}
+
+> Build error occurred
+Error: Failed to collect page data for /about
+    at ignore-listed frames {
+  type: 'Error'
+}

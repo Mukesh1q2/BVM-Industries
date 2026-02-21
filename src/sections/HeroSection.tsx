@@ -142,7 +142,7 @@ const HeroSection = () => {
       {/* Hero product image */}
       <img
         ref={imageRef}
-        src="/hero_bottle_large.png"
+        src="/hero_bottle_large.webp"
         alt="BVM Industries precision pharmaceutical bottles produced by Blow-Fill-Seal technology"
         width={520}
         height={780}

@@ -22,6 +22,7 @@ const RefurbishmentPage = lazy(() => import('./pages/RefurbishmentPage'));
 const QualityPage = lazy(() => import('./pages/QualityPage'));
 const MouldsPage = lazy(() => import('./pages/MouldsPage'));
 const CareerPage = lazy(() => import('./pages/CareerPage'));
+const BuildYourLinePage = lazy(() => import('./pages/BuildYourLinePage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 // Scroll to top on route change
@@ -78,6 +79,7 @@ function App() {
 
                     <Route path="/moulds" element={<MouldsPage />} />
                     <Route path="/career" element={<CareerPage />} />
+                    <Route path="/build-your-line" element={<BuildYourLinePage />} />
                     <Route path="*" element={<NotFoundPage />} />
                   </Routes>
                 </Suspense>

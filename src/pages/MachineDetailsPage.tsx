@@ -1,12 +1,10 @@
-import { useRef, useLayoutEffect, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { machines } from '../data/machines';
 import SEO from '../components/SEO';
+import RevealSection from '../components/RevealSection';
+import Machine3DViewer from '../components/3d/Machine3DViewer';
 import { ArrowRight, CheckCircle, Shield, Zap, Settings, Activity, Server, Droplet, Cpu } from 'lucide-react';
-
-gsap.registerPlugin(ScrollTrigger);
 
 // Map icon strings to Lucide components
 const iconMap: Record<string, any> = {
@@ -16,32 +14,11 @@ const iconMap: Record<string, any> = {
 const MachineDetailsPage = () => {
     const { slug } = useParams<{ slug: string }>();
     const machine = machines.find(m => m.slug === slug);
-    const mainRef = useRef<HTMLDivElement>(null);
 
     // Scroll to top on mount
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [slug]);
-
-    useLayoutEffect(() => {
-        if (!machine) return;
-
-        const ctx = gsap.context(() => {
-            gsap.utils.toArray('.animate-section').forEach((section: any) => {
-                gsap.from(section, {
-                    y: 50,
-                    opacity: 0,
-                    duration: 0.8,
-                    scrollTrigger: {
-                        trigger: section,
-                        start: "top 80%",
-                    }
-                });
-            });
-        }, mainRef);
-
-        return () => ctx.revert();
-    }, [machine]);
 
     if (!machine) {
         return <Navigate to="/machines" replace />;
@@ -55,9 +32,9 @@ const MachineDetailsPage = () => {
                 image={machine.hero.image}
             />
 
-            <div ref={mainRef} className="pt-24 pb-20 bg-bvm-navy min-h-screen">
+            <div className="pt-24 pb-20 bg-bvm-navy min-h-screen">
                 {/* Hero Section */}
-                <div className="px-4 sm:px-8 lg:px-[8vw] mb-20 animate-section">
+                <RevealSection className="px-4 sm:px-8 lg:px-[8vw] mb-20">
                     <span className="text-bvm-blue font-medium tracking-wider uppercase">{machine.hero.subtitle}</span>
                     <h1 className="text-4xl md:text-6xl font-display font-bold text-white mt-4 mb-6">
                         {machine.hero.title.replace(machine.hero.highlight, '')}
@@ -70,10 +47,10 @@ const MachineDetailsPage = () => {
                         <span>{machine.hero.brochureText}</span>
                         <ArrowRight className="w-4 h-4" />
                     </button>
-                </div>
+                </RevealSection>
 
                 {/* Main Content Grid */}
-                <div className="px-4 sm:px-8 lg:px-[8vw] grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24 animate-section">
+                <RevealSection className="px-4 sm:px-8 lg:px-[8vw] grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
                     <div>
                         {machine.features.map((feature, idx) => {
                             const Icon = iconMap[feature.icon] || CheckCircle;
@@ -96,15 +73,8 @@ const MachineDetailsPage = () => {
                         })}
                     </div>
 
-                    <div className="space-y-8 animate-section">
-                        <img
-                            src={machine.hero.image}
-                            alt={machine.hero.title}
-                            width={800}
-                            height={600}
-                            loading="lazy"
-                            className="rounded-xl shadow-2xl border border-white/10 w-full object-cover"
-                        />
+                    <RevealSection className="space-y-8" delay={200}>
+                        <Machine3DViewer />
 
                         {machine.processCapabilities && (
                             <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
@@ -138,12 +108,12 @@ const MachineDetailsPage = () => {
                                 />
                             </div>
                         )}
-                    </div>
-                </div>
+                    </RevealSection>
+                </RevealSection>
 
                 {/* Specifications Tables */}
                 {machine.specTables.map((table, tblIdx) => (
-                    <div key={tblIdx} className="px-4 sm:px-8 lg:px-[8vw] mb-20 animate-section">
+                    <RevealSection key={tblIdx} className="px-4 sm:px-8 lg:px-[8vw] mb-20">
                         <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 border-l-4 border-bvm-blue pl-4">
                             {table.title}
                         </h2>
@@ -175,7 +145,7 @@ const MachineDetailsPage = () => {
                                 {table.note}
                             </p>
                         )}
-                    </div>
+                    </RevealSection>
                 ))}
 
                 <div className="px-4 sm:px-8 lg:px-[8vw] mb-12 flex justify-center">

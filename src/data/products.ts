@@ -31,7 +31,7 @@ export const products: Product[] = [
       'Machine Weight': '3,500 - 8,000 kg',
       'Dimensions': 'L4.5m x W2.2m x H2.8m'
     },
-    image: '/products/blow-moulding-machine.jpg',
+    image: '/products/blow-moulding-machine.webp',
     category: 'Blow Moulding'
   },
   {
@@ -55,7 +55,7 @@ export const products: Product[] = [
       'Mould Life': '5+ million cycles',
       'Neck Finish': 'Customizable'
     },
-    image: '/products/pet-mould-100ml.jpg',
+    image: '/products/pet-mould-100ml.webp',
     category: 'PET Moulds'
   },
   {
@@ -79,7 +79,7 @@ export const products: Product[] = [
       'Sterility Assurance': 'Class 100 environment',
       'Validation Support': 'DQ/IQ/OQ/PQ documentation'
     },
-    image: '/products/bfs-machine-50ml.jpg',
+    image: '/products/bfs-machine-50ml.webp',
     category: 'BFS Systems'
   },
   {
@@ -103,7 +103,7 @@ export const products: Product[] = [
       'Cartridge Length': '10", 20", 30", 40"',
       'Surface Finish': 'Ra < 0.8 μm'
     },
-    image: '/products/ss-filter-housing.jpg',
+    image: '/products/ss-filter-housing.webp',
     category: 'Filtration'
   },
   {
@@ -127,7 +127,7 @@ export const products: Product[] = [
       'Material': 'Alloy Steel',
       'Rod Surface': 'Hard Chrome Plated'
     },
-    image: '/products/hydraulic-cylinder.jpg',
+    image: '/products/hydraulic-cylinder.webp',
     category: 'Hydraulics'
   },
   {
@@ -151,7 +151,7 @@ export const products: Product[] = [
       'Die Head': 'Single/Double/Multi-head',
       'Control System': 'PLC with HMI'
     },
-    image: '/products/extrusion-blow-moulding.jpg',
+    image: '/products/extrusion-blow-moulding.webp',
     category: 'Blow Moulding'
   },
   {
@@ -175,7 +175,7 @@ export const products: Product[] = [
       'Tolerance': '±0.02mm',
       'Testing': 'Pressure tested 1.5x rating'
     },
-    image: '/products/hydraulic-manifold.jpg',
+    image: '/products/hydraulic-manifold.webp',
     category: 'Hydraulics'
   },
   {
@@ -199,7 +199,7 @@ export const products: Product[] = [
       'Sealing Method': 'Gas-oxygen flame',
       'Environment': 'Class 100 compatible'
     },
-    image: '/products/ampoule-filling.jpg',
+    image: '/products/ampoule-filling.webp',
     category: 'Pharma Equipment'
   },
   {
@@ -223,7 +223,7 @@ export const products: Product[] = [
       'Cycle Time': '15-25 seconds',
       'Hot Runner': 'Optional'
     },
-    image: '/products/respules-mould.jpg',
+    image: '/products/respules-mould.webp',
     category: 'PET Moulds'
   },
   {
@@ -247,7 +247,7 @@ export const products: Product[] = [
       'Coating': 'DLC / Chrome',
       'Testing': 'Hydrostatic tested'
     },
-    image: '/products/compression-block.jpg',
+    image: '/products/compression-block.webp',
     category: 'Components'
   },
   {
@@ -271,7 +271,7 @@ export const products: Product[] = [
       'Mould Life': '1-5 million shots',
       'Lead Time': '4-8 weeks'
     },
-    image: '/products/injection-mould.jpg',
+    image: '/products/injection-mould.webp',
     category: 'Moulds'
   },
   {
@@ -295,7 +295,7 @@ export const products: Product[] = [
       'Reservoir Capacity': '80 - 200 L',
       'Voltage': '415V, 3-phase'
     },
-    image: '/products/hydraulic-power-pack.jpg',
+    image: '/products/hydraulic-power-pack.webp',
     category: 'Hydraulics'
   }
 ];

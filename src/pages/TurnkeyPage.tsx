@@ -1,33 +1,11 @@
-import { useRef, useLayoutEffect, useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect } from 'react';
 import { Factory, CheckSquare, Settings, BadgeCheck } from 'lucide-react';
 import SEO from '../components/SEO';
-
-gsap.registerPlugin(ScrollTrigger);
+import RevealSection from '../components/RevealSection';
 
 const TurnkeyPage = () => {
-    const mainRef = useRef<HTMLDivElement>(null);
-
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, []);
-
-    useLayoutEffect(() => {
-        const ctx = gsap.context(() => {
-            gsap.utils.toArray('.animate-section').forEach((section: any) => {
-                gsap.from(section, {
-                    y: 50,
-                    opacity: 0,
-                    duration: 0.8,
-                    scrollTrigger: {
-                        trigger: section,
-                        start: "top 80%",
-                    }
-                });
-            });
-        }, mainRef);
-        return () => ctx.revert();
     }, []);
 
     const services = [
@@ -47,9 +25,9 @@ const TurnkeyPage = () => {
                 title="Turnkey Plant Installation"
                 description="World-class turnkey solutions for Parenteral Manufacturing Plants. From blueprint to batch production, ensuring global regulatory compliance."
             />
-            <div ref={mainRef} className="pt-24 pb-20 bg-bvm-navy min-h-screen">
+            <div className="pt-24 pb-20 bg-bvm-navy min-h-screen">
                 {/* Hero */}
-                <div className="px-4 sm:px-8 lg:px-[8vw] mb-20 animate-section">
+                <RevealSection className="px-4 sm:px-8 lg:px-[8vw] mb-20">
                     <span className="text-bvm-blue font-medium tracking-wider uppercase">Project Execution</span>
                     <h1 className="text-4xl md:text-6xl font-display font-bold text-white mt-4 mb-6">
                         Turnkey <span className="text-bvm-blue">Solutions</span>
@@ -57,10 +35,10 @@ const TurnkeyPage = () => {
                     <p className="text-xl text-bvm-gray max-w-3xl leading-relaxed mb-8">
                         We deliver complete turnkey solutions for Parenteral (Sterile Injectable) Manufacturing Facilities — engineered for performance, designed for compliance, and built for global regulatory approval.
                     </p>
-                </div>
+                </RevealSection>
 
                 {/* End-to-End Execution */}
-                <div className="px-4 sm:px-8 lg:px-[8vw] grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24 animate-section">
+                <RevealSection className="px-4 sm:px-8 lg:px-[8vw] grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
                     <div>
                         <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
                             <Factory className="text-bvm-blue" />
@@ -93,10 +71,10 @@ const TurnkeyPage = () => {
                             ))}
                         </div>
                     </div>
-                </div>
+                </RevealSection>
 
                 {/* Value Proposition */}
-                <div className="px-4 sm:px-8 lg:px-[8vw] animate-section">
+                <RevealSection className="px-4 sm:px-8 lg:px-[8vw]">
                     <h2 className="text-2xl font-bold text-white mb-8 border-l-4 border-bvm-blue pl-4">Precision. Compliance. Performance.</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div className="bg-white/5 p-6 rounded-xl border border-white/10">
@@ -115,7 +93,7 @@ const TurnkeyPage = () => {
                             <p className="text-sm text-bvm-text-muted">From blueprint to batch production, we deliver excellence at every stage.</p>
                         </div>
                     </div>
-                </div>
+                </RevealSection>
             </div>
         </>
     );

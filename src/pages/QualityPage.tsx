@@ -1,33 +1,11 @@
-import { useRef, useLayoutEffect, useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect } from 'react';
 import { Shield, Clock, Headphones, Award, FileCheck, CheckCircle } from 'lucide-react';
 import SEO from '../components/SEO';
-
-gsap.registerPlugin(ScrollTrigger);
+import RevealSection from '../components/RevealSection';
 
 const QualityPage = () => {
-    const mainRef = useRef<HTMLDivElement>(null);
-
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, []);
-
-    useLayoutEffect(() => {
-        const ctx = gsap.context(() => {
-            gsap.utils.toArray('.animate-section').forEach((section: any) => {
-                gsap.from(section, {
-                    y: 50,
-                    opacity: 0,
-                    duration: 0.8,
-                    scrollTrigger: {
-                        trigger: section,
-                        start: "top 80%",
-                    }
-                });
-            });
-        }, mainRef);
-        return () => ctx.revert();
     }, []);
 
     const qualityPoints = [
@@ -69,9 +47,9 @@ const QualityPage = () => {
                 title="Quality Assurance & Compliance"
                 description="BVM Industries is committed to quality. cGMP-aligned designs, rigorous testing, and comprehensive documentation for pharmaceutical machinery."
             />
-            <div ref={mainRef} className="pt-24 pb-20 bg-bvm-navy min-h-screen">
+            <div className="pt-24 pb-20 bg-bvm-navy min-h-screen">
                 {/* Hero */}
-                <div className="px-4 sm:px-8 lg:px-[8vw] mb-20 animate-section text-center">
+                <RevealSection className="px-4 sm:px-8 lg:px-[8vw] mb-20 text-center">
                     <span className="text-bvm-blue font-medium tracking-wider uppercase">Our Commitment</span>
                     <h1 className="text-4xl md:text-6xl font-display font-bold text-white mt-4 mb-6">
                         Quality <span className="text-bvm-blue">Assurance</span>
@@ -79,10 +57,10 @@ const QualityPage = () => {
                     <p className="text-xl text-bvm-gray max-w-3xl mx-auto leading-relaxed">
                         At BVM Industries, quality is not just a checkbox—it’s the foundation of everything we build. From raw material selection to final validation, we ensure excellence.
                     </p>
-                </div>
+                </RevealSection>
 
                 {/* Quality Grid */}
-                <div className="px-4 sm:px-8 lg:px-[8vw] animate-section">
+                <RevealSection className="px-4 sm:px-8 lg:px-[8vw]">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {qualityPoints.map((point, idx) => {
                             const Icon = point.icon;
@@ -97,10 +75,10 @@ const QualityPage = () => {
                             );
                         })}
                     </div>
-                </div>
+                </RevealSection>
 
                 {/* Compliance Statement */}
-                <div className="px-4 sm:px-8 lg:px-[8vw] mt-24 animate-section">
+                <RevealSection className="px-4 sm:px-8 lg:px-[8vw] mt-24">
                     <div className="bg-gradient-to-r from-bvm-blue/20 to-bvm-navy border border-bvm-blue/30 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
                         <div className="flex-1">
                             <h2 className="text-3xl font-bold text-white mb-4">Regulatory Compliance</h2>
@@ -117,7 +95,7 @@ const QualityPage = () => {
                             <Shield className="w-32 h-32 text-bvm-blue/20" />
                         </div>
                     </div>
-                </div>
+                </RevealSection>
             </div>
         </>
     );

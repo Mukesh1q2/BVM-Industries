@@ -1,34 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
-import { Menu, X, Sun, Moon, ChevronDown, ArrowRight, Box, Settings, Activity, Droplet, PenTool, Layers, Factory, RefreshCw, ShieldCheck } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { useTheme } from '../contexts/ThemeContext';
+import { navStructure } from '../data/navigation';
 
-interface SubItem {
-  label: string;
-  href: string;
-  icon?: LucideIcon;
-  desc?: string;
-}
-
-interface MegaMenuColumn {
-  title: string;
-  items: SubItem[];
-}
-
-interface NavItem {
-  label: string;
-  href?: string;
-  type?: 'mega' | 'dropdown';
-  columns?: MegaMenuColumn[]; // For mega menu
-  items?: SubItem[]; // For simple dropdown
-}
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const navRef = useRef<HTMLElement>(null);
 
@@ -54,60 +33,7 @@ const Navigation = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const navStructure: NavItem[] = [
-    { label: 'Home', href: '/' },
-    {
-      label: 'Solutions',
-      type: 'mega',
-      columns: [
-        {
-          title: 'Core Machinery',
-          items: [
-            { label: 'F.F.S Machines', href: '/machines/ffs', icon: Box, desc: 'Form Fill Seal Systems' },
-            { label: 'B.F.S Machines', href: '/machines/bfs', icon: Activity, desc: 'Blow Fill Seal Technology' },
-            { label: 'Euro Cap Sealing', href: '/machines/euro-cap-sealing', icon: Settings, desc: 'Sealing & Welding' },
-          ]
-        },
-        {
-          title: 'Applications',
-          items: [
-            { label: 'Injectables (SVP/LVP)', href: '/machines?filter=injectables', icon: Droplet },
-            { label: 'Ophthalmic', href: '/machines?filter=ophthalmic', icon: Activity },
-            { label: 'Respiratory', href: '/machines?filter=respiratory', icon: Factory },
-          ]
-        },
-        {
-          title: 'Ancillary',
-          items: [
-            { label: 'Precision Moulds', href: '/moulds', icon: Layers },
-            { label: 'General Products', href: '/products', icon: PenTool },
-          ]
-        }
-      ]
-    },
-    {
-      label: 'Services',
-      type: 'dropdown',
-      items: [
-        { label: 'Turnkey Projects', href: '/services/turnkey', icon: Factory },
-        { label: 'Refurbishment', href: '/services/refurbishment', icon: RefreshCw },
-        { label: 'Quality Assurance', href: '/quality', icon: ShieldCheck },
-      ]
-    },
-    {
-      label: 'Company',
-      type: 'dropdown',
-      items: [
-        { label: 'About Us', href: '/about' },
-        { label: 'Gallery', href: '/gallery' },
-        { label: 'Careers', href: '/career' },
-      ]
-    }
-  ];
-
-  const handleMouseEnter = (label: string) => setActiveDropdown(label);
-  const handleMouseLeave = () => setActiveDropdown(null);
-  const toggleMobileDropdown = (label: string) => setActiveDropdown(activeDropdown === label ? null : label);
+  const toggleDropdown = (label: string) => setActiveDropdown(activeDropdown === label ? null : label);
 
   return (
     <>
@@ -130,10 +56,10 @@ const Navigation = () => {
       >
         <div className="max-w-[1920px] w-full mx-auto px-4 sm:px-8 flex items-center justify-between">
 
-          {/* Logo — theme-aware */}
-          <Link to="/" className="relative z-50 flex items-center">
+          {/* Logo — strictly dark mode for premium brand consistency */}
+          <Link to="/" className="relative z-50 flex items-center" onClick={() => setActiveDropdown(null)}>
             <img
-              src={theme === 'dark' ? '/new_assets/optimized/bvm-logo-dark.webp' : '/new_assets/optimized/bvm-logo-light.webp'}
+              src="/new_assets/optimized/bvm-logo-dark.webp"
               alt="BVM Logo"
               className="w-auto object-contain h-10"
             />
@@ -145,16 +71,17 @@ const Navigation = () => {
               <div
                 key={item.label}
                 className="relative"
-                onMouseEnter={() => item.type && handleMouseEnter(item.label)}
-                onMouseLeave={handleMouseLeave}
               >
                 <div className="px-3 py-2 cursor-pointer group flex items-center gap-1">
                   {item.href ? (
-                    <Link to={item.href} className="text-sm font-medium transition-colors uppercase tracking-wide text-gray-700 dark:text-white/90 hover:text-bvm-blue">
+                    <Link to={item.href} className="text-sm font-medium transition-colors uppercase tracking-wide text-gray-700 dark:text-white/90 hover:text-bvm-blue" onClick={() => setActiveDropdown(null)}>
                       {item.label}
                     </Link>
                   ) : (
-                    <button className="text-sm font-medium group-hover:text-bvm-blue transition-colors uppercase tracking-wide flex items-center gap-1 text-gray-700 dark:text-white/90">
+                    <button
+                      onClick={() => item.type && toggleDropdown(item.label)}
+                      className="text-sm font-medium group-hover:text-bvm-blue transition-colors uppercase tracking-wide flex items-center gap-1 text-gray-700 dark:text-white/90"
+                    >
                       {item.label}
                       <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${activeDropdown === item.label ? 'rotate-180' : ''}`} />
                     </button>
@@ -176,7 +103,7 @@ const Navigation = () => {
                             <ul className="space-y-3">
                               {col.items.map((subItem) => (
                                 <li key={subItem.label}>
-                                  <Link to={subItem.href} className="group/item block" onClick={handleMouseLeave}>
+                                  <Link to={subItem.href} className="group/item block" onClick={() => setActiveDropdown(null)}>
                                     <div className="flex items-start gap-3">
                                       {subItem.icon && (
                                         <div className="p-2 rounded-lg bg-gray-50 dark:bg-white/5 group-hover/item:bg-bvm-blue/10 dark:group-hover/item:bg-bvm-blue/20 text-gray-500 dark:text-white/70 group-hover/item:text-bvm-blue transition-colors mt-0.5">
@@ -201,7 +128,7 @@ const Navigation = () => {
                         <ul className="space-y-1">
                           {item.items?.map((subItem) => (
                             <li key={subItem.label}>
-                              <Link to={subItem.href} className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 group/dItem transition-colors" onClick={handleMouseLeave}>
+                              <Link to={subItem.href} className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 group/dItem transition-colors" onClick={() => setActiveDropdown(null)}>
                                 {subItem.icon && <subItem.icon className="w-4 h-4 text-gray-500 dark:text-white/50 group-hover/dItem:text-bvm-blue" />}
                                 <span className="text-sm text-gray-700 dark:text-white/80 group-hover/dItem:text-gray-900 dark:group-hover/dItem:text-white">{subItem.label}</span>
                               </Link>
@@ -218,9 +145,6 @@ const Navigation = () => {
 
           {/* Action Buttons */}
           <div className="hidden lg:flex items-center gap-6">
-            <button onClick={toggleTheme} className="p-2 transition-colors text-gray-500 dark:text-white/60 hover:text-bvm-blue dark:hover:text-white">
-              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            </button>
             <Link to="/contact" className="group relative px-6 py-2.5 overflow-hidden rounded-full font-semibold text-sm transition-all shadow-lg bg-bvm-blue text-white hover:bg-bvm-blue-dark">
               <span className="relative z-10 flex items-center gap-2">
                 Get in Touch <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -230,9 +154,6 @@ const Navigation = () => {
 
           {/* Mobile Toggle */}
           <div className="lg:hidden flex items-center gap-4">
-            <button onClick={toggleTheme} className="p-2 text-gray-500 dark:text-white/60">
-              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            </button>
             <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2 text-gray-900 dark:text-white">
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -246,7 +167,7 @@ const Navigation = () => {
               <div key={item.label} className="border-b border-gray-100 dark:border-white/5 pb-4">
                 {item.type ? (
                   <div>
-                    <button onClick={() => toggleMobileDropdown(item.label)} className="flex items-center justify-between w-full text-xl font-display font-medium text-gray-900 dark:text-white mb-4">
+                    <button onClick={() => toggleDropdown(item.label)} className="flex items-center justify-between w-full text-xl font-display font-medium text-gray-900 dark:text-white mb-4">
                       {item.label}
                       <ChevronDown className={`w-5 h-5 transition-transform ${activeDropdown === item.label ? 'rotate-180' : ''}`} />
                     </button>

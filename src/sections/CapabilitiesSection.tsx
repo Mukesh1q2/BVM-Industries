@@ -5,21 +5,21 @@ const capabilities = [
     id: 1,
     title: 'Design & Engineering',
     description: 'CAD/CAM, mould flow, and prototyping.',
-    image: '/capability_design.jpg',
+    image: '/capability_design.webp',
     icon: Compass
   },
   {
     id: 2,
     title: 'Precision Machining',
     description: 'CNC, EDM, and surface finishing.',
-    image: '/capability_machining.jpg',
+    image: '/capability_machining.webp',
     icon: Cog
   },
   {
     id: 3,
     title: 'Validation & Support',
     description: 'DQ/IQ/OQ/PQ documentation and 24/7 global support.',
-    image: '/capability_assembly.jpg',
+    image: '/capability_assembly.webp',
     icon: ClipboardCheck
   }
 ];
@@ -51,12 +51,7 @@ const CapabilitiesSection = () => {
                 className="group relative bg-white rounded-xl overflow-hidden shadow-card hover:shadow-xl transition-shadow"
               >
                 {/* Image */}
-                <div
-                  className="relative h-48 overflow-hidden"
-                  style={{
-                    clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0 100%)'
-                  }}
-                >
+                <div className="relative h-48 overflow-hidden [clip-path:polygon(0_0,100%_0,100%_85%,0_100%)]">
                   <img
                     src={capability.image}
                     alt={capability.title}

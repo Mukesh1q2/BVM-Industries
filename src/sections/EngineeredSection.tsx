@@ -22,7 +22,7 @@ const EngineeredSection = () => {
         }}
       >
         <img
-          src="/engineered_for_panel.jpg"
+          src="/engineered_for_panel.webp"
           alt="Industrial machinery"
           width={1200}
           height={800}

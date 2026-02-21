@@ -14,7 +14,7 @@ const MachineFeatureSection = () => {
     >
       {/* Full-bleed background image */}
       <img
-        src="/machine_feature_bg.jpg"
+        src="/machine_feature_bg.webp"
         alt="Blow moulding production line"
         width={1920}
         height={1080}

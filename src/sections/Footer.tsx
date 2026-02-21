@@ -3,13 +3,11 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
-import { useTheme } from '../contexts/ThemeContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Footer = () => {
   const footerRef = useRef<HTMLElement>(null);
-  const { theme } = useTheme();
   const navigate = useNavigate();
 
   useLayoutEffect(() => {
@@ -64,7 +62,7 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center mb-4">
               <img
-                src={theme === 'dark' ? '/new_assets/optimized/bvm-logo-dark.webp' : '/new_assets/optimized/bvm-logo-light.webp'}
+                src="/new_assets/optimized/bvm-logo-dark.webp"
                 alt="BVM Industries"
                 width={360}
                 height={128}
