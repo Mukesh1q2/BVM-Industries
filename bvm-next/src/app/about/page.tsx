@@ -90,12 +90,20 @@ const AboutPage = () => {
               <p>
                 BVM Industries is dedicated to supporting our customers with unparalleled service, from the initial consultation through installation and beyond. Whether you are looking to enhance your production capabilities or explore new packaging innovations, experience the future of aseptic packaging with BVM Industries—your trusted partner in precision engineering solutions.
               </p>
-              <p>
-                Under the strategic leadership of Rahul Kumar Singh, BVM Industries continues
-                to invest heavily in metallurgical research, Siemens S7 automation, and
-                top-tier engineering talent to dominate the aseptic packaging and heavy
-                machinery markets.
-              </p>
+              <div className="pt-4 mt-4 border-t border-white/10 space-y-4">
+                <p>
+                  Our operational baseline is uncompromising engineering. What began as a specialized focus on high-throughput blow moulding has evolved into a comprehensive machinery portfolio.
+                </p>
+                <p>
+                  Today, our <strong className="text-white font-medium">7.0-Ton capacity Blow-Fill-Seal (BFS) systems</strong>, precision Stainless Steel 316L manifolds, and rigid Class 100 aseptic integrations set the standard for zero-defect production lines across India.
+                </p>
+                <p>
+                  Under the strategic leadership of Rahul Kumar Singh, BVM Industries continues
+                  to invest heavily in metallurgical research, Siemens S7 automation, and
+                  top-tier engineering talent to dominate the aseptic packaging and heavy
+                  machinery markets.
+                </p>
+              </div>
             </div>
           </div>
 
