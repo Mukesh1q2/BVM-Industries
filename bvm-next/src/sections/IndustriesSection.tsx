@@ -1,26 +1,26 @@
 const industries = [
   {
     id: 1,
-    title: 'Pharmaceuticals',
-    description: 'Sterile filling for Injectables (SVP/LVP), Ophthalmic, and Respiratory solutions.',
+    title: 'Pharmaceutical Industry',
+    description: 'Engineered for sterile packaging with zero contamination, strictly adhering to 21 CFR Part 11 and critical regulatory standards for I.V. parenteral and ophthalmic packaging.',
     image: '/industry_pharma.webp'
   },
   {
     id: 2,
-    title: 'Food & Nutraceuticals',
-    description: 'Hygiene-focused packaging for Edible Oils, Beverages, Liquid Supplements, and Nano Shots.',
+    title: 'Food & Beverage Industry',
+    description: 'Robust F.F.S machines that optimize throughput while minimizing waste, ensuring consistent, hygienic packaging from liquid to granular items effectively.',
     image: '/industry_industrial.webp'
   },
   {
     id: 3,
-    title: 'Cosmetics & Personal Care',
-    description: 'Aesthetic precision for Lotions, Serums, Essential Oils, and small-dose applicators.',
+    title: 'Cosmetic & Personal Care',
+    description: 'Aesthetic appeal meets product integrity. Precision filling and sealing for lotions, creams, and serums, protecting products from contamination while enhancing presentation.',
     image: '/industry_healthcare.webp'
   },
   {
     id: 4,
-    title: 'Chemicals & Agrochemicals',
-    description: 'Robust, leak-proof containers for Industrial Liquids, Lab Solutions, and Pheromones.',
+    title: 'Chemical & Agrochemicals',
+    description: 'Durable systems designed to handle aggressive substances safely, ensuring accurate filling, secure sealing, and minimizing the risk of leaks in compliance with safety regulations.',
     image: '/new_assets/optimized/ffs-machine.webp'
   }
 ];
@@ -32,9 +32,12 @@ const IndustriesSection = () => {
       className="relative bg-bvm-navy py-24 lg:py-32"
     >
       {/* Heading */}
-      <h2 className="headline-md text-white px-4 sm:px-8 lg:px-[8vw] mb-12">
+      <h2 className="headline-md text-white px-4 sm:px-8 lg:px-[8vw] mb-4">
         Industries We Serve
       </h2>
+      <p className="text-xl text-bvm-gray max-w-4xl px-4 sm:px-8 lg:px-[8vw] mb-12">
+        Working across diverse sectors, BVM Industries provides state-of-the-art packaging machinery tailored to meet the unique challenges of each sector. Our commitment to innovation, quality, and precision ensures that we deliver solutions that enhance operational efficiency and product integrity.
+      </p>
 
       {/* Industry cards */}
       <div className="px-4 sm:px-8 lg:px-[8vw]">

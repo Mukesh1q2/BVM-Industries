@@ -7,10 +7,10 @@ export const metadata = {
 };
 
 const processSteps = [
-    { title: "Inspection", desc: "Complete mechanical inspection and overhaul.", icon: <ShieldCheck className="w-6 h-6 text-bvm-blue" /> },
-    { title: "Restoration", desc: "Replacement of worn/obsolete components.", icon: <RefreshCw className="w-6 h-6 text-bvm-blue" /> },
-    { title: "Upgrades", desc: "PLC, HMI, and control system modernization.", icon: <Cpu className="w-6 h-6 text-bvm-blue" /> },
-    { title: "Validation", desc: "Performance validation & compliance testing.", icon: <ShieldCheck className="w-6 h-6 text-bvm-blue" /> }
+    { title: "Comprehensive Inspection", desc: "We conduct a thorough evaluation of your machine to identify areas for improvement and necessary repairs.", icon: <ShieldCheck className="w-6 h-6 text-bvm-blue" /> },
+    { title: "Quality Upgrades", desc: "We replace worn-out parts with high-quality components and integrate advanced automation systems.", icon: <Cpu className="w-6 h-6 text-bvm-blue" /> },
+    { title: "Rigorous Testing", desc: "Stringent testing to ensure it meets our quality and safety benchmarks before re-entering production.", icon: <ShieldCheck className="w-6 h-6 text-bvm-blue" /> },
+    { title: "Restoration", desc: "Detailed mechanical restoration and modernization to current operational standards.", icon: <RefreshCw className="w-6 h-6 text-bvm-blue" /> }
 ];
 
 export default function RefurbishmentPage() {
@@ -20,10 +20,10 @@ export default function RefurbishmentPage() {
             <RevealSection className="px-4 sm:px-8 lg:px-[8vw] mb-20 text-center">
                 <span className="text-bvm-blue font-medium tracking-wider uppercase">Lifecycle Solutions</span>
                 <h1 className="text-4xl md:text-6xl font-display font-bold text-white mt-4 mb-6">
-                    Refurbishment & <span className="text-bvm-blue">Resale</span>
+                    Refurbishing <span className="text-bvm-blue">& Resale</span>
                 </h1>
                 <p className="text-xl text-bvm-gray max-w-3xl mx-auto leading-relaxed">
-                    Extending the operational life of your machinery. We specialize in the professional refurbishment of F.F.S and B.F.S machines, delivering reliable, cost-effective solutions.
+                    Unlocking Value through Expert Refurbishment. We recognize that investing in packaging machinery is a significant commitment. That’s why we offer specialized refurbishing services for Form Fill Seal (F.F.S) and Blow Fill Seal (B.F.S) machines, providing a cost-effective alternative to purchasing new equipment while maintaining high performance and reliability standards.
                 </p>
             </RevealSection>
 
@@ -31,18 +31,18 @@ export default function RefurbishmentPage() {
             <RevealSection className="px-4 sm:px-8 lg:px-[8vw] grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
                 <div className="bg-white/5 p-8 rounded-2xl border border-white/10 hover:border-bvm-blue/50 transition-colors">
                     <DollarSign className="w-10 h-10 text-bvm-blue mb-4" />
-                    <h3 className="text-xl font-bold text-white mb-2">Significant Cost Savings</h3>
-                    <p className="text-bvm-text-muted">A practical alternative to new equipment without compromising on performance.</p>
+                    <h3 className="text-xl font-bold text-white mb-2">Cost Efficiency</h3>
+                    <p className="text-bvm-text-muted">Refurbishing extends the life of your existing machinery at a fraction of the cost of new equipment, maximizing ROI.</p>
                 </div>
                 <div className="bg-white/5 p-8 rounded-2xl border border-white/10 hover:border-bvm-blue/50 transition-colors">
                     <Clock className="w-10 h-10 text-bvm-blue mb-4" />
-                    <h3 className="text-xl font-bold text-white mb-2">Reduced Lead Times</h3>
-                    <p className="text-bvm-text-muted">Get your production line running faster with our ready-to-deploy refurbished units.</p>
+                    <h3 className="text-xl font-bold text-white mb-2">Enhanced Performance</h3>
+                    <p className="text-bvm-text-muted">Meticulously inspecting and upgrading vital components, integrating the latest tech to improve efficiency and output.</p>
                 </div>
                 <div className="bg-white/5 p-8 rounded-2xl border border-white/10 hover:border-bvm-blue/50 transition-colors">
                     <Leaf className="w-10 h-10 text-bvm-blue mb-4" />
-                    <h3 className="text-xl font-bold text-white mb-2">Sustainable Choice</h3>
-                    <p className="text-bvm-text-muted">Promoting the sustainable reuse of industrial assets and reducing carbon footprint.</p>
+                    <h3 className="text-xl font-bold text-white mb-2">Sustainability</h3>
+                    <p className="text-bvm-text-muted">By choosing to refurbish, you contribute to a more sustainable packaging industry by reducing waste and conserving resources.</p>
                 </div>
             </RevealSection>
 

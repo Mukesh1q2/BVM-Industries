@@ -59,25 +59,25 @@ export const products: Product[] = [
     category: 'PET Moulds'
   },
   {
-    id: 'bfs-mould-machine-50ml',
-    name: '50 ml Blow Fill Seal Mould Machine',
-    shortDescription: 'High-precision 50-Cavity Ophthalmic Molds (e.g., 5 vials x 10 parisons)',
-    fullDescription: 'Specialized Blow Fill Seal mould machine designed for precision 50 ml format production. Engineered with a 12mm center distance and specific SVP (Small Volume Parenteral) capabilities. Perfectly suitable for Class 100 aseptic packaging environments.',
+    id: 'precision-bfs-ffs-moulds',
+    name: 'Precision Moulds for F.F.S & B.F.S',
+    shortDescription: 'Manufactured in Aluminium Bronze & Stavax Materials',
+    fullDescription: 'We design and manufacture high-precision moulds for F.F.S and B.F.S machines, engineered to deliver consistent performance, dimensional accuracy, and extended service life. Aluminium bronze is widely preferred for superior heat transfer and cycle times, while Stavax (Premium Stainless Tool Steel) provides exceptional polishability and corrosion resistance for pharmaceutical compliance.',
     features: [
-      'High-precision 50-Cavity Ophthalmic geometry',
-      'Configured for 5 vials x 10 parisons',
-      'Class 100 aseptic compatible',
-      'cGMP compliant zero human intervention design',
-      'Integrated quality monitoring',
-      'Suitable for preservative-free SVP applications'
+      'Manufactured in Aluminium Bronze & Stavax',
+      'Superior heat transfer for faster cycle times',
+      'High surface finish quality for container clarity',
+      'Precision CNC machining & strict quality inspection',
+      'Custom cavity design & reverse engineering',
+      'Compatible with sterile and pharmaceutical applications'
     ],
     specifications: {
-      'Container Volume': '0.5 mL - 100 mL SVP Range',
-      'Output Capacity': '3,000 - 5,000 units/hour',
-      'Cavity Configuration': 'Up to 50 Cavities',
-      'Center Distance': '12mm',
-      'Sterility Assurance': 'Class 100 environment',
-      'Validation Support': 'DQ/IQ/OQ/PQ documentation'
+      'Mould Materials': 'Aluminium Bronze / Stavax Tool Steel',
+      'Manufacturing Tech': 'Precision CNC & High-accuracy cavity finishing',
+      'Customization': 'Bottle, vial, ampoule, dropper moulds',
+      'Cavity Configurations': 'Multi-cavity / Specialized neck designs',
+      'Sterility Assurance': 'Ideal for Class 100 aseptic packaging',
+      'Quality Checks': 'Accurate cavity alignment & leak-proof sealing'
     },
     image: '/products/bfs-mould-dark.png',
     category: 'BFS Systems'

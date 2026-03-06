@@ -5,33 +5,33 @@ export const machines: MachineData[] = [
         id: 'ffs',
         slug: 'ffs',
         hero: {
-            subtitle: '7.0-TON ASEPTIC INTEGRATION',
+            subtitle: 'REVOLUTIONIZE YOUR PACKAGING OPERATIONS',
             title: 'Form Fill Seal (F.F.S) System',
             highlight: 'System',
-            description: 'State-of-the-art 7.0-Ton F.F.S. platform integrating Class 100 sterile chambers and precision SS316L tooling for strict parenteral production.',
+            description: 'State-of-the-art Form Fill Seal (F.F.S) systems that redefine efficiency and reliability. Engineered to provide a seamless solution for a wide range of products in both food and pharmaceutical applications, ensuring optimal hygiene and product integrity.',
             image: '/new_assets/optimized/ffs-machine-dark.png',
             brochureText: 'Download FFS Brochure'
         },
         features: [
             {
-                title: 'Technical MOC Specifications',
+                title: 'Key Features',
                 icon: 'Zap',
                 items: [
-                    '7.0 Ton precision-engineered frame for zero-vibration stability.',
-                    'Product Contact Parts: Mirror-finish SS316L for flawless aseptic flow.',
-                    'Structural Frame: Sand-blasted matte finish SS304.',
-                    'Tooling & Moulds: High-transfer AB2 (Aluminium Bronze).',
-                    'Internal Mechanics: Hard chrome plated EN31 shafts with Gunmetal bushes.'
+                    'High-Speed Operation: Maximum throughput without compromising quality.',
+                    'Versatile Packaging Solutions: Handles various materials and container formats.',
+                    'Enhanced Automation: Sophisticated control systems and user-friendly interfaces minimize operator intervention.',
+                    'Precision Engineering: Precise filling and sealing processes safeguard against contamination and product loss.',
+                    'Sustainability Focus: Designed to reduce waste and improve energy efficiency.'
                 ]
             },
             {
-                title: 'Unmatched Support',
+                title: 'Customizable & Unmatched Support',
                 icon: 'Shield',
                 items: [
                     'Customizable options to meet unique operational requirements.',
-                    'Full DQ/IQ/OQ/PQ documentation support.',
-                    'Dedicated technicians for installation and ongoing service.',
-                    'FDA 21 CFR Part 11 Compliance support.'
+                    'From initial consultation to installation and ongoing support.',
+                    'Dedicated technicians on standby to assist you.',
+                    'Discover the future of packaging and elevate your operations.'
                 ]
             }
         ],
@@ -97,34 +97,33 @@ export const machines: MachineData[] = [
         id: 'bfs',
         slug: 'bfs',
         hero: {
-            subtitle: 'Single Sterile Operations',
+            subtitle: 'ADVANCED B.F.S SYSTEMS',
             title: 'Blow Fill Seal (B.F.S) Technology',
             highlight: 'Technology',
-            description: 'Advanced systems integrating container forming, filling, and sealing into a single sterile operation. Engineered for definitive cross-contamination elimination and optimal parenteral processing.',
+            description: 'Elevating Pharmaceutical Standards with BVM Industries’ B.F.S Solutions tailored specifically for I.V. parenteral packaging to meet the highest standards of safety, efficiency, and regulatory compliance.',
             image: '/new_assets/optimized/bfs-machine-dark.png',
             brochureText: 'Download BFS Technology Brochure'
         },
         features: [
             {
-                title: 'Core Advantages',
+                title: 'Key Features',
                 icon: 'CheckCircle',
                 items: [
-                    'Zero Human Intervention: Hermetically sealed continuous operation.',
-                    'Versatile Automation: Precision SVP (0.5mL-100mL) and LVP (250mL-1000mL) packaging.',
-                    'Integrated Auto Deflesher: Automates removal of excess material for waste reduction.',
-                    'Preservative-Free Packaging: Ideal for highly sensitive ophthalmic and respiratory solutions.',
-                    'Advanced Autoclave-Safe Resins: Lightweight, particle-free, and breakage-resistant.'
+                    'Integrated Auto Deflesher System: Automates removal of excess material to optimize material utilization and minimize waste.',
+                    'Compliance with 21 CFR Part 11: Electronic records and signatures are secure, reliable, and readily auditable.',
+                    'Continuous Production Efficiency: Designed for non-stop operation to enhance production throughput.',
+                    'Aseptic Processing for Sterile Environments: Significantly reduces contamination risk for sensitive I.V. solutions.',
+                    'Flexible Container Formats: Accommodates ampoules, vials, and customized designs.'
                 ]
             },
             {
-                title: 'Control & Monitoring',
+                title: 'Customized Solutions & Support',
                 icon: 'Server',
                 items: [
-                    'Siemens S7-1500 PLC for reliable control & data logging',
-                    'US FDA 21 CFR Part 11 Compliance: Secure, reliable, and auditable electronic records.',
-                    'Online velocity & differential pressure monitoring',
-                    'Active air sampling & passive particle counting options',
-                    'Full DQ/IQ/OQ/PQ documentation support'
+                    'Customizable B.F.S solutions tailored to individual operational goals.',
+                    'Unparalleled customer support from installation to ongoing maintenance.',
+                    'Comprehensive training and assistance from knowledgeable technicians.',
+                    'Experience excellence in I.V. Parenteral Packaging.'
                 ]
             }
         ],
@@ -168,10 +167,10 @@ export const machines: MachineData[] = [
         id: 'cap-sealing',
         slug: 'euro-cap-sealing',
         hero: {
-            subtitle: 'Elevating Industry Standards',
+            subtitle: 'ELEVATING INDUSTRY STANDARDS',
             title: 'Euro Cap Sealing / Welding',
             highlight: 'Machine',
-            description: 'High-performance sealing solutions for I.V. parenteral packaging. Available in both Semi-Automatic and Fully Automatic models for precision, consistency, and efficiency.',
+            description: 'A state-of-the-art fully automatic solution tailored for the I.V. parenteral packaging sector. Available in high-performance Semi-Automatic and Fully Automatic models, delivering precision, consistency, and efficiency in cap sealing operations.',
             image: '/new_assets/optimized/cap-sealing-machine.webp',
             brochureText: 'Download Sealing Specs'
         },
@@ -180,27 +179,26 @@ export const machines: MachineData[] = [
                 title: 'Semi-Automatic Model',
                 icon: 'Settings',
                 items: [
-                    'Ideal for small to medium production volumes.',
-                    'User-friendly operation with adjustable torque control.',
-                    'Compact design with minimal floor space requirement.',
-                    'Low maintenance and easy cleaning.'
+                    'Ideal for small to medium production volumes where flexibility is essential.',
+                    'User-friendly operation with adjustable torque control for accurate sealing.',
+                    'Suitable for multiple container sizes and IV FLUID BOTTLES 50 ML – 3000ML.',
+                    'Compact design with minimal floor space requirement, low maintenance, and easy cleaning.'
                 ]
             },
             {
                 title: 'Fully Automatic Model',
                 icon: 'Zap',
                 items: [
-                    'High-speed continuous operation for large batches.',
-                    'Automatic cap feeding and placement system.',
+                    'High-speed continuous operation seamlessly integrated with filling systems.',
+                    'Automatic cap feeding and placement system with precision torque control.',
                     'PLC-based control with HMI interface.',
-                    'Integrated rejection system for faulty caps (optional).',
-                    'Compatible with online inspection systems.'
+                    'Integrated rejection system for faulty caps (optional) and online inspection compatible.'
                 ]
             }
         ],
         constructionStandards: {
             title: 'Technical Highlights',
-            description: 'Robust <span class="text-white font-semibold">Stainless Steel</span> construction with vibration-free performance. Adjustable height and conveyor synchronization. Compliant with industry safety and hygiene standards.'
+            description: '<span class="text-white font-semibold">Robust stainless-steel construction</span> with vibration-free performance. Features adjustable height, conveyor synchronization, and compliance with industry safety and hygiene standards. Customization available as per container specifications.'
         },
         specTables: [
             {

@@ -1,0 +1,30 @@
+ΓÜá Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\Users\crypt\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\bvm-next\package-lock.json
+   * C:\Users\crypt\Downloads\Ai projects\websites\Inprogress\BVM\app\package-lock.json
+
+Γû▓ Next.js 16.1.6 (Turbopack)
+
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 1 errors:
+./Downloads/Ai projects/websites/Inprogress/BVM/app/bvm-next/src/app/about/page.tsx:137:11
+Parsing ecmascript source code failed
+  135 |           </div>
+  136 |         </div>
+> 137 |     </div>
+      |           ^
+> 138 |       </section >
+      | ^^^^^^^
+  139 |
+  140 |   {/* Capabilities Section */ }
+  141 |   < section className = "py-16 lg:py-24 px-4 sm:px-8 lg:px-[8vw] bg-white text-bvm-navy relative overflow-hidden" >
+
+Expected '</', got 'jsx text'
+
+
+    at <unknown> (./Downloads/Ai projects/websites/Inprogress/BVM/app/bvm-next/src/app/about/page.tsx:137:11)

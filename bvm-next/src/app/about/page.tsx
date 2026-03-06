@@ -47,17 +47,14 @@ const AboutPage = () => {
           <h1 className="headline-lg text-white mb-6">
             BVM Industries
           </h1>
-          <p className="body-text text-lg max-w-2xl">
-            A trusted manufacturer of precision-engineered machinery and moulds for aseptic packaging,
-            pharmaceutical, healthcare, and industrial applications. Specializing in 7.0-Ton
-            Form-Fill-Seal integration and Class 100 sterile environments, we deliver
-            zero-defect turnkey scale from Baddi, Himachal Pradesh.
+          <p className="body-text text-lg max-w-3xl leading-relaxed">
+            At BVM Industries, we pride ourselves on being at the forefront of innovation in the field of aseptic packaging solutions. As a leading manufacturer of high-speed Form Fill Seal (F.F.S), Blow Fill Seal (B.F.S) machines, and Euro Cap Welding Machines, we specialize in delivering cutting-edge technology designed to meet the stringent requirements of the food and pharmaceutical industries. Our commitment to precision engineering ensures that each machine we produce guarantees optimal performance, reliability, and efficiency.
           </p>
         </div>
-      </section >
+      </section>
 
       {/* Stats Section */}
-      < section className="py-12 lg:py-16 px-4 sm:px-8 lg:px-[8vw] border-y border-white/10" >
+      <section className="py-12 lg:py-16 px-4 sm:px-8 lg:px-[8vw] border-y border-white/10">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
@@ -74,10 +71,10 @@ const AboutPage = () => {
             );
           })}
         </div>
-      </section >
+      </section>
 
       {/* Company Overview */}
-      < section className="py-16 lg:py-24 px-4 sm:px-8 lg:px-[8vw]" >
+      <section className="py-16 lg:py-24 px-4 sm:px-8 lg:px-[8vw]">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
             <h2 className="headline-md text-white mb-6">
@@ -85,17 +82,13 @@ const AboutPage = () => {
             </h2>
             <div className="space-y-4 text-bvm-gray">
               <p>
-                BVM Industries was forged with a singular mandate: to engineer uncompromising
-                machinery for the pharmaceutical and industrial sectors. Operating from our
-                advanced facility in Baddi, Himachal Pradesh, we design and manufacture
-                equipment that operates flawlessly at scale.
+                With a focus on advanced automation and user-friendly interfaces, our F.F.S, B.F.S & cap welding systems are designed to streamline packaging operations, enhance product safety, and minimize waste. We understand that in today’s fast-paced market, maintaining high standards of quality is paramount.
               </p>
               <p>
-                What began as a specialized focus on high-throughput blow moulding has evolved
-                into a comprehensive engineering portfolio. Today, our 7.0-Ton capacity
-                Blow-Fill-Seal (BFS) systems, precision Stainless Steel 316L manifolds,
-                and rigid Class 100 aseptic integrations set the standard for zero-defect
-                production lines across India.
+                That's why our team of skilled engineers and technicians works tirelessly to design and manufacture machines that not only meet but exceed industry standards. Our solutions are tailored to address unique packaging challenges while ensuring product integrity and compliance with global safety regulations.
+              </p>
+              <p>
+                BVM Industries is dedicated to supporting our customers with unparalleled service, from the initial consultation through installation and beyond. Whether you are looking to enhance your production capabilities or explore new packaging innovations, experience the future of aseptic packaging with BVM Industries—your trusted partner in precision engineering solutions.
               </p>
               <p>
                 Under the strategic leadership of Rahul Kumar Singh, BVM Industries continues
@@ -106,43 +99,45 @@ const AboutPage = () => {
             </div>
           </div>
 
-          <div className="bg-bvm-navy-light rounded-2xl p-8 border border-white/10">
-            <div className="flex items-center gap-3 mb-6">
-              <Factory className="w-6 h-6 text-bvm-blue" />
-              <h3 className="text-white font-semibold text-lg">Business Information</h3>
-            </div>
-            <div className="space-y-4">
-              <div className="flex justify-between py-3 border-b border-white/10">
-                <span className="text-bvm-gray">Nature of Business</span>
-                <span className="text-white font-medium">Manufacturer</span>
+          <div>
+            <div className="bg-bvm-navy-light rounded-2xl p-8 border border-white/10">
+              <div className="flex items-center gap-3 mb-6">
+                <Factory className="w-6 h-6 text-bvm-blue" />
+                <h3 className="text-white font-semibold text-lg">Business Information</h3>
               </div>
-              <div className="flex justify-between py-3 border-b border-white/10">
-                <span className="text-bvm-gray">Proprietor</span>
-                <span className="text-white font-medium">Rahul Kumar Singh</span>
-              </div>
-              <div className="flex justify-between py-3 border-b border-white/10">
-                <span className="text-bvm-gray">Total Employees</span>
-                <span className="text-white font-medium">26 - 50 People</span>
-              </div>
-              <div className="flex justify-between py-3 border-b border-white/10">
-                <span className="text-bvm-gray">Annual Turnover</span>
-                <span className="text-white font-medium">Rs. 5 - 25 Crore</span>
-              </div>
-              <div className="flex justify-between py-3 border-b border-white/10">
-                <span className="text-bvm-gray">GST Number</span>
-                <span className="text-white font-medium">02GNLPS7342F1ZS</span>
-              </div>
-              <div className="flex justify-between py-3">
-                <span className="text-bvm-gray">Location</span>
-                <span className="text-white font-medium text-right">Baddi, Himachal Pradesh</span>
+              <div className="space-y-4">
+                <div className="flex justify-between py-3 border-b border-white/10">
+                  <span className="text-bvm-gray">Nature of Business</span>
+                  <span className="text-white font-medium">Manufacturer</span>
+                </div>
+                <div className="flex justify-between py-3 border-b border-white/10">
+                  <span className="text-bvm-gray">Proprietor</span>
+                  <span className="text-white font-medium">Rahul Kumar Singh</span>
+                </div>
+                <div className="flex justify-between py-3 border-b border-white/10">
+                  <span className="text-bvm-gray">Total Employees</span>
+                  <span className="text-white font-medium">26 - 50 People</span>
+                </div>
+                <div className="flex justify-between py-3 border-b border-white/10">
+                  <span className="text-bvm-gray">Annual Turnover</span>
+                  <span className="text-white font-medium">Rs. 5 - 25 Crore</span>
+                </div>
+                <div className="flex justify-between py-3 border-b border-white/10">
+                  <span className="text-bvm-gray">GST Number</span>
+                  <span className="text-white font-medium">02GNLPS7342F1ZS</span>
+                </div>
+                <div className="flex justify-between py-3">
+                  <span className="text-bvm-gray">Location</span>
+                  <span className="text-white font-medium text-right">Baddi, Himachal Pradesh</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </section >
+      </section>
 
       {/* Capabilities Section */}
-      < section className="py-16 lg:py-24 px-4 sm:px-8 lg:px-[8vw] bg-bvm-navy-light" >
+      <section className="py-16 lg:py-24 px-4 sm:px-8 lg:px-[8vw] bg-white text-bvm-navy relative overflow-hidden">
         <div className="max-w-4xl mx-auto text-center mb-12">
           <h2 className="headline-md text-white mb-4">
             Our Capabilities
@@ -164,10 +159,10 @@ const AboutPage = () => {
             </div>
           ))}
         </div>
-      </section >
+      </section>
 
       {/* Values Section */}
-      < section className="py-16 lg:py-24 px-4 sm:px-8 lg:px-[8vw]" >
+      <section className="py-16 lg:py-24 px-4 sm:px-8 lg:px-[8vw]">
         <div className="max-w-4xl mx-auto text-center mb-12">
           <h2 className="headline-md text-white mb-4">
             Our Values
@@ -188,10 +183,10 @@ const AboutPage = () => {
             </div>
           ))}
         </div>
-      </section >
+      </section>
 
       {/* CTA Section */}
-      < section className="py-16 lg:py-24 px-4 sm:px-8 lg:px-[8vw] bg-bvm-blue/10" >
+      <section className="py-20 lg:py-28 px-4 sm:px-8 lg:px-[8vw] bg-bvm-blue relative overflow-hidden">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="headline-md text-white mb-4">
             Partner With Us
@@ -209,8 +204,8 @@ const AboutPage = () => {
             </Link>
           </div>
         </div>
-      </section >
-    </div >
+      </section>
+    </div>
   );
 };
 
