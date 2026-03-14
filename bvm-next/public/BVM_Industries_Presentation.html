@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BVM Industries — Company Presentation 2025–26</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --navy: #0B0F17;
+            --navy-l: #0F1520;
+            --blue: #2F8FFF;
+            --blue-dk: #1a7ee6;
+            --white: #FFFFFF;
+            --gray: #A9B3C2;
+            --muted: #5A6475;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #050810;
+            font-family: 'Inter', sans-serif;
+            color: var(--white);
+        }
+
+        /* Each slide is an A4 landscape page */
+        .slide {
+            width: 297mm;
+            min-height: 210mm;
+            background: var(--navy);
+            margin: 0 auto 4mm;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 14mm 18mm;
+            page-break-after: always;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .slide {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+
+        /* ── Typography ── */
+        .eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 6px;
+        }
+
+        h1 {
+            font-family: 'Sora', sans-serif;
+            font-size: 44px;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-family: 'Sora', sans-serif;
+            font-size: 30px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 12px;
+            color: var(--gray);
+            line-height: 1.65;
+        }
+
+        .blue {
+            color: var(--blue) !important;
+        }
+
+        .white {
+            color: var(--white) !important;
+        }
+
+        .gray {
+            color: var(--gray) !important;
+        }
+
+        .muted {
+            color: var(--muted) !important;
+        }
+
+        /* ── Layout helpers ── */
+        .row {
+            display: flex;
+            gap: 16px;
+        }
+
+        .col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .flex-1 {
+            flex: 1;
+        }
+
+        /* ── Accent bar ── */
+        .side-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--blue);
+        }
+
+        .top-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--blue);
+        }
+
+        .bottom-bar {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--blue);
+        }
+
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, var(--blue), transparent);
+            margin: 10px 0;
+        }
+
+        /* ── Logo ── */
+        .logo-box {
+            position: absolute;
+            top: 10mm;
+            right: 18mm;
+            height: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-box img {
+            height: 20px;
+        }
+
+        .logo-text {
+            font-family: 'Sora', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 1px;
+        }
+
+        .logo-text span {
+            color: var(--blue);
+        }
+
+        /* ── Cards ── */
+        .card {
+            background: var(--navy-l);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 14px 16px;
+            flex: 1;
+        }
+
+        .card.highlighted {
+            border-color: rgba(47, 143, 255, 0.3);
+        }
+
+        .card-blue-top {
+            border-top: 3px solid var(--blue);
+        }
+
+        /* ── Stat box ── */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .stat-box {
+            background: var(--navy-l);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Sora', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--blue);
+        }
+
+        .stat-label {
+            font-size: 10px;
+            color: var(--gray);
+            margin-top: 3px;
+        }
+
+        /* ── Bullets ── */
+        .bullet-list {
+            list-style: none;
+            margin-top: 8px;
+        }
+
+        .bullet-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 5px 0;
+            font-size: 12px;
+            color: var(--gray);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .bullet-list li:last-child {
+            border-bottom: none;
+        }
+
+        .bullet-icon {
+            color: var(--blue);
+            font-size: 14px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* ── Tags ── */
+        .tag-row {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin: 8px 0;
+        }
+
+        .tag {
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--white);
+            background: var(--blue);
+            padding: 3px 10px;
+            border-radius: 50px;
+        }
+
+        /* ── Industry cards ── */
+        .industry-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            flex: 1;
+            margin-top: 10px;
+        }
+
+        .industry-card {
+            background: var(--navy-l);
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            border-top: 3px solid var(--blue);
+        }
+
+        .industry-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .industry-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .industry-desc {
+            font-size: 10px;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        /* ── Product grid (overview) ── */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            flex: 1;
+            margin-top: 10px;
+        }
+
+        .product-number {
+            font-family: 'Sora', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: rgba(47, 143, 255, 0.3);
+        }
+
+        /* ── Contact slide ── */
+        .contact-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 9px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .contact-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--blue);
+            width: 70px;
+            flex-shrink: 0;
+            padding-top: 2px;
+        }
+
+        .contact-value {
+            font-size: 13px;
+            color: var(--white);
+        }
+
+        /* ── Cover slide ── */
+        .cover-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60mm;
+            background: var(--navy-l);
+            border-top: 3px solid var(--blue);
+            padding: 10mm 18mm;
+        }
+
+        /* ── Standard slide header ── */
+        .slide-header {
+            margin-bottom: 12px;
+        }
+
+        .slide-num {
+            position: absolute;
+            bottom: 8mm;
+            right: 18mm;
+            font-size: 10px;
+            color: var(--muted);
+        }
+
+        /* ── Spec deep-dive ── */
+        .spec-layout {
+            display: flex;
+            gap: 16px;
+            flex: 1;
+        }
+
+        .spec-content {
+            flex: 1.5;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .spec-image {
+            flex: 1;
+            background: var(--navy-l);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: var(--muted);
+            min-height: 100px;
+        }
+
+        /* ── Highlight bar ── */
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin: 10px 0;
+        }
+
+        .highlight-box {
+            background: var(--navy-l);
+            border-radius: 6px;
+            padding: 10px 6px;
+            text-align: center;
+        }
+
+        .highlight-val {
+            font-family: 'Sora', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--blue);
+        }
+
+        .highlight-lbl {
+            font-size: 9px;
+            color: var(--gray);
+            margin-top: 3px;
+        }
+
+        /* ── Challenge cards ── */
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            flex: 1;
+            margin-top: 10px;
+        }
+
+        .challenge-card {
+            background: var(--navy-l);
+            border-radius: 8px;
+            padding: 14px 16px 14px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .challenge-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--blue);
+        }
+
+        /* ── Step cards ── */
+        .step-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            flex: 1;
+            margin-top: 10px;
+        }
+
+        .step-card {
+            background: var(--navy-l);
+            border-radius: 8px;
+            padding: 14px 16px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .step-num {
+            font-family: 'Sora', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--blue);
+            flex-shrink: 0;
+        }
+
+        /* ── Quality grid ── */
+        .quality-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            flex: 1;
+            margin-top: 10px;
+        }
+
+        .quality-card {
+            background: var(--navy-l);
+            border-radius: 8px;
+            padding: 14px 16px;
+            border-top: 3px solid var(--blue);
+        }
+
+        .quality-icon {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        /* ── Standards bar ── */
+        .standards-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .std-badge {
+            background: var(--navy-l);
+            border: 1px solid rgba(47, 143, 255, 0.2);
+            border-radius: 6px;
+            padding: 7px 14px;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--blue);
+            text-align: center;
+            flex: 1;
+        }
+
+        /* ── Client grid ── */
+        .client-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            flex: 1;
+            margin-top: 10px;
+        }
+
+        .client-box {
+            background: var(--navy-l);
+            border-radius: 6px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: var(--muted);
+        }
+
+        /* ── Print button ── */
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            z-index: 9999;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 4px 20px rgba(47, 143, 255, 0.4);
+        }
+
+        .print-btn:hover {
+            background: var(--blue-dk);
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="print-btn no-print" onclick="window.print()">🖨️ Print / Save as PDF</button>
+
+    <!-- ══════════════════ SLIDE 1 — COVER ══════════════════ -->
+    <div class="slide" style="justify-content: center; padding: 0;">
+        <div class="top-bar"></div>
+        <div class="bottom-bar"></div>
+        <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:14mm 18mm 0;">
+            <div class="eyebrow" style="margin-bottom:14px;">TECHNO-COMMERCIAL PRESENTATION · 2025–26</div>
+            <h1 style="font-size:52px; letter-spacing:-1px;">BVM Industries</h1>
+            <p style="font-size:16px; color:var(--blue); font-style:italic; margin-top:10px; font-family:'Sora';">
+                Precision Engineering for Aseptic Packaging Solutions
+            </p>
+        </div>
+        <div class="cover-bottom">
+            <div class="row" style="gap:32px; align-items:flex-start;">
+                <div>
+                    <p style="font-size:11px; margin-bottom:4px;">📍 Plot 774/496/46, Village Gullarwala, Baddi, H.P.
+                        173205</p>
+                    <p style="font-size:11px; margin-bottom:4px;">✉️ sales@mybvm.in &nbsp;|&nbsp; service@mybvm.in</p>
+                    <p style="font-size:11px; margin-bottom:4px;">📞 +91 7018231499</p>
+                    <p style="font-size:11px; color:var(--blue);">🌐 mybvm.in</p>
+                </div>
+                <div style="margin-left:auto; text-align:right;">
+                    <div class="logo-text" style="font-size:22px; letter-spacing:3px;">BVM<span>.</span></div>
+                    <p style="font-size:10px; color:var(--muted); margin-top:4px;">Precision. Compliance. Performance.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════ SLIDE 2 — WHO WE ARE ══════════════════ -->
+    <div class="slide">
+        <div class="side-bar"></div>
+        <div class="slide-header">
+            <div class="eyebrow">COMPANY PROFILE</div>
+            <h2>Who We Are</h2>
+            <div class="divider"></div>
+            <p>BVM Industries is a leading Indian manufacturer of aseptic packaging machinery. Founded on a commitment
+                to precision engineering, we design and build F.F.S, B.F.S, and Euro Cap Sealing systems that meet the
+                most rigorous global pharmaceutical standards.</p>
+        </div>
+        <div class="stat-grid">
+            <div class="stat-box">
+                <div class="stat-value">8+</div>
+                <div class="stat-label">Years of Excellence</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">26–50</div>
+                <div class="stat-label">Team Members</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">₹5–25Cr</div>
+                <div class="stat-label">Annual Turnover</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">Pan India</div>
+                <div class="stat-label">Service Coverage</div>
+            </div>
+        </div>
+        <div class="card"
+            style="margin-top:12px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; padding:12px 16px;">
+            <div>
+                <div style="font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:2px;">Proprietor
+                </div>
+                <div style="font-size:12px;font-weight:600;">Rahul Kumar Singh</div>
+            </div>
+            <div>
+                <div style="font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:2px;">GST Number
+                </div>
+                <div style="font-size:12px;font-weight:600;">02GNLPS7342F1ZS</div>
+            </div>
+            <div>
+                <div style="font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:2px;">Location</div>
+                <div style="font-size:12px;font-weight:600;">Baddi, Himachal Pradesh</div>
+            </div>
+        </div>
+        <div class="slide-num">02 / 14</div>
+    </div>
+
+    <!-- ══════════════════ SLIDE 3 — THE PROBLEM ══════════════════ -->
+    <div class="slide">
+        <div class="side-bar"></div>
+        <div class="slide-header">
+            <div class="eyebrow">MARKET CHALLENGE</div>
+            <h2>Why Manufacturers Choose BVM</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="challenge-grid">
+            <div class="challenge-card">
+                <h3>Contamination Risk</h3>
+                <p style="margin-top:6px;">Manual or semi-automated aseptic lines introduce contamination events that
+                    fail cGMP audits and force costly batch rejections.</p>
+            </div>
+            <div class="challenge-card">
+                <h3>Import Dependency</h3>
+                <p style="margin-top:6px;">Imported BFS/FFS lines carry 3–5× price premiums and 18-month delivery lead
+                    times, blocking production scale-up.</p>
+            </div>
+            <div class="challenge-card">
+                <h3>Compliance Burden</h3>
+                <p style="margin-top:6px;">WHO-GMP, US FDA, and EU GMP documentation requires deep validation expertise
+                    rarely available in-house.</p>
+            </div>
+            <div class="challenge-card">
+                <h3>Downtime Cost</h3>
+                <p style="margin-top:6px;">Legacy machinery without modern HMI/PLC cannot produce 21 CFR Part 11 audit
+                    trails — risking entire batch losses.</p>
+            </div>
+        </div>
+        <div class="slide-num">03 / 14</div>
+    </div>
+
+    <!-- ══════════════════ SLIDE 4 — PRODUCT OVERVIEW ══════════════════ -->
+    <div class="slide">
+        <div class="side-bar"></div>
+        <div class="slide-header">
+            <div class="eyebrow">PORTFOLIO</div>
+            <h2>Comprehensive Aseptic Packaging Solutions</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="product-grid">
+            <div class="card card-blue-top">
+                <div class="product-number">01</div>
+                <h3 style="margin-top:8px;">F.F.S Machines</h3>
+                <p style="margin-top:6px;font-size:11px;">Advanced Form-Fill-Seal systems for sterile pharmaceutical
+                    liquid packaging.</p>
+            </div>
+            <div class="card card-blue-top">
+                <div class="product-number">02</div>
+                <h3 style="margin-top:8px;">B.F.S Machines</h3>
+                <p style="margin-top:6px;font-size:11px;">Blow-Fill-Seal technology for SVP & LVP parenterals with Class
+                    100 chamber.</p>
+            </div>
+            <div class="card card-blue-top">
+                <div class="product-number">03</div>
+                <h3 style="margin-top:8px;">Euro Cap Sealing</h3>
+                <p style="margin-top:6px;font-size:11px;">400-series servo-controlled high-speed cap sealers for oral &
+                    ophthalmic lines.</p>
+            </div>
+            <div class="card card-blue-top">
+                <div class="product-number">04</div>
+                <h3 style="margin-top:8px;">Precision Moulds</h3>
+                <p style="margin-top:6px;font-size:11px;">BFS, PET and injection moulds in SS316L with micron-level
+                    tolerances.</p>
+            </div>
+        </div>
+        <div class="slide-num">04 / 14</div>
+    </div>
+
+    <!-- ══════════════════ SLIDE 5 — FFS ══════════════════ -->
+    <div class="slide">
+        <div class="side-bar"></div>
+        <div class="slide-header">
+            <div class="eyebrow">PRODUCT DETAIL</div>
+            <h2>Form Fill Seal (F.F.S) Machines</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="spec-layout">
+            <div class="spec-content">
+                <div class="tag-row"><span class="tag">Injectables (SVP/LVP)</span><span
+                        class="tag">Ophthalmic</span><span class="tag">Respiratory</span></div>
+                <p>Fully indigenous, cost-effective aseptic filling systems for pharmaceutical liquids. Designed for
+                    continuous, high-output parenteral production with an integrated Class 100 sterile chamber.</p>
+                <ul class="bullet-list">
+                    <li><span class="bullet-icon">▸</span>Sterile chamber: Class 100 / ISO 5 compliant</li>
+                    <li><span class="bullet-icon">▸</span>Container volume: 1 ml – 500 ml</li>
+                    <li><span class="bullet-icon">▸</span>Product contact: SS316L mirror-polished to Ra ≤ 0.4 µm</li>
+                    <li><span class="bullet-icon">▸</span>Automation: Siemens S7 PLC + touchscreen HMI</li>
+                    <li><span class="bullet-icon">▸</span>Compliance: cGMP, WHO-GMP, 21 CFR Part 11</li>
+                    <li><span class="bullet-icon">▸</span>IQ / OQ / PQ validation documentation included</li>
+                </ul>
+            </div>
+            <div class="spec-image"
+                style="background-image: url('file:///C:/Users/crypt/Downloads/Ai%20projects/websites/Inprogress/BVM/app/images/FSS-machine.png'); background-size: contain; background-repeat: no-repeat; background-position: center; border: none; background-color: transparent;">
+            </div>
+        </div>
+        <div class="slide-num">05 / 14</div>
+    </div>
+
+    <!-- ══════════════════ SLIDE 6 — BFS ══════════════════ -->
+    <div class="slide">
+        <div class="side-bar"></div>
+        <div class="slide-header">
+            <div class="eyebrow">PRODUCT DETAIL</div>
+            <h2>Blow Fill Seal (B.F.S) Machines</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="highlight-grid">
+            <div class="highlight-box">
+                <div class="highlight-val">7.0 T</div>
+                <div class="highlight-lbl">Machine Capacity</div>
+            </div>
+            <div class="highlight-box">
+                <div class="highlight-val">Class 100</div>
+                <div class="highlight-lbl">Sterile Chamber</div>
+            </div>
+            <div class="highlight-box">
+                <div class="highlight-val">SS316L</div>
+                <div class="highlight-lbl">Product Contact</div>
+            </div>
+            <div class="highlight-box">
+                <div class="highlight-val">24/7</div>
+                <div class="highlight-lbl">After-Sales Support</div>
+            </div>
+        </div>
+        <div class="spec-layout" style="margin-top:10px;">
+            <div class="spec-content">
+                <p>Advanced cGMP-compliant systems for continuous aseptic filling of SVP & LVP parenterals. HGH45HA
+                    linear carriage assemblies and precision SS316L tooling set the benchmark for zero-defect
+                    production.</p>
+                <ul class="bullet-list">
+                    <li><span class="bullet-icon">▸</span>Mould capacity: 1–6 cavity configurations</li>
+                    <li><span class="bullet-icon">▸</span>Volume range: 1 ml – 1,000 ml</li>
+                    <li><span class="bullet-icon">▸</span>IQ/OQ/PQ documentation included</li>
+                    <li><span class="bullet-icon">▸</span>Compatible with WHO-GMP, EU GMP & US FDA</li>
+                </ul>
+            </div>
+            <div class="spec-image"
+                style="background-image: url('file:///C:/Users/crypt/Downloads/Ai%20projects/websites/Inprogress/BVM/app/images/Blow%20Fill%20Seal%20(BFS).png'); background-size: contain; background-repeat: no-repeat; background-position: center; border: none; background-color: transparent;">
+            </div>
+        </div>
+        <div class="slide-num">06 / 14</div>
+    </div>
+
+    <!-- ══════════════════ SLIDE 7 — EURO CAP ══════════════════ -->
+    <div class="slide">
+        <div class="side-bar"></div>
+        <div class="slide-header">
+            <div class="eyebrow">PRODUCT DETAIL</div>
+            <h2>Euro Cap Sealing — 400 Series</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="spec-layout">
+            <div class="spec-content">
+                <div class="tag-row"><span class="tag">Oral Liquids</span><span class="tag">Ophthalmic</span></div>
+                <p>High-speed, servo-controlled cap sealing solutions delivering consistent, repeatable performance
+                    across a wide range of bottle and cap sizes with minimal changeover time.</p>
+                <ul class="bullet-list">
+                    <li><span class="bullet-icon">▸</span>Servo-driven for precise torque control</li>
+                    <li><span class="bullet-icon">▸</span>Handles multiple bottle / cap formats</li>
+                    <li><span class="bullet-icon">▸</span>Speed: up to 400 caps / min</li>
+                    <li><span class="bullet-icon">▸</span>Quick-change tooling for fast size changeover</li>
+                    <li><span class="bullet-icon">▸</span>cGMP-compliant design — easy to clean</li>
+                </ul>
+            </div>
+            <div class="spec-image"
+                style="background-image: url('file:///C:/Users/crypt/Downloads/Ai%20projects/websites/Inprogress/BVM/app/images/Cap-sealing-machine.png'); background-size: contain; background-repeat: no-repeat; background-position: center; border: none; background-color: transparent;">
+            </div>
+        </div>
+        <div class="slide-num">07 / 14</div>
+    </div>
+
+    <!-- ══════════════════ SLIDE 8 — MOULDS ══════════════════ -->
+    <div class="slide">
+        <div class="side-bar"></div>
+        <div class="slide-header">
+            <div class="eyebrow">PRODUCT DETAIL</div>
+            <h2>Precision Moulds &amp; Tooling</h2>
+            <div class="divider"></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;flex:1;margin-top:4px;">
+            <div class="challenge-card">
+                <h3>BFS Moulds</h3>
+                <p style="margin-top:4px;">Custom multi-cavity mould designs for blow-fill-seal machines. Available in
+                    SS316L for sterile product contact. Full FAT and validation support included.</p>
+            </div>
+            <div class="challenge-card">
+                <h3>PET Bottle Moulds</h3>
+                <p style="margin-top:4px;">High-clarity, consistent wall-thickness moulds for pharmaceutical-grade PET
+                    containers. Custom neck finish options available.</p>
+            </div>
+            <div class="challenge-card">
+                <h3>Injection Moulds</h3>
+                <p style="margin-top:4px;">Multi-cavity injection moulds for caps, closures, and custom precision
+                    components in pharmaceutical and industrial applications.</p>
+            </div>
+        </div>
+        <div class="card" style="margin-top:10px; display:flex; gap:20px; align-items:center; padding:10px 16px;">
+            <div style="flex:1;text-align:center;">
+                <div style="font-size:9px;color:var(--muted);text-transform:uppercase;">Material</div>
+                <div style="font-weight:700;color:var(--blue);font-size:12px;margin-top:2px;">SS316L</div>
+            </div>
+            <div style="flex:1;text-align:center;">
+                <div style="font-size:9px;color:var(--muted);text-transform:uppercase;">Tolerance</div>
+                <div style="font-weight:700;color:var(--blue);font-size:12px;margin-top:2px;">± 0.005 mm</div>
+            </div>
+            <div style="flex:1;text-align:center;">
+                <div style="font-size:9px;color:var(--muted);text-transform:uppercase;">Lead Time</div>
+                <div style="font-weight:700;color:var(--blue);font-size:12px;margin-top:2px;">4–8 Weeks</div>
+            </div>
+            <div style="flex:1;text-align:center;">
+                <div style="font-size:9px;color:var(--muted);text-transform:uppercase;">Customisation</div>
+                <div style="font-weight:700;color:var(--blue);font-size:12px;margin-top:2px;">Available</div>
+            </div>
+        </div>
+        <div class="slide-num">08 / 14</div>
+    </div>
+
+    <!-- ══════════════════ SLIDE 9 — TURNKEY ══════════════════ -->
+    <div class="slide">
+        <div class="side-bar"></div>
+        <div class="slide-header">
+            <div class="eyebrow">SERVICES</div>
+            <h2>Turnkey Plant Installation</h2>
+            <div class="divider"></div>
+            <p>Complete turnkey solutions for Parenteral Manufacturing Plants — from blueprint to batch production with
+                full regulatory documentation.</p>
+        </div>
+        <div class="row" style="flex:1; margin-top:10px; gap:14px;">
+            <div style="flex:1;">
+                <h4 style="color:var(--blue);margin-bottom:8px;">End-to-End Scope</h4>
+                <ul class="bullet-list">
+                    <li><span class="bullet-icon">▸</span>Conceptual Design &amp; Master Planning</li>
+                    <li><span class="bullet-icon">▸</span>Cleanroom Engineering &amp; HVAC Systems</li>
+                    <li><span class="bullet-icon">▸</span>Water Systems: PW / WFI / Clean Steam</li>
+                    <li><span class="bullet-icon">▸</span>Sterile Filling &amp; Lyophilization Lines</li>
+                    <li><span class="bullet-icon">▸</span>Isolator &amp; RABS Technology</li>
+                    <li><span class="bullet-icon">▸</span>21 CFR Part 11 Automation &amp; Compliance</li>
+                    <li><span class="bullet-icon">▸</span>IQ/OQ/PQ Validation Documentation</li>
+                    <li><span class="bullet-icon">▸</span>Audit Preparation &amp; Regulatory Support</li>
+                </ul>
+            </div>
+            <div class="card" style="flex:1;">
+                <h4 style="color:var(--blue);margin-bottom:8px;">Standards We Build To</h4>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px;">
+                    <div class="std-badge">WHO-GMP</div>
+                    <div class="std-badge">cGMP</div>
+                    <div class="std-badge">EU GMP</div>
+                    <div class="std-badge">US FDA</div>
+                    <div class="std-badge">Data Integrity</div>
+                    <div class="std-badge">21 CFR Part 11</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-num">09 / 14</div>
+    </div>
+
+    <!-- ══════════════════ SLIDE 10 — REFURBISHMENT ══════════════════ -->
+    <div class="slide">
+        <div class="side-bar"></div>
+        <div class="slide-header">
+            <div class="eyebrow">SERVICES</div>
+            <h2>Machine Refurbishment &amp; Modernisation</h2>
+            <div class="divider"></div>
+            <p>Complete overhaul of legacy FFS/BFS machines. Upgrade to latest HMI/PLC standards — with resale &amp;
+                buyback options available.</p>
+        </div>
+        <div class="step-grid">
+            <div class="step-card">
+                <div class="step-num">01</div>
+                <div>
+                    <h3>Condition Assessment</h3>
+                    <p style="margin-top:4px;">Full mechanical, electrical and pneumatic audit of the existing machine
+                        to determine scope of work.</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-num">02</div>
+                <div>
+                    <h3>HMI/PLC Upgrade</h3>
+                    <p style="margin-top:4px;">Replace legacy controls with Siemens S7 1500 and a modern touchscreen HMI
+                        with 21 CFR Part 11 compliance.</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-num">03</div>
+                <div>
+                    <h3>Mechanical Overhaul</h3>
+                    <p style="margin-top:4px;">Replace worn carriages, seals, and product contact components with new
+                        SS316L parts.</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-num">04</div>
+                <div>
+                    <h3>Validation Support</h3>
+                    <p style="margin-top:4px;">Full IQ/OQ/PQ protocols for re-validated machine return to cGMP-compliant
+                        production.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide-num">10 / 14</div>
+    </div>
+
+    <!-- ══════════════════ SLIDE 11 — INDUSTRIES ══════════════════ -->
+    <div class="slide">
+        <div class="side-bar"></div>
+        <div class="slide-header">
+            <div class="eyebrow">MARKETS</div>
+            <h2>Industries We Serve</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="industry-grid">
+            <div class="industry-card">
+                <div class="industry-icon">🏥</div>
+                <div class="industry-title">Pharmaceutical</div>
+                <p class="industry-desc">Sterile parenteral and ophthalmic packaging. Zero contamination, 21 CFR Part 11
+                    compliance, cGMP-aligned from day one.</p>
+            </div>
+            <div class="industry-card">
+                <div class="industry-icon">🍶</div>
+                <div class="industry-title">Food &amp; Beverage</div>
+                <p class="industry-desc">High-throughput F.F.S machines for liquid to granular items. Hygienic,
+                    waste-efficient, continuous production.</p>
+            </div>
+            <div class="industry-card">
+                <div class="industry-icon">💄</div>
+                <div class="industry-title">Cosmetic &amp; Personal</div>
+                <p class="industry-desc">Precision filling for lotions, creams and serums. Aesthetic seal integrity
+                    protecting product from contamination.</p>
+            </div>
+            <div class="industry-card">
+                <div class="industry-icon">⚗️</div>
+                <div class="industry-title">Chemical &amp; Agro</div>
+                <p class="industry-desc">Durable systems for aggressive substances. Leak-proof, accurate filling per
+                    international safety regulations.</p>
+            </div>
+        </div>
+        <div class="slide-num">11 / 14</div>
+    </div>
+
+    <!-- ══════════════════ SLIDE 12 — QUALITY ══════════════════ -->
+    <div class="slide">
+        <div class="side-bar"></div>
+        <div class="slide-header">
+            <div class="eyebrow">QUALITY ASSURANCE</div>
+            <h2>Built for Compliance. Engineered for Trust.</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="quality-grid">
+            <div class="quality-card">
+                <div class="quality-icon">🛡️</div>
+                <h3>cGMP-Aligned Design</h3>
+                <p style="margin-top:6px;font-size:11px;">Cleanroom-ready layouts, CIP/SIP-friendly forms, and full
+                    validation documentation from day one.</p>
+            </div>
+            <div class="quality-card">
+                <div class="quality-icon">⏱️</div>
+                <h3>Timely Delivery</h3>
+                <p style="margin-top:6px;font-size:11px;">In-house machining, milestone tracking, and committed project
+                    schedules — no outsourcing delays.</p>
+            </div>
+            <div class="quality-card">
+                <div class="quality-icon">🎧</div>
+                <h3>After-Sales Support</h3>
+                <p style="margin-top:6px;font-size:11px;">Dedicated spare parts, remote troubleshooting, and on-site
+                    field engineers available 24/7.</p>
+            </div>
+            <div class="quality-card">
+                <div class="quality-icon">⚙️</div>
+                <h3>Siemens Automation</h3>
+                <p style="margin-top:6px;font-size:11px;">S7 1500 PLC + HMI with 21 CFR Part 11 compliant e-records and
+                    audit trails.</p>
+            </div>
+            <div class="quality-card">
+                <div class="quality-icon">🔬</div>
+                <h3>SS316L Materials</h3>
+                <p style="margin-top:6px;font-size:11px;">All product contact surfaces in SS316L — mirror polished to Ra
+                    ≤ 0.4 µm for sterility assurance.</p>
+            </div>
+            <div class="quality-card">
+                <div class="quality-icon">📄</div>
+                <h3>Validation Packages</h3>
+                <p style="margin-top:6px;font-size:11px;">IQ/OQ/PQ documentation prepared in-house. Factory Acceptance
+                    Testing (FAT) included.</p>
+            </div>
+        </div>
+        <div class="slide-num">12 / 14</div>
+    </div>
+
+    <!-- ══════════════════ SLIDE 13 — CLIENTS ══════════════════ -->
+    <div class="slide">
+        <div class="side-bar"></div>
+        <div class="slide-header">
+            <div class="eyebrow">CLIENTS</div>
+            <h2>Trusted by Leading Manufacturers</h2>
+            <div class="divider"></div>
+            <p>Our machines are deployed across pharmaceutical, food, and chemical production facilities across India
+                and beyond.</p>
+        </div>
+        <div class="client-grid">
+            <div class="client-box"><img
+                    src="file:///C:/Users/crypt/Downloads/Ai%20projects/websites/Inprogress/BVM/app/bvm-next/public/clients/Picture2.png"
+                    style="max-width:80%;max-height:80%;object-fit:contain;" /></div>
+            <div class="client-box"><img
+                    src="file:///C:/Users/crypt/Downloads/Ai%20projects/websites/Inprogress/BVM/app/bvm-next/public/clients/Picture3.png"
+                    style="max-width:80%;max-height:80%;object-fit:contain;" /></div>
+            <div class="client-box"><img
+                    src="file:///C:/Users/crypt/Downloads/Ai%20projects/websites/Inprogress/BVM/app/bvm-next/public/clients/Picture4.png"
+                    style="max-width:80%;max-height:80%;object-fit:contain;" /></div>
+            <div class="client-box"><img
+                    src="file:///C:/Users/crypt/Downloads/Ai%20projects/websites/Inprogress/BVM/app/bvm-next/public/clients/Picture5.png"
+                    style="max-width:80%;max-height:80%;object-fit:contain;" /></div>
+            <div class="client-box"><img
+                    src="file:///C:/Users/crypt/Downloads/Ai%20projects/websites/Inprogress/BVM/app/bvm-next/public/clients/Picture6.png"
+                    style="max-width:80%;max-height:80%;object-fit:contain;" /></div>
+            <div class="client-box"><img
+                    src="file:///C:/Users/crypt/Downloads/Ai%20projects/websites/Inprogress/BVM/app/bvm-next/public/clients/Picture7.png"
+                    style="max-width:80%;max-height:80%;object-fit:contain;" /></div>
+            <div class="client-box"><img
+                    src="file:///C:/Users/crypt/Downloads/Ai%20projects/websites/Inprogress/BVM/app/bvm-next/public/clients/Picture8.png"
+                    style="max-width:80%;max-height:80%;object-fit:contain;" /></div>
+            <div class="client-box"><img
+                    src="file:///C:/Users/crypt/Downloads/Ai%20projects/websites/Inprogress/BVM/app/bvm-next/public/clients/Picture9.png"
+                    style="max-width:80%;max-height:80%;object-fit:contain;" /></div>
+            <div class="client-box"><img
+                    src="file:///C:/Users/crypt/Downloads/Ai%20projects/websites/Inprogress/BVM/app/bvm-next/public/clients/Picture10.png"
+                    style="max-width:80%;max-height:80%;object-fit:contain;" /></div>
+            <div class="client-box"><img
+                    src="file:///C:/Users/crypt/Downloads/Ai%20projects/websites/Inprogress/BVM/app/bvm-next/public/clients/Picture11.png"
+                    style="max-width:80%;max-height:80%;object-fit:contain;" /></div>
+            <div class="client-box"><img
+                    src="file:///C:/Users/crypt/Downloads/Ai%20projects/websites/Inprogress/BVM/app/bvm-next/public/clients/Picture12.png"
+                    style="max-width:80%;max-height:80%;object-fit:contain;" /></div>
+            <div class="client-box"><img
+                    src="file:///C:/Users/crypt/Downloads/Ai%20projects/websites/Inprogress/BVM/app/bvm-next/public/clients/Picture13.png"
+                    style="max-width:80%;max-height:80%;object-fit:contain;" /></div>
+        </div>
+        <p style="margin-top:10px;font-size:10px;color:var(--muted);text-align:center;">Reference list available on
+            request · NDA maintained for all client relationships</p>
+        <div class="slide-num">13 / 14</div>
+    </div>
+
+    <!-- ══════════════════ SLIDE 14 — CONTACT ══════════════════ -->
+    <div class="slide" style="padding:0;">
+        <div class="top-bar"></div>
+        <div class="bottom-bar"></div>
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:14mm 18mm;">
+            <div class="eyebrow">GET IN TOUCH</div>
+            <h2 style="margin-bottom:10px;">Let's Build Something Together</h2>
+            <div class="divider"></div>
+            <div class="row" style="gap:24px;margin-top:12px;flex:1;">
+                <div style="flex:1.4;">
+                    <div class="contact-row">
+                        <div class="contact-label">Sales</div>
+                        <div class="contact-value">+91 7018231499</div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="contact-label">Sales Email</div>
+                        <div class="contact-value">sales@mybvm.in</div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="contact-label">Service</div>
+                        <div class="contact-value">service@mybvm.in</div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="contact-label">Address</div>
+                        <div>
+                            <div class="contact-value">Plot 774/496/46, Village Gullarwala</div>
+                            <p style="font-size:11px;margin-top:2px;">Post &amp; Teh. Baddi, Distt. Solan, H.P. 173205
+                            </p>
+                        </div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="contact-label">Website</div>
+                        <div class="contact-value" style="color:var(--blue);">mybvm.in</div>
+                    </div>
+                </div>
+                <div class="card" style="flex:1;">
+                    <h3 style="color:var(--blue);margin-bottom:12px;">Next Steps</h3>
+                    <ul class="bullet-list">
+                        <li><span class="bullet-icon">📋</span>Request a Techno-Commercial Offer</li>
+                        <li><span class="bullet-icon">🏭</span>Schedule a Factory Visit — Baddi, H.P.</li>
+                        <li><span class="bullet-icon">📐</span>Review G.A. Drawings &amp; Technical Specs</li>
+                        <li><span class="bullet-icon">🤝</span>Discuss Project Timeline &amp; Milestones</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide-num">14 / 14</div>
+    </div>
+
+</body>
+
+</html>

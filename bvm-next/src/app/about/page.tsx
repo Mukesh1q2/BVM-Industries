@@ -1,5 +1,6 @@
 import { Award, Users, Factory, Globe, CheckCircle, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
+import { ABOUT_CAPABILITIES, ABOUT_VALUES } from '@/data/content';
 
 const AboutPage = () => {
   const stats = [
@@ -7,35 +8,6 @@ const AboutPage = () => {
     { value: '26-50', label: 'Team Members', icon: Users },
     { value: '5-25 Cr', label: 'Annual Turnover', icon: TrendingUp },
     { value: 'Pan India', label: 'Service Coverage', icon: Globe },
-  ];
-
-  const capabilities = [
-    'Design and manufacturing of blow moulding machines',
-    'BFS (Blow Fill Seal) moulds and tooling',
-    'PET bottle moulds and preforms',
-    'Ampoule filling machinery',
-    'Hydraulic cylinders and manifold blocks',
-    'Stainless steel filter housings',
-    'Custom precision components',
-  ];
-
-  const values = [
-    {
-      title: 'Quality First',
-      description: 'Every product undergoes rigorous testing to ensure it meets industry standards and customer expectations.',
-    },
-    {
-      title: 'Customer Focus',
-      description: 'We work closely with our clients to understand their needs and deliver tailored solutions.',
-    },
-    {
-      title: 'Innovation',
-      description: 'Continuous improvement and adoption of latest technologies to enhance our product offerings.',
-    },
-    {
-      title: 'Integrity',
-      description: 'Transparent business practices and ethical conduct in all our dealings.',
-    },
   ];
 
   return (
@@ -157,7 +129,7 @@ const AboutPage = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-          {capabilities.map((capability, index) => (
+          {ABOUT_CAPABILITIES.map((capability, index) => (
             <div
               key={index}
               className="flex items-start gap-4 p-4 bg-white/5 rounded-xl border border-white/10"
@@ -181,7 +153,7 @@ const AboutPage = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {values.map((value, index) => (
+          {ABOUT_VALUES.map((value, index) => (
             <div
               key={index}
               className="p-6 bg-white/5 rounded-xl border border-white/10 hover:border-bvm-blue/30 transition-colors"
@@ -207,7 +179,7 @@ const AboutPage = () => {
             <Link href="/contact" className="btn-primary">
               Contact Us
             </Link>
-            <Link href="/products" className="btn-secondary">
+            <Link href="/machines" className="btn-secondary">
               View Products
             </Link>
           </div>

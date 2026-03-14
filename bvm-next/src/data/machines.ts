@@ -58,6 +58,7 @@ export const machines: MachineData[] = [
         specTables: [
             {
                 title: 'Large Volume Parenterals (LVP)',
+                image: '/new_assets/optimized/large-volume-parenterals-lvp.webp',
                 headers: [
                     { key: 'model', label: 'Product Name' },
                     { key: 'small', label: 'IV Fluids (Small)' },
@@ -75,6 +76,7 @@ export const machines: MachineData[] = [
             },
             {
                 title: 'Small Volume Parenterals (SVP)',
+                image: '/new_assets/optimized/small-volume-parenterals-svp-blow-fill-seal-bfs.webp',
                 headers: [
                     { key: 'model', label: 'Product Name' },
                     { key: 'units', label: 'Units' },
@@ -91,6 +93,13 @@ export const machines: MachineData[] = [
                 ],
                 note: '* Hourly output ranges typically span from 4,600 to 27,000 units/hour depending on configuration.'
             }
+        ],
+        compatibleApplications: [
+            'Injectables (LVP / SVP)',
+            'Ophthalmic Solutions',
+            'Respiratory Unit Dose',
+            'Nasal Sprays',
+            'Oral Liquids'
         ]
     },
     {
@@ -133,11 +142,13 @@ export const machines: MachineData[] = [
                 {
                     title: 'Ophthalmic / SVP Formats',
                     icon: 'Droplet',
+                    image: '/new_assets/optimized/ophthalmic-eye-dropper-bottles.webp',
                     description: 'High-precision SVPs (0.5 mL to 100 mL) utilizing configurable 50-Cavity Ophthalmic Molds (e.g., 5 vials x 10 parisons).'
                 },
                 {
                     title: 'Respiratory & LVP Formats',
                     icon: 'Activity',
+                    image: '/new_assets/optimized/multi-dose-infusion-irrigation-bottles.webp',
                     description: 'Large Volume Parenterals (250 mL to 1000 mL) optimized for intravenous fluids, irrigation solutions, and nebulizers.'
                 }
             ]
@@ -161,6 +172,13 @@ export const machines: MachineData[] = [
                     { model: '940 Series', data: { type: 'LVP High-Output', features: 'Multiple cavity configurations, high throughput capacity', capacity: 'Up to 6,700/hr' } }
                 ]
             }
+        ],
+        compatibleApplications: [
+            'Injectables (LVP / SVP)',
+            'Ophthalmic Solutions',
+            'Respiratory Unit Dose',
+            'Nasal Sprays',
+            'Oral Liquids'
         ]
     },
     {
@@ -214,6 +232,11 @@ export const machines: MachineData[] = [
                     { model: 'MODEL - 420', data: { range: '50 / 100', capacity: '3200' } }
                 ]
             }
+        ],
+        compatibleApplications: [
+            'IV Fluid Bottles (LVP)',
+            'Ophthalmic Drops',
+            'Oral Liquids'
         ]
     }
 ];

@@ -1,30 +1,9 @@
-import { Shield, Clock, Headphones } from 'lucide-react';
-
-const qualityPoints = [
-  {
-    id: 1,
-    title: 'cGMP-Aligned Design',
-    description: 'Cleanroom-ready layouts, CIP/SIP-friendly forms, and documentation support.',
-    icon: Shield
-  },
-  {
-    id: 2,
-    title: 'Timely Delivery',
-    description: 'Milestone tracking, in-house machining, and committed schedules.',
-    icon: Clock
-  },
-  {
-    id: 3,
-    title: 'After-Sales Support',
-    description: 'Spare parts, troubleshooting, and on-site assistance.',
-    icon: Headphones
-  }
-];
+import { QUALITY_PILLARS } from '@/data/content';
 
 const QualitySection = () => {
   return (
     <section
-      id="about"
+      id="quality"
       className="relative bg-bvm-navy py-24 lg:py-32"
     >
       {/* Heading */}
@@ -35,7 +14,7 @@ const QualitySection = () => {
       {/* Quality cards */}
       <div className="px-4 sm:px-8 lg:px-[8vw]">
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-[3vw]">
-          {qualityPoints.map((point) => {
+          {QUALITY_PILLARS.map((point) => {
             const Icon = point.icon;
             return (
               <div

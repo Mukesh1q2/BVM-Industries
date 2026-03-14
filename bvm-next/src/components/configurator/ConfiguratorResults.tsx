@@ -60,23 +60,15 @@ const ConfiguratorResults = () => {
 
         try {
             const payload = {
-                access_key: 'af13ac37-e44c-49ce-8fbd-ea80932a48a8',
-                subject: `New Line Configurator Lead: ${formData.company || formData.name}`,
-                from_name: formData.name,
                 name: formData.name,
                 email: formData.email,
                 company: formData.company,
                 phone: formData.phone,
-                // Injecting the configurator state into the email body manually
-                configuration_product: state.productType,
-                configuration_volume: state.volumeRange,
-                configuration_speed: state.speed,
-                configuration_addons: state.addons.join(", "),
-                recommended_machine: recommendation.name,
+                productInterest: `Configurator Lead: ${recommendation.name}`,
                 message: `The user generated a Build-Your-Line configuration:\n\nProduct Domain: ${formatValue(state.productType)}\nVolume: ${formatValue(state.volumeRange)}\nSpeed: ${formatValue(state.speed)}\nAdd-ons: ${state.addons.join(', ')}\n\nRecommended: ${recommendation.name}`
             };
 
-            const res = await fetch('https://api.web3forms.com/submit', {
+            const res = await fetch('/api/contact', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),

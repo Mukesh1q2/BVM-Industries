@@ -21,7 +21,7 @@ const industries = [
     id: 4,
     title: 'Chemical & Agrochemicals',
     description: 'Durable systems designed to handle aggressive substances safely, ensuring accurate filling, secure sealing, and minimizing the risk of leaks in compliance with safety regulations.',
-    image: '/new_assets/optimized/ffs-machine.webp'
+    image: '/capability_machining.webp'
   }
 ];
 

@@ -1,38 +1,8 @@
 "use client";
 import { ArrowRight } from 'lucide-react';
-
 import { useRouter } from 'next/navigation';
 
-const products = [
-  {
-    id: 1,
-    title: 'F.F.S Machines',
-    image: '/new_assets/optimized/ffs-machine.webp',
-    description: 'Advanced Form-Fill-Seal systems for sterile packaging.',
-    link: '/machines/ffs',
-  },
-  {
-    id: 2,
-    title: 'B.F.S Machines',
-    image: '/new_assets/optimized/bfs-machine.webp',
-    description: 'Blow-Fill-Seal technology for SVP & LVP applications.',
-    link: '/machines/bfs',
-  },
-  {
-    id: 3,
-    title: 'Euro Cap Sealing',
-    image: '/new_assets/optimized/cap-sealing-machine.webp',
-    description: 'High-speed sealing & welding for plastic bottles.',
-    link: '/machines/euro-cap-sealing',
-  },
-  {
-    id: 4,
-    title: 'Precision Moulds',
-    image: '/new_assets/optimized/mould-lvp.webp',
-    description: 'High-quality moulds for BFS, PET, and Injection.',
-    link: '/moulds',
-  }
-];
+import { machineSeries } from '@/data/products';
 
 const ProductsSection = () => {
   const navigate = useRouter();
@@ -50,7 +20,7 @@ const ProductsSection = () => {
       {/* Product cards */}
       <div className="relative px-4 sm:px-8 lg:px-[8vw]">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-[1.5vw]">
-          {products.map((product) => (
+          {machineSeries.map((product) => (
             <div
               key={product.id}
               className="group relative overflow-hidden rounded-xl cursor-pointer shadow-card hover:shadow-glow-blue transition-shadow duration-500 aspect-[4/5]"
@@ -82,7 +52,7 @@ const ProductsSection = () => {
                   {product.title}
                 </h3>
                 <p className="text-bvm-gray text-sm mb-4 line-clamp-2">
-                  {product.description}
+                  {product.shortDescription}
                 </p>
                 <div className="flex items-center gap-2 text-bvm-blue opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <span className="text-sm font-medium">Explore</span>

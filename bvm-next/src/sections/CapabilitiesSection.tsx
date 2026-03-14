@@ -1,28 +1,4 @@
-import { Compass, Cog, ClipboardCheck } from 'lucide-react';
-
-const capabilities = [
-  {
-    id: 1,
-    title: 'Design & Engineering',
-    description: 'CAD/CAM, mould flow, and prototyping.',
-    image: '/capability_design.webp',
-    icon: Compass
-  },
-  {
-    id: 2,
-    title: 'Precision Machining',
-    description: 'CNC, EDM, and surface finishing.',
-    image: '/capability_machining.webp',
-    icon: Cog
-  },
-  {
-    id: 3,
-    title: 'Validation & Support',
-    description: 'DQ/IQ/OQ/PQ documentation and 24/7 global support.',
-    image: '/capability_assembly.webp',
-    icon: ClipboardCheck
-  }
-];
+import { COMPANY_CAPABILITIES } from '@/data/content';
 
 const CapabilitiesSection = () => {
   return (
@@ -43,12 +19,12 @@ const CapabilitiesSection = () => {
 
         {/* Process steps */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-[3vw]">
-          {capabilities.map((capability) => {
+          {COMPANY_CAPABILITIES.map((capability) => {
             const Icon = capability.icon;
             return (
               <div
                 key={capability.id}
-                className="group relative bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl overflow-hidden shadow-none hover:bg-white/10 transition-all duration-300"
+                className="group relative bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl overflow-hidden hover:bg-white/10 hover:border-white/20 hover:shadow-glow-blue transition-all duration-300"
               >
                 {/* Image */}
                 <div className="relative h-48 overflow-hidden [clip-path:polygon(0_0,100%_0,100%_85%,0_100%)]">

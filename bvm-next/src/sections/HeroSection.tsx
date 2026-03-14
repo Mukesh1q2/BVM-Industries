@@ -1,10 +1,13 @@
 "use client";
-import { useRef, useLayoutEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, ChevronRight } from 'lucide-react';
 
-gsap.registerPlugin(ScrollTrigger);
+// Issue 1 fix: guard so plugin only registers in the browser (not during SSR)
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const HeroSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -15,7 +18,8 @@ const HeroSection = () => {
   const bodyRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
+  // Issue 2 fix: useEffect is SSR-safe, useLayoutEffect is not
+  useEffect(() => {
     const ctx = gsap.context(() => {
       // ─── ENTRANCE ANIMATION (auto-plays on load) ───
       const entranceTl = gsap.timeline({ defaults: { ease: 'power2.out' } });
@@ -143,7 +147,7 @@ const HeroSection = () => {
       {/* Hero product image */}
       <img
         ref={imageRef}
-        src="/hero_bottle_large.webp"
+        src="/new_assets/optimized/lvp-svp-multidose-infusion-ophthalmic-eye-dropper.webp"
         alt="BVM Industries precision pharmaceutical bottles produced by Blow-Fill-Seal technology"
         width={520}
         height={780}

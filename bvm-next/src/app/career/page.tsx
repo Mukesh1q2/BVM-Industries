@@ -34,19 +34,25 @@ const CareerPage = () => {
         try {
             const form = formRef.current!;
             const formData = new FormData(form);
-            formData.append('access_key', 'af13ac37-e44c-49ce-8fbd-ea80932a48a8');
-            formData.append('subject', `New ${role === 'employee' ? 'Career Application' : 'Supplier Enquiry'} — BVM Website`);
-            formData.append('application_type', role);
 
-            const res = await fetch('https://api.web3forms.com/submit', {
+            const payload = {
+                name: formData.get('name') as string,
+                email: formData.get('email') as string,
+                phone: formData.get('phone') as string,
+                company: role === 'supplier' ? formData.get('business_type') as string : '',
+                productInterest: role === 'employee' ? `Career Application: ${formData.get('position')}` : `Supplier Enquiry: ${formData.get('business_type')}`,
+                message: formData.get('message') as string,
+            };
+
+            const res = await fetch('/api/contact', {
                 method: 'POST',
-                body: formData,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
             });
 
             const data = await res.json();
 
             if (data.success) {
-                setSubmitted(true);
                 toast.success('Application submitted successfully!');
             } else {
                 toast.error('Something went wrong. Please email us at sales@bvmindustries.com');

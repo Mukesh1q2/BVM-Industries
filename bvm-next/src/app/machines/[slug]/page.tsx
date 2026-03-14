@@ -117,19 +117,40 @@ export default async function MachineDetailsPage({ params }: { params: Promise<{
                                 {machine.processCapabilities.items.map((item, idx) => {
                                     const ItemIcon = iconMap[item.icon] || Activity;
                                     return (
-                                        <div key={idx}>
-                                            <div className="flex items-center gap-3 mb-2 text-bvm-blue">
-                                                <ItemIcon className="w-5 h-5" />
-                                                <span className="font-semibold text-white">{item.title}</span>
+                                        <div key={idx} className="flex flex-col sm:flex-row gap-6 items-start">
+                                            <div className="flex-1">
+                                                <div className="flex items-center gap-3 mb-2 text-bvm-blue">
+                                                    <ItemIcon className="w-5 h-5" />
+                                                    <span className="font-semibold text-white">{item.title}</span>
+                                                </div>
+                                                <p
+                                                    className="text-bvm-text-muted pl-8"
+                                                    dangerouslySetInnerHTML={{ __html: item.description }}
+                                                />
                                             </div>
-                                            <p
-                                                className="text-bvm-text-muted pl-8"
-                                                dangerouslySetInnerHTML={{ __html: item.description }}
-                                            />
+                                            {item.image && (
+                                                <div className="w-full sm:w-1/3 shrink-0 rounded-lg overflow-hidden border border-white/10 mt-4 sm:mt-0 aspect-auto">
+                                                    <img src={item.image} alt={item.title} className="w-full h-auto object-cover opacity-90 hover:opacity-100 transition-opacity" />
+                                                </div>
+                                            )}
                                         </div>
                                     );
                                 })}
                             </div>
+                        </div>
+                    )}
+
+                    {machine.compatibleApplications && (
+                        <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
+                            <h3 className="text-xl font-bold text-white mb-6">Compatible Applications</h3>
+                            <ul className="space-y-4">
+                                {machine.compatibleApplications.map((app, idx) => (
+                                    <li key={idx} className="flex items-center gap-3 text-bvm-text-muted">
+                                        <CheckCircle className="w-5 h-5 text-bvm-blue shrink-0" />
+                                        <span className="font-medium text-white/90">{app}</span>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                     )}
 
@@ -148,9 +169,18 @@ export default async function MachineDetailsPage({ params }: { params: Promise<{
             {/* Specifications Tables */}
             {machine.specTables.map((table, tblIdx) => (
                 <RevealSection key={tblIdx} className="px-4 sm:px-8 lg:px-[8vw] mb-20">
-                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 border-l-4 border-bvm-blue pl-4">
-                        {table.title}
-                    </h2>
+                    <div className="flex flex-col lg:flex-row gap-8 items-start mb-8">
+                        <div className="flex-1">
+                            <h2 className="text-2xl md:text-3xl font-bold text-white border-l-4 border-bvm-blue pl-4 mb-4">
+                                {table.title}
+                            </h2>
+                        </div>
+                        {table.image && (
+                            <div className="w-full lg:w-[250px] shrink-0 rounded-xl overflow-hidden border border-white/10">
+                                <img src={table.image} alt={table.title} className="w-full h-auto object-cover bg-white/5 opacity-90 transition-opacity hover:opacity-100" />
+                            </div>
+                        )}
+                    </div>
                     <div className="overflow-x-auto rounded-xl border border-white/10">
                         <table className="w-full text-left text-sm text-bvm-text-muted">
                             <thead className="bg-white/10 text-white uppercase text-xs font-semibold">

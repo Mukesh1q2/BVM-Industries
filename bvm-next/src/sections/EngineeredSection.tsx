@@ -1,5 +1,6 @@
 "use client";
-import { useRef, useLayoutEffect } from 'react';
+import { useRef, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight } from 'lucide-react';
@@ -11,8 +12,8 @@ if (typeof window !== 'undefined') {
 const EngineeredSection = () => {
   const headlineRef = useRef<HTMLHeadingElement>(null);
 
-  useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
+  useEffect(() => {
+    const ctx = gsap.context(() => {
       if (!headlineRef.current) return;
       const words = headlineRef.current.querySelectorAll('.word');
       gsap.fromTo(words,
@@ -33,12 +34,7 @@ const EngineeredSection = () => {
     return () => ctx.revert();
   }, []);
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const router = useRouter();
 
   return (
     <section
@@ -54,8 +50,8 @@ const EngineeredSection = () => {
         }}
       >
         <img
-          src="/engineered_for_panel.webp"
-          alt="Industrial machinery"
+          src="/machine_feature_bg.webp"
+          alt="Industrial machinery features"
           width={1200}
           height={800}
           loading="lazy"
@@ -86,7 +82,9 @@ const EngineeredSection = () => {
         </p>
 
         <button
-          onClick={() => scrollToSection('#capabilities')}
+          onClick={() => {
+            document.querySelector('#capabilities')?.scrollIntoView({ behavior: 'smooth' });
+          }}
           className="text-bvm-blue hover:text-white font-medium flex items-center gap-2 transition-colors group"
         >
           See our capabilities

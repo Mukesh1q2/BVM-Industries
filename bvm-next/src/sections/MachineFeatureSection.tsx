@@ -1,5 +1,6 @@
 "use client";
-import { useRef, useLayoutEffect } from 'react';
+import { useRef, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight } from 'lucide-react';
@@ -10,9 +11,11 @@ if (typeof window !== 'undefined') {
 
 const MachineFeatureSection = () => {
   const headlineRef = useRef<HTMLHeadingElement>(null);
+  const router = useRouter();
 
-  useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
+  // Issue 2 fix: useEffect instead of useLayoutEffect (safe for SSR)
+  useEffect(() => {
+    const ctx = gsap.context(() => {
       if (!headlineRef.current) return;
       const words = headlineRef.current.querySelectorAll('.word');
       gsap.fromTo(words,
@@ -32,13 +35,6 @@ const MachineFeatureSection = () => {
     }, headlineRef);
     return () => ctx.revert();
   }, []);
-
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <section
@@ -76,8 +72,9 @@ const MachineFeatureSection = () => {
           contact lines—designed for continuous, high-output parenteral production.
         </p>
 
+        {/* Issue 5 fix: navigates to /machines instead of scrolling to #contact */}
         <button
-          onClick={() => scrollToSection('#contact')}
+          onClick={() => router.push('/machines')}
           className="btn-primary w-fit"
         >
           Explore Machines

@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
+import { CONTACT_INFO } from '@/config/site';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -18,19 +19,25 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-    toast.success('Thank you for your enquiry! We will get back to you soon.');
-    setFormData({
-      name: '',
-      company: '',
-      email: '',
-      phone: '',
-      productInterest: '',
-      message: ''
-    });
-    setIsSubmitting(false);
+      if (res.ok) {
+        toast.success('Enquiry sent! We will get back to you within 1–2 business days.');
+        setFormData({ name: '', company: '', email: '', phone: '', productInterest: '', message: '' });
+      } else {
+        const data = await res.json();
+        toast.error(data.error || 'Something went wrong. Please call us at +91 7018231499.');
+      }
+    } catch {
+      toast.error('Could not send message. Please email us directly at sales@mybvm.in');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -60,30 +67,30 @@ const ContactSection = () => {
             {/* Contact details */}
             <div className="space-y-4">
               <a
-                href="mailto:sales@bvmindustries.com"
+                href={`mailto:${CONTACT_INFO.email.sales}`}
                 className="flex items-center gap-3 text-bvm-gray hover:text-bvm-blue transition-colors"
               >
                 <div className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center">
                   <Mail className="w-5 h-5" />
                 </div>
-                <span>sales@bvmindustries.com</span>
+                <span>{CONTACT_INFO.email.sales}</span>
               </a>
 
               <a
-                href="tel:+917949303163"
+                href={`tel:${CONTACT_INFO.phone.replace(/\s+/g, '')}`}
                 className="flex items-center gap-3 text-bvm-gray hover:text-bvm-blue transition-colors"
               >
                 <div className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center">
                   <Phone className="w-5 h-5" />
                 </div>
-                <span>+91-79493-03163</span>
+                <span>{CONTACT_INFO.phone}</span>
               </a>
 
               <div className="flex items-center gap-3 text-bvm-gray">
                 <div className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center">
                   <MapPin className="w-5 h-5" />
                 </div>
-                <span>Baddi, Himachal Pradesh, India</span>
+                <span className="max-w-[280px]">{CONTACT_INFO.address.split(',')[0]}, {CONTACT_INFO.address.split(',').splice(-1)[0].trim()}</span>
               </div>
             </div>
           </div>

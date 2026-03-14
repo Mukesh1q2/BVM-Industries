@@ -20,18 +20,15 @@ const ContactPage = () => {
 
     try {
       const payload = {
-        access_key: 'af13ac37-e44c-49ce-8fbd-ea80932a48a8',
-        subject: `New Enquiry from ${formData.name} — BVM Website`,
-        from_name: formData.name,
         name: formData.name,
-        email: formData.email,
         company: formData.company,
+        email: formData.email,
         phone: formData.phone,
-        product_interest: formData.productInterest,
+        productInterest: formData.productInterest,
         message: formData.message,
       };
 
-      const res = await fetch('https://api.web3forms.com/submit', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

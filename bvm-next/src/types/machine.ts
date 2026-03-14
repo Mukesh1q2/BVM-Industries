@@ -9,6 +9,7 @@ export interface SpecTable {
     headers: { key: string; label: string }[];
     rows: TechnicalSpec[];
     note?: string;
+    image?: string;
 }
 
 export interface FeatureSection {
@@ -21,6 +22,7 @@ export interface ProcessCapability {
     title: string;
     icon: 'Settings' | 'Activity' | 'Server' | 'Droplet';
     description: string; // Supports HTML for now or strict string
+    image?: string;
 }
 
 export interface MachineData {
@@ -44,4 +46,5 @@ export interface MachineData {
         description: string;
     };
     specTables: SpecTable[];
+    compatibleApplications?: string[];
 }

@@ -27,6 +27,8 @@ const ClientStripSection = () => {
                         <img
                             src={logo}
                             alt={`BVM Client Partner ${index + 1}`}
+                            width={200}
+                            height={80}
                             className="h-full w-auto object-contain max-w-[200px]"
                             loading="lazy"
                         />

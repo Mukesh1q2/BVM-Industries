@@ -9,6 +9,128 @@ export interface Product {
   category: string;
 }
 
+export const machineSeries = [
+  {
+    id: 'ffs',
+    title: 'F.F.S Machines',
+    subtitle: 'Form-Fill-Seal Systems',
+    description: 'Fully indigenous, cost-effective aseptic filling systems for pharmaceutical liquids. Designed for sterility and performance.',
+    shortDescription: 'Advanced Form-Fill-Seal systems for sterile packaging.',
+    image: '/new_assets/optimized/ffs-machine.webp',
+    link: '/machines/ffs',
+    categories: ['injectables', 'ophthalmic', 'respiratory'],
+    applications: [
+      {
+        title: 'Large Volume Parenterals (LVP)',
+        image: '/new_assets/optimized/large-volume-parenterals-lvp.webp'
+      },
+      {
+        title: 'Multi-Dose Infusion Irrigation Bottles',
+        image: '/new_assets/optimized/multi-dose-infusion-irrigation-bottles.webp'
+      }
+    ],
+    categoryContent: {
+      injectables: {
+        description: 'Engineered for seamless LVP and SVP production. Our F.F.S machines provide high-speed, sterile packaging for IV infusion bottles and large volume containers.',
+        tags: ['Large Volume Injectables', 'IV Infusion Containers', 'Sterile Packaging'],
+        applications: [
+          { title: 'Large Volume Parenterals (LVP)', image: '/new_assets/optimized/large-volume-parenterals-lvp.webp' },
+          { title: 'Multi-Dose Infusion Irrigation Bottles', image: '/new_assets/optimized/multi-dose-infusion-irrigation-bottles.webp' },
+          { title: 'Injectable Ampoules', image: '/new_assets/optimized/small-volume-parenterals-svp-blow-fill-seal-bfs.webp' }
+        ]
+      },
+      ophthalmic: {
+        description: 'Precision aseptic filling designed specifically for ophthalmic solutions. Ensures zero contamination for sensitive eye drop and small volume packaging.',
+        tags: ['Sterile Eye Drop Containers', 'Small Volume Liquid Packaging', 'Pharmaceutical Grade Polymer Filling'],
+        applications: [
+          { title: 'Ophthalmic Eye Dropper Bottles', image: '/new_assets/optimized/ophthalmic-eye-dropper-bottles.webp' },
+          { title: 'Small Dropper Packaging', image: '/new_assets/optimized/ophthalmic-eye-dropper-bottles.webp' }
+        ]
+      },
+      respiratory: {
+        description: 'Optimized for respiratory and inhalation unit dose packaging. High-precision forming and filling to support nebulizer ampoules and inhalation solutions.',
+        tags: ['Nebulizer Ampoules', 'Unit Dose Respiratory Vials', 'Packaging for Inhalation'],
+        applications: [
+          { title: 'Nebulizer Ampoules', image: '/new_assets/optimized/small-volume-parenterals-svp-blow-fill-seal-bfs.webp' },
+          { title: 'Unit Dose Respiratory Vials', image: '/new_assets/optimized/small-volume-parenterals-svp-blow-fill-seal-bfs.webp' }
+        ]
+      }
+    }
+  },
+  {
+    id: 'bfs',
+    title: 'B.F.S Machines',
+    subtitle: 'Blow-Fill-Seal Technology',
+    description: 'Advanced cGMP compliant systems for continuous aseptic filling of small and large volume parenterals.',
+    shortDescription: 'Blow-Fill-Seal technology for SVP & LVP applications.',
+    image: '/new_assets/optimized/bfs-machine.webp',
+    link: '/machines/bfs',
+    categories: ['injectables', 'ophthalmic', 'respiratory'],
+    applications: [
+      {
+        title: 'Small Volume Parenterals (SVP) - BFS',
+        image: '/new_assets/optimized/small-volume-parenterals-svp-blow-fill-seal-bfs.webp'
+      },
+      {
+        title: 'Ophthalmic Eye Dropper Bottles',
+        image: '/new_assets/optimized/ophthalmic-eye-dropper-bottles.webp'
+      }
+    ],
+    categoryContent: {
+      injectables: {
+        description: 'Advanced cGMP compliant Blow-Fill-Seal systems tailored for small volume parenterals (SVP) and unit dose injectable ampoules.',
+        tags: ['Small Injectable Ampoules', 'Unit Dose Vials', 'Sterile Single-Dose Packaging'],
+        applications: [
+          { title: 'Small Injectable Ampoules', image: '/new_assets/optimized/small-volume-parenterals-svp-blow-fill-seal-bfs.webp' },
+          { title: 'Unit Dose Vials', image: '/new_assets/optimized/small-volume-parenterals-svp-blow-fill-seal-bfs.webp' }
+        ]
+      },
+      ophthalmic: {
+        description: 'Specialized Blow-Fill-Seal technology for high-volume, sterile ophthalmic production. Perfect for multi-dose and single-dose eye droppers.',
+        tags: ['Sterile Eye Drop Containers', 'Small Volume Liquid Packaging', 'Multi-cavity Ophthalmic Molds'],
+        applications: [
+          { title: 'Eye Drop Bottles', image: '/new_assets/optimized/ophthalmic-eye-dropper-bottles.webp' },
+          { title: 'Small Dropper Packaging', image: '/new_assets/optimized/ophthalmic-eye-dropper-bottles.webp' }
+        ]
+      },
+      respiratory: {
+        description: 'High-efficiency BFS systems optimized to produce single-dose and multi-dose respiratory and nebulizer ampoules under strict aseptic conditions.',
+        tags: ['Nebulizer Ampoules', 'Unit Dose Respiratory Vials', 'BFS Packaging for Inhalation'],
+        applications: [
+          { title: 'Nebulizer Ampoules', image: '/new_assets/optimized/small-volume-parenterals-svp-blow-fill-seal-bfs.webp' },
+          { title: 'Unit Dose Respiratory Vials', image: '/new_assets/optimized/small-volume-parenterals-svp-blow-fill-seal-bfs.webp' }
+        ]
+      }
+    }
+  },
+  {
+    id: 'euro-cap',
+    title: 'Euro Cap Sealing',
+    subtitle: '400 Series Sealers',
+    description: 'High-speed, servo-controlled cap sealing solutions with precision repeatablity for various bottle sizes.',
+    shortDescription: 'High-speed sealing & welding for plastic bottles.',
+    image: '/new_assets/optimized/cap-sealing-machine.webp',
+    link: '/machines/euro-cap-sealing',
+    categories: ['oral', 'ophthalmic'],
+    applications: [
+      {
+        title: 'IV Fluid Bottles (50ml - 3000ml)',
+        image: '/new_assets/optimized/large-volume-parenterals-lvp.webp'
+      }
+    ]
+  },
+  {
+    id: 'moulds',
+    title: 'Precision Moulds',
+    subtitle: 'BFS, PET & Injection Moulds',
+    description: 'Custom multi-cavity mould designs for blow-fill-seal machines. Manufactured in SS316L with zero-defect tolerance.',
+    shortDescription: 'High-quality moulds for BFS, PET, and Injection.',
+    image: '/new_assets/optimized/mould-lvp.webp',
+    link: '/moulds',
+    categories: [] as string[]
+  }
+];
+
 export const products: Product[] = [
   {
     id: 'automatic-blow-moulding-machine',

@@ -3,6 +3,7 @@ import { Inter, Sora, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/sections/Footer";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 const inter = Inter({ subsets: ["latin"], variable: '--font-inter', display: 'swap' });
 const sora = Sora({ subsets: ["latin"], weight: ["400", "600", "700"], variable: '--font-sora', display: 'swap' });
@@ -55,6 +56,7 @@ export default function RootLayout({
         <main className="flex-grow">
           {children}
         </main>
+        <FloatingWhatsApp />
         <Footer />
       </body>
     </html>

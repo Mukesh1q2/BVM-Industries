@@ -5,36 +5,7 @@ import { ArrowRight, Filter } from 'lucide-react';
 import Link from 'next/link';
 import RevealSection from '@/components/RevealSection';
 
-const machineCategories = [
-    {
-        id: 'ffs',
-        title: 'F.F.S Machines',
-        subtitle: 'Form-Fill-Seal Systems',
-        description: 'Fully indigenous, cost-effective aseptic filling systems for pharmaceutical liquids. Designed for sterility and performance.',
-        image: '/new_assets/optimized/ffs-machine.webp',
-        link: '/machines/ffs',
-        categories: ['injectables', 'ophthalmic', 'respiratory']
-    },
-    {
-        id: 'bfs',
-        title: 'B.F.S Machines',
-        subtitle: 'Blow-Fill-Seal Technology',
-        description: 'Advanced cGMP compliant systems for continuous aseptic filling of small and large volume parenterals.',
-        image: '/new_assets/optimized/bfs-machine.webp',
-        link: '/machines/bfs',
-        categories: ['injectables', 'ophthalmic', 'respiratory']
-    },
-    {
-        id: 'cap-sealing',
-        title: 'Euro Cap Sealing',
-        subtitle: '400 Series Sealers',
-        description: 'High-speed, servo-controlled cap sealing solutions with precision repeatablity for various bottle sizes.',
-        image: '/new_assets/optimized/cap-sealing-machine.webp',
-        link: '/machines/euro-cap-sealing',
-        categories: ['oral', 'ophthalmic']
-    }
-];
-
+import { machineSeries } from '@/data/products';
 const filters = [
     { id: 'all', label: 'All Applications' },
     { id: 'injectables', label: 'Injectables (LVP/SVP)' },
@@ -63,9 +34,10 @@ const MachinesContent = () => {
         if (filterId === 'all') { router.push(pathname, { scroll: false }); } else { router.push(`${pathname}?filter=${filterId}`, { scroll: false }); }
     };
 
+    const machinesList = machineSeries.filter(m => m.id !== 'moulds');
     const filteredMachines = activeFilter === 'all'
-        ? machineCategories
-        : machineCategories.filter(m => m.categories.includes(activeFilter));
+        ? machinesList
+        : machinesList.filter(m => m.categories.includes(activeFilter));
 
     return (
         <div className="pt-24 pb-20 bg-bvm-navy min-h-screen">
@@ -101,37 +73,67 @@ const MachinesContent = () => {
             {/* Machine Categories */}
             <div className="grid grid-cols-1 gap-12 px-4 sm:px-8 lg:px-[8vw]">
                 {filteredMachines.length > 0 ? (
-                    filteredMachines.map((category, index) => (
-                        <RevealSection
-                            key={`${category.id}-${activeFilter}`}
-                            delay={index * 150}
-                            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 hover:border-bvm-blue/50 transition-colors duration-500"
-                        >
-                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-                                {/* Image Section */}
-                                <div className={`relative h-64 lg:h-auto overflow-hidden ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
-                                    <img src={category.image} alt={category.title} width={600} height={400} loading="lazy" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
-                                </div>
-                                {/* Content Section */}
-                                <div className="p-8 lg:p-12 flex flex-col justify-center">
-                                    <div className="flex flex-wrap gap-2 mb-4">
-                                        {category.categories.map(cat => (
-                                            <span key={cat} className="text-xs font-bold uppercase tracking-wider text-bvm-blue/80 bg-bvm-blue/10 px-2 py-1 rounded">
-                                                {filters.find(f => f.id === cat)?.label}
-                                            </span>
-                                        ))}
+                    filteredMachines.map((category, index) => {
+                        const dynamicContent = ('categoryContent' in category && activeFilter !== 'all')
+                            ? (category.categoryContent as any)[activeFilter]
+                            : null;
+
+                        const displayDescription = dynamicContent?.description || category.description;
+                        const displayApplications = dynamicContent?.applications || (category as any).applications;
+                        const displayTags = dynamicContent?.tags
+                            ? dynamicContent.tags
+                            : category.categories.map(cat => filters.find(f => f.id === cat)?.label).filter(Boolean);
+
+                        return (
+                            <RevealSection
+                                key={`${category.id}-${activeFilter}`}
+                                delay={index * 150}
+                                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 hover:border-bvm-blue/50 transition-colors duration-500"
+                            >
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                                    {/* Image Section */}
+                                    <div className={`relative h-64 lg:h-auto overflow-hidden ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
+                                        <img src={category.image} alt={category.title} width={600} height={400} loading="lazy" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
                                     </div>
-                                    <span className="text-bvm-blue font-medium mb-2 block">{category.subtitle}</span>
-                                    <h2 className="text-3xl font-display font-bold text-white mb-4">{category.title}</h2>
-                                    <p className="text-bvm-text-muted text-lg mb-8 leading-relaxed">{category.description}</p>
-                                    <Link href={category.link} className="inline-flex items-center gap-2 text-white bg-bvm-blue px-6 py-3 rounded-lg font-medium hover:bg-blue-600 transition-colors self-start">
-                                        Explore Features
-                                        <ArrowRight className="w-4 h-4" />
-                                    </Link>
+                                    {/* Content Section */}
+                                    <div className="p-8 lg:p-12 flex flex-col justify-center">
+                                        <div className="flex flex-wrap gap-2 mb-4">
+                                            {displayTags.map((tag: any, idx: number) => (
+                                                <span key={idx} className="text-xs font-bold uppercase tracking-wider text-bvm-blue/80 bg-bvm-blue/10 px-2 py-1 rounded">
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                        </div>
+                                        <span className="text-bvm-blue font-medium mb-2 block">{category.subtitle}</span>
+                                        <h2 className="text-3xl font-display font-bold text-white mb-4">{category.title}</h2>
+                                        <p className="text-bvm-text-muted text-lg mb-6 leading-relaxed">{displayDescription}</p>
+
+                                        {/* Applications */}
+                                        {displayApplications && Array.isArray(displayApplications) && (
+                                            <div className="mb-8">
+                                                <h3 className="text-sm font-bold text-white mb-3 uppercase tracking-wider">End-Product Applications</h3>
+                                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                                    {displayApplications.map((app: any, appIdx: number) => (
+                                                        <div key={appIdx} className="flex items-center gap-4 bg-[#0a0f18] rounded-xl p-3 border border-white/5 shadow-inner hover:border-bvm-blue/40 transition-all duration-300 group/app">
+                                                            <div className="w-16 h-16 rounded-lg bg-white/5 overflow-hidden flex-shrink-0 border border-white/10 group-hover/app:border-bvm-blue/50 transition-colors flex items-center justify-center p-1 bg-white/10 pb-2">
+                                                                <img src={app.image} alt={app.title} loading="lazy" className="w-full h-full object-contain drop-shadow-lg" />
+                                                            </div>
+                                                            <span className="text-sm text-bvm-text-muted font-medium leading-snug group-hover/app:text-white transition-colors">{app.title}</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        <Link href={category.link} className="inline-flex items-center gap-2 text-white bg-bvm-blue px-6 py-3 rounded-lg font-medium hover:bg-blue-600 transition-colors self-start">
+                                            Explore Features
+                                            <ArrowRight className="w-4 h-4" />
+                                        </Link>
+                                    </div>
                                 </div>
-                            </div>
-                        </RevealSection>
-                    ))
+                            </RevealSection>
+                        );
+                    })
                 ) : (
                     <div className="text-center py-20">
                         <p className="text-bvm-gray text-lg">No machines found for this application.</p>

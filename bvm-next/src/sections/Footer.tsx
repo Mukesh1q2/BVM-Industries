@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { CONTACT_INFO } from '@/config/site';
 import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -66,14 +67,14 @@ const Footer = () => {
             {/* Social Links */}
             <div className="flex gap-3">
               <a
-                href="tel:+917949303163"
+                href={`tel:${CONTACT_INFO.phone.replace(/\s+/g, '')}`}
                 className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center text-bvm-gray hover:bg-bvm-blue hover:text-white transition-all"
                 aria-label="Call BVM"
               >
                 <Phone className="w-5 h-5" />
               </a>
               <a
-                href="mailto:sales@bvmindustries.com"
+                href={`mailto:${CONTACT_INFO.email.sales}`}
                 className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center text-bvm-gray hover:bg-bvm-blue hover:text-white transition-all"
                 aria-label="Email BVM"
               >
@@ -125,26 +126,24 @@ const Footer = () => {
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-bvm-blue mt-0.5 flex-shrink-0" />
                 <div className="text-bvm-gray text-sm">
-                  <p>Ground Floor, Khasra No. 929/565/280</p>
-                  <p>Sai Road, Near Affy Parenterals</p>
-                  <p>Baddi, Solan - 173205, HP, India</p>
+                  <p>{CONTACT_INFO.address}</p>
                 </div>
               </div>
 
               <a
-                href="tel:+917949303163"
+                href={`tel:${CONTACT_INFO.phone.replace(/\s+/g, '')}`}
                 className="flex items-center gap-3 text-bvm-gray hover:text-bvm-blue text-sm transition-colors"
               >
                 <Phone className="w-5 h-5 text-bvm-blue flex-shrink-0" />
-                +91-79493-03163
+                {CONTACT_INFO.phone}
               </a>
 
               <a
-                href="mailto:sales@bvmindustries.com"
+                href={`mailto:${CONTACT_INFO.email.sales}`}
                 className="flex items-center gap-3 text-bvm-gray hover:text-bvm-blue text-sm transition-colors"
               >
                 <Mail className="w-5 h-5 text-bvm-blue flex-shrink-0" />
-                sales@bvmindustries.com
+                {CONTACT_INFO.email.sales}
               </a>
             </div>
 
