@@ -1,9 +1,13 @@
 "use client";
 import { ConfiguratorProvider } from '@/components/configurator/ConfiguratorContext';
-import StepProduct from '@/components/configurator/StepProduct';
-import StepVolume from '@/components/configurator/StepVolume';
-import StepSpeed from '@/components/configurator/StepSpeed';
-import StepAddons from '@/components/configurator/StepAddons';
+import StepMachineType from '@/components/configurator/StepMachineType';
+import StepProductCategory from '@/components/configurator/StepProductCategory';
+import StepFillVolume from '@/components/configurator/StepFillVolume';
+import StepMaterial from '@/components/configurator/StepMaterial';
+import StepDeflashing from '@/components/configurator/StepDeflashing';
+import StepMachineConfig from '@/components/configurator/StepMachineConfig';
+import StepCapacity from '@/components/configurator/StepCapacity';
+import StepFeatures from '@/components/configurator/StepFeatures';
 import ConfiguratorResults from '@/components/configurator/ConfiguratorResults';
 
 const BuildYourLinePage = () => {
@@ -19,10 +23,14 @@ const BuildYourLinePage = () => {
                 <div className="relative z-10 w-full px-4 sm:px-8 lg:px-[8vw]">
                     <ConfiguratorProvider>
                         <div className="min-h-[600px] flex flex-col justify-center">
-                            <StepProduct />
-                            <StepVolume />
-                            <StepSpeed />
-                            <StepAddons />
+                            <StepMachineType />
+                            <StepProductCategory />
+                            <StepFillVolume />
+                            <StepMaterial />
+                            <StepDeflashing />
+                            <StepMachineConfig />
+                            <StepCapacity />
+                            <StepFeatures />
                             <ConfiguratorResults />
                         </div>
                     </ConfiguratorProvider>

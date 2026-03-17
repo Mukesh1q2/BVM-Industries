@@ -2,24 +2,37 @@
 import { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
 
-export type ProductType = 'iv_fluids' | 'ophthalmic' | 'respiratory' | 'oral' | 'ampoule' | null;
-export type VolumeRange = 'small' | 'medium' | 'large' | null; // small: <50ml, medium: 50-500ml, large: >500ml
-export type SpeedRequirement = 'low' | 'medium' | 'high' | null;
-export type Addon = '21_cfr' | 'cip_sip' | 'scada' | 'nitrogen';
+export type MachineType = 'BFS' | 'FFS' | null;
+export type ProductCategory = 'LVP' | 'SVP' | 'Eye Drops' | 'Cosmetics' | 'Agro Products' | null;
+export type FillVolume = string | null;
+export type Material = 'PP' | 'LDPE' | 'PE' | 'Customized LDPE' | null;
+export type DeflashingType = 'Automatic' | 'Manual' | null;
+export type StationType = 'Single Station' | 'Double Station' | null;
+export type ProductionCapacity = string | null;
+// Addons can be any string from the options
+export type Addon = string;
 
 export interface ConfiguratorState {
     step: number;
-    productType: ProductType;
-    volumeRange: VolumeRange;
-    speed: SpeedRequirement;
+    machineType: MachineType;
+    productCategory: ProductCategory;
+    fillVolume: FillVolume;
+    material: Material;
+    deflashing: DeflashingType;
+    stationType: StationType;
+    capacity: ProductionCapacity;
     addons: Addon[];
 }
 
 interface ConfiguratorContextType {
     state: ConfiguratorState;
-    setProductType: (type: ProductType) => void;
-    setVolumeRange: (range: VolumeRange) => void;
-    setSpeed: (speed: SpeedRequirement) => void;
+    setMachineType: (type: MachineType) => void;
+    setProductCategory: (category: ProductCategory) => void;
+    setFillVolume: (volume: FillVolume) => void;
+    setMaterial: (material: Material) => void;
+    setDeflashing: (type: DeflashingType) => void;
+    setStationType: (type: StationType) => void;
+    setCapacity: (capacity: ProductionCapacity) => void;
     toggleAddon: (addon: Addon) => void;
     nextStep: () => void;
     prevStep: () => void;
@@ -28,9 +41,13 @@ interface ConfiguratorContextType {
 
 const initialState: ConfiguratorState = {
     step: 1,
-    productType: null,
-    volumeRange: null,
-    speed: null,
+    machineType: null,
+    productCategory: null,
+    fillVolume: null,
+    material: null,
+    deflashing: null,
+    stationType: null,
+    capacity: null,
     addons: [],
 };
 
@@ -39,9 +56,23 @@ const ConfiguratorContext = createContext<ConfiguratorContextType | undefined>(u
 export const ConfiguratorProvider = ({ children }: { children: ReactNode }) => {
     const [state, setState] = useState<ConfiguratorState>(initialState);
 
-    const setProductType = (type: ProductType) => setState((s) => ({ ...s, productType: type }));
-    const setVolumeRange = (range: VolumeRange) => setState((s) => ({ ...s, volumeRange: range }));
-    const setSpeed = (speed: SpeedRequirement) => setState((s) => ({ ...s, speed }));
+    // If machineType or productCategory changes, we might need to reset dependent fields
+    const setMachineType = (type: MachineType) => {
+        setState((s) => ({
+            ...s,
+            machineType: type,
+            // Reset dependent fields if changing root type
+            fillVolume: s.machineType && s.machineType !== type ? null : s.fillVolume,
+            capacity: s.machineType && s.machineType !== type ? null : s.capacity,
+        }));
+    };
+
+    const setProductCategory = (category: ProductCategory) => setState((s) => ({ ...s, productCategory: category }));
+    const setFillVolume = (volume: FillVolume) => setState((s) => ({ ...s, fillVolume: volume }));
+    const setMaterial = (material: Material) => setState((s) => ({ ...s, material: material }));
+    const setDeflashing = (type: DeflashingType) => setState((s) => ({ ...s, deflashing: type }));
+    const setStationType = (type: StationType) => setState((s) => ({ ...s, stationType: type }));
+    const setCapacity = (capacity: ProductionCapacity) => setState((s) => ({ ...s, capacity: capacity }));
 
     const toggleAddon = (addon: Addon) => {
         setState((s) => ({
@@ -52,7 +83,7 @@ export const ConfiguratorProvider = ({ children }: { children: ReactNode }) => {
         }));
     };
 
-    const nextStep = () => setState((s) => ({ ...s, step: Math.min(s.step + 1, 5) }));
+    const nextStep = () => setState((s) => ({ ...s, step: Math.min(s.step + 1, 9) })); // 8 steps + 1 result
     const prevStep = () => setState((s) => ({ ...s, step: Math.max(s.step - 1, 1) }));
     const resetConfigurator = () => setState(initialState);
 
@@ -60,9 +91,13 @@ export const ConfiguratorProvider = ({ children }: { children: ReactNode }) => {
         <ConfiguratorContext.Provider
             value={{
                 state,
-                setProductType,
-                setVolumeRange,
-                setSpeed,
+                setMachineType,
+                setProductCategory,
+                setFillVolume,
+                setMaterial,
+                setDeflashing,
+                setStationType,
+                setCapacity,
                 toggleAddon,
                 nextStep,
                 prevStep,

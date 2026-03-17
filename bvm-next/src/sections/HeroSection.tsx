@@ -147,7 +147,7 @@ const HeroSection = () => {
       {/* Hero product image */}
       <img
         ref={imageRef}
-        src="/new_assets/optimized/lvp-svp-multidose-infusion-ophthalmic-eye-dropper.webp"
+        src="/new_assets/optimized/lvp-svp-multidose-infusion-ophthalmic-eye-dropper.png"
         alt="BVM Industries precision pharmaceutical bottles produced by Blow-Fill-Seal technology"
         width={520}
         height={780}

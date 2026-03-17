@@ -4,6 +4,7 @@ import { machines } from '@/data/machines';
 import RevealSection from '@/components/RevealSection';
 import Machine3DViewer from '@/components/3d/Machine3DViewer';
 import CanvasScrollScrubber from '@/components/CanvasScrollScrubber';
+import VideoScrollScrubber from '@/components/VideoScrollScrubber';
 import { ArrowRight, CheckCircle, Shield, Zap, Settings, Activity, Server, Droplet, Cpu } from 'lucide-react';
 import { Metadata } from 'next';
 
@@ -69,19 +70,31 @@ export default async function MachineDetailsPage({ params }: { params: Promise<{
             </RevealSection>
 
             {/* Cinematic Scroll Scrubber Explainer (FFS / BFS only) */}
-            {(machine.slug === 'ffs' || machine.slug === 'bfs') && (
+            {machine.slug === 'ffs' ? (
                 <div className="mb-24">
                     <div className="px-4 sm:px-8 lg:px-[8vw] mb-8">
                         <h2 className="text-3xl font-display font-bold text-white mb-4">
-                            The <span className="text-bvm-blue">{machine.slug.toUpperCase()}</span> Process Explained
+                            The <span className="text-bvm-blue">FFS</span> Process Explained
                         </h2>
                         <p className="text-bvm-text-muted max-w-2xl">
-                            Our proprietary Form-Fill-Seal sequence guarantees zero-contact aseptic precision. Scroll to explore the molecular-level breakdown of the manufacturing cycle.
+                            Our proprietary Form-Fill-Seal sequence guarantees zero-contact aseptic precision. Scroll to explore the manufacturing cycle.
+                        </p>
+                    </div>
+                    <VideoScrollScrubber src="/new_assets/optimized/ffs-process-explained.mp4" />
+                </div>
+            ) : machine.slug === 'bfs' ? (
+                <div className="mb-24">
+                    <div className="px-4 sm:px-8 lg:px-[8vw] mb-8">
+                        <h2 className="text-3xl font-display font-bold text-white mb-4">
+                            The <span className="text-bvm-blue">BFS</span> Process Explained
+                        </h2>
+                        <p className="text-bvm-text-muted max-w-2xl">
+                            Our proprietary Blow-Fill-Seal sequence guarantees zero-contact aseptic precision. Scroll to explore the molecular-level breakdown of the manufacturing cycle.
                         </p>
                     </div>
                     <CanvasScrollScrubber />
                 </div>
-            )}
+            ) : null}
 
             {/* Main Content Grid */}
             <RevealSection className="px-4 sm:px-8 lg:px-[8vw] grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">

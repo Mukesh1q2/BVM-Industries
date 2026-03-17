@@ -1,229 +1,204 @@
 "use client";
+import React, { useState } from 'react';
 import { useConfigurator } from './ConfiguratorContext';
 import RevealSection from '../RevealSection';
-import { ArrowRight, Download, CheckCircle, Factory, X, Loader2, User, Building, Mail, Phone, Send } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, ChevronRight, Share2, Mail, FileDown, Rocket, Layers, Droplet, Gauge, Box, Scissors, Settings2, PackagePlus } from 'lucide-react';
 import Link from 'next/link';
-import { useState } from 'react';
 import { toast } from 'sonner';
 
-const getRecommendation = (state: any) => {
-    // Simple heuristic engine based on input
-    let machine = { name: 'Full-Scale B.F.S Machine', link: '/machines/bfs', img: '/new_assets/optimized/bfs-machine.webp' };
-
-    if (state.productType === 'iv_fluids' || state.productType === 'oral') {
-        if (state.volumeRange === 'large' || state.speed === 'high') {
-            machine = { name: 'High-Capacity F.F.S System', link: '/machines/ffs', img: '/new_assets/optimized/ffs-machine.webp' };
-        } else {
-            machine = { name: 'Standard B.F.S System (LVP)', link: '/machines/bfs', img: '/new_assets/optimized/bfs-machine.webp' };
-        }
-    } else if (state.productType === 'ampoule' || state.productType === 'ophthalmic') {
-        if (state.speed === 'low') {
-            machine = { name: 'Precision Euro Cap Sealer', link: '/machines/euro-cap-sealing', img: '/new_assets/optimized/cap-sealing-machine.webp' };
-        } else {
-            machine = { name: 'High-Speed B.F.S System (SVP)', link: '/machines/bfs', img: '/new_assets/optimized/bfs-machine.webp' };
-        }
+const getRecommendation = (machineType: string | null) => {
+    if (machineType === 'FFS') {
+        return {
+            name: "BVM Advanced FFS Unit",
+            desc: "High-speed Form-Fill-Seal platform optimized for small volume parenterals.",
+            slug: "ffs",
+            image: "/new_assets/optimized/ampoule pack -small unit dose single sterile.png"
+        };
     }
-
-    return machine;
-};
-
-const formatValue = (val: string | null) => {
-    if (!val) return 'N/A';
-    return val.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
+    return {
+        name: "BVM Enterprise BFS Line",
+        desc: "Robust Blow-Fill-Seal architecture built for continuous, high-volume production.",
+        slug: "bfs",
+        image: "/new_assets/optimized/Iv infusion bottle standard mold sizes ffs .png"
+    };
 };
 
 const ConfiguratorResults = () => {
     const { state, resetConfigurator } = useConfigurator();
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [formData, setFormData] = useState({
-        name: '',
-        company: '',
-        email: '',
-        phone: '',
-    });
+    const [submitting, setSubmitting] = useState(false);
 
-    if (state.step !== 5) return null;
+    if (state.step !== 9) return null;
 
-    const recommendation = getRecommendation(state);
+    const recommendation = getRecommendation(state.machineType);
 
-    const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData(prev => ({
-            ...prev,
-            [e.target.name]: e.target.value
-        }));
-    };
-
-    const handleWeb3FormSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-
+    const handleSubmitQuoteRequest = async () => {
+        setSubmitting(true);
         try {
-            const payload = {
-                name: formData.name,
-                email: formData.email,
-                company: formData.company,
-                phone: formData.phone,
+            const formData = {
+                name: 'Auto-Lead (Configurator)',
+                email: 'sales@mybvm.in',
+                company: 'Configurator Session User',
+                phone: 'N/A',
+                intent: 'configurator',
                 productInterest: `Configurator Lead: ${recommendation.name}`,
-                message: `The user generated a Build-Your-Line configuration:\n\nProduct Domain: ${formatValue(state.productType)}\nVolume: ${formatValue(state.volumeRange)}\nSpeed: ${formatValue(state.speed)}\nAdd-ons: ${state.addons.join(', ')}\n\nRecommended: ${recommendation.name}`
+                message: `
+[MACHINE TYPE]: ${state.machineType}
+[PRODUCT CATEGORY]: ${state.productCategory}
+[FILL VOLUME]: ${state.fillVolume}
+[MATERIAL]: ${state.material}
+[DEFLASHING SYSTEM]: ${state.deflashing}
+[STATION CONFIG]: ${state.stationType}
+[CAPACITY]: ${state.capacity}
+[ADDONS]: ${state.addons.length > 0 ? state.addons.join(', ') : 'None'}
+                `.trim()
             };
 
-            const res = await fetch('/api/contact', {
+            const response = await fetch('/api/contact', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
+                body: JSON.stringify(formData),
             });
 
-            const data = await res.json();
+            const result = await response.json();
 
-            if (data.success) {
-                toast.success('Configuration sent successfully! Our sales team will contact you shortly.');
-                setIsModalOpen(false);
-                setFormData({ name: '', company: '', email: '', phone: '' });
+            if (result.success) {
+                toast.success('Configuration sent successfully! Our engineering team will review your specifications.');
             } else {
-                toast.error('Something went wrong. Please email us directly at sales@bvmindustries.com');
+                toast.error('Failed to send configuration. Please try again or contact us directly.');
             }
-        } catch {
-            toast.error('Network error. Please email us directly at sales@bvmindustries.com');
+        } catch (error) {
+            console.error('Configurator Submission Error:', error);
+            toast.error('An unexpected error occurred. Please try again later.');
         } finally {
-            setIsSubmitting(false);
+            setSubmitting(false);
         }
     };
 
     return (
-        <RevealSection className="w-full max-w-5xl mx-auto">
+        <RevealSection className="w-full max-w-[1200px] mx-auto mt-8 relative z-20">
+            {/* Header */}
             <div className="text-center mb-12">
-                <div className="w-16 h-16 bg-bvm-blue/20 text-bvm-blue rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Factory className="w-8 h-8" />
+                <div className="inline-flex items-center gap-2 bg-green-500/10 text-green-400 px-4 py-2 rounded-full font-medium text-sm mb-6 border border-green-500/20">
+                    <CheckCircle2 className="w-4 h-4" />
+                    Configuration Complete
                 </div>
-                <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-4">Your Optimal Setup</h2>
+                <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-4">Your Custom Production Line</h2>
                 <p className="text-bvm-text-muted text-lg max-w-2xl mx-auto">
-                    Based on your production requirements, we have engineered the perfect configuration for your facility.
+                    We&apos;ve analyzed your requirements and generated a recommended system architecture tailored to your operation.
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-                {/* Recommendation Card */}
-                <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm flex flex-col items-center text-center">
-                    <h3 className="text-sm font-bold text-bvm-blue uppercase tracking-widest mb-6 border-b border-white/10 pb-4 w-full">Primary Recommendation</h3>
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8">
+                {/* Left Column: Spec Summary */}
+                <div className="space-y-8">
+                    {/* The Spec Blueprint */}
+                    <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm relative overflow-hidden">
+                        <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2 relative z-10">
+                            <Settings2 className="w-5 h-5 text-bvm-blue" />
+                            System Blueprint
+                        </h3>
 
-                    <img
-                        src={recommendation.img}
-                        alt={recommendation.name}
-                        className="w-full max-w-md h-auto object-cover rounded-2xl mb-6 shadow-xl"
-                    />
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative z-10">
+                            {[
+                                { label: 'Machine Type', value: state.machineType, icon: <Layers /> },
+                                { label: 'Product Category', value: state.productCategory, icon: <PackagePlus /> },
+                                { label: 'Fill Volume', value: state.fillVolume, icon: <Droplet /> },
+                                { label: 'Material', value: state.material, icon: <Box /> },
+                                { label: 'Deflashing System', value: state.deflashing, icon: <Scissors /> },
+                                { label: 'Machine Config', value: state.stationType, icon: <Settings2 /> },
+                                { label: 'Target Output', value: state.capacity, icon: <Gauge /> }
+                            ].map((spec, i) => (
+                                <div key={i} className="flex gap-4 p-4 rounded-xl bg-bvm-navy/50 border border-white/5">
+                                    <div className="text-bvm-blue shrink-0 mt-1">
+                                        {React.cloneElement(spec.icon, { className: 'w-5 h-5' })}
+                                    </div>
+                                    <div>
+                                        <div className="text-xs text-bvm-text-muted uppercase tracking-wider mb-1">{spec.label}</div>
+                                        <div className="text-white font-medium">{spec.value || 'Not specified'}</div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
 
-                    <h4 className="text-2xl font-bold text-white mb-4">{recommendation.name}</h4>
-                    <p className="text-bvm-text-muted mb-8 leading-relaxed">
-                        Engineered precisely for {formatValue(state.volumeRange)} volumes of {formatValue(state.productType)} at {formatValue(state.speed)} throughput.
-                    </p>
-
-                    <div className="mt-auto w-full space-y-4">
-                        <Link
-                            href={recommendation.link}
-                            className="w-full flex items-center justify-center gap-2 bg-bvm-blue hover:bg-blue-600 text-white px-6 py-4 rounded-xl font-bold transition-all shadow-lg shadow-bvm-blue/20"
-                        >
-                            View Machine Specifications <ArrowRight className="w-5 h-5" />
-                        </Link>
-
-                        <button
-                            onClick={() => setIsModalOpen(true)}
-                            className="w-full flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-white px-6 py-4 rounded-xl font-bold transition-all border border-white/10"
-                        >
-                            <Download className="w-5 h-5" /> Request Quotation & BOM
-                        </button>
+                        {/* Addons Section */}
+                        <div className="mt-8 pt-8 border-t border-white/10 relative z-10">
+                            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4">Selected Integrations</h4>
+                            {state.addons.length > 0 ? (
+                                <div className="flex flex-wrap gap-2">
+                                    {state.addons.map((addon, i) => (
+                                        <span key={i} className="inline-flex items-center px-3 py-1.5 rounded-lg bg-bvm-blue/10 border border-bvm-blue/20 text-bvm-blue text-sm font-medium">
+                                            {addon}
+                                        </span>
+                                    ))}
+                                </div>
+                            ) : (
+                                <span className="text-bvm-text-muted italic">No optional integrations selected.</span>
+                            )}
+                        </div>
                     </div>
                 </div>
 
-                {/* Requirements Summary */}
-                <div className="bg-bvm-navy-light text-white rounded-3xl p-8 border border-white/5 relative overflow-hidden flex flex-col">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-bvm-blue/10 blur-[100px] rounded-full"></div>
-
-                    <h3 className="text-sm font-bold text-white/50 uppercase tracking-widest mb-6 border-b border-white/10 pb-4">Configuration Summary</h3>
-
-                    <div className="space-y-6 flex-grow relative z-10">
-                        <div>
-                            <p className="text-white/40 text-sm mb-1 uppercase tracking-wide">Product Domain</p>
-                            <p className="text-xl font-medium">{formatValue(state.productType)}</p>
-                        </div>
-                        <div>
-                            <p className="text-white/40 text-sm mb-1 uppercase tracking-wide">Target Volume</p>
-                            <p className="text-xl font-medium">{formatValue(state.volumeRange)} Container</p>
-                        </div>
-                        <div>
-                            <p className="text-white/40 text-sm mb-1 uppercase tracking-wide">Throughput Speed</p>
-                            <p className="text-xl font-medium">{formatValue(state.speed)} Parts/Hour</p>
-                        </div>
-                        <div>
-                            <p className="text-white/40 text-sm mb-1 uppercase tracking-wide">System Add-ons</p>
-                            <div className="mt-2 flex flex-col gap-2">
-                                {state.addons.length > 0 ? (
-                                    state.addons.map((a) => (
-                                        <div key={a} className="flex items-center gap-2 text-bvm-blue-light font-medium bg-bvm-blue/10 px-3 py-2 rounded-lg w-max">
-                                            <CheckCircle className="w-4 h-4" /> {formatValue(a)}
-                                        </div>
-                                    ))
-                                ) : (
-                                    <span className="text-white/40 italic">No add-ons selected</span>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-
-                    <button
-                        onClick={resetConfigurator}
-                        className="mt-8 text-white/50 hover:text-white text-sm uppercase tracking-widest font-bold underline underline-offset-4 transition-colors text-center w-full"
-                    >
-                        Start Over
-                    </button>
-                </div>
-            </div>
-
-            {/* Lead Capture Modal */}
-            {isModalOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-bvm-navy/80 backdrop-blur-sm">
-                    <div className="bg-bvm-navy-light border border-white/10 rounded-2xl w-full max-w-lg p-6 relative shadow-2xl animate-fade-in-up">
-                        <button
-                            onClick={() => setIsModalOpen(false)}
-                            className="absolute top-4 right-4 text-bvm-gray hover:text-white transition-colors"
-                        >
-                            <X className="w-6 h-6" />
-                        </button>
-
-                        <h3 className="text-2xl font-bold text-white mb-2">Request Detailed BOM</h3>
-                        <p className="text-bvm-text-muted text-sm mb-6">
-                            Enter your details below and our engineering team will send you a tailored bill of materials and pricing estimate based on your configuration.
+                {/* Right Column: Recommendation & Actions */}
+                <div className="space-y-6">
+                    {/* Top Recommendation Card */}
+                    <div className="bg-gradient-to-br from-bvm-blue/20 to-bvm-navy border-2 border-bvm-blue/50 rounded-3xl p-8 backdrop-blur-sm shadow-[0_0_40px_rgba(47,143,255,0.15)]">
+                        <div className="text-bvm-blue font-bold tracking-widest uppercase text-xs mb-4">Recommended Architecture</div>
+                        <h3 className="text-3xl font-display font-bold text-white mb-2 leading-tight">
+                            {recommendation.name}
+                        </h3>
+                        <p className="text-bvm-text-muted text-sm mb-6 leading-relaxed">
+                            {recommendation.desc}
                         </p>
 
-                        <form onSubmit={handleWeb3FormSubmit} className="space-y-4">
-                            <div>
-                                <label className="block text-white text-sm font-medium mb-1.5"><User className="w-3.5 h-3.5 inline mr-1" /> Name *</label>
-                                <input required type="text" name="name" value={formData.name} onChange={handleInput} className="w-full px-4 py-2.5 bg-bvm-navy border border-white/10 rounded-lg text-white placeholder:text-bvm-gray focus:outline-none focus:border-bvm-blue transition-colors" placeholder="Your full name" />
-                            </div>
-                            <div>
-                                <label className="block text-white text-sm font-medium mb-1.5"><Building className="w-3.5 h-3.5 inline mr-1" /> Company</label>
-                                <input type="text" name="company" value={formData.company} onChange={handleInput} className="w-full px-4 py-2.5 bg-bvm-navy border border-white/10 rounded-lg text-white placeholder:text-bvm-gray focus:outline-none focus:border-bvm-blue transition-colors" placeholder="Your company name" />
-                            </div>
-                            <div>
-                                <label className="block text-white text-sm font-medium mb-1.5"><Mail className="w-3.5 h-3.5 inline mr-1" /> Email *</label>
-                                <input required type="email" name="email" value={formData.email} onChange={handleInput} className="w-full px-4 py-2.5 bg-bvm-navy border border-white/10 rounded-lg text-white placeholder:text-bvm-gray focus:outline-none focus:border-bvm-blue transition-colors" placeholder="your@email.com" />
-                            </div>
-                            <div>
-                                <label className="block text-white text-sm font-medium mb-1.5"><Phone className="w-3.5 h-3.5 inline mr-1" /> Phone</label>
-                                <input type="tel" name="phone" value={formData.phone} onChange={handleInput} className="w-full px-4 py-2.5 bg-bvm-navy border border-white/10 rounded-lg text-white placeholder:text-bvm-gray focus:outline-none focus:border-bvm-blue transition-colors" placeholder="+91..." />
-                            </div>
+                        <div className="aspect-video relative rounded-xl overflow-hidden mb-6 bg-bvm-navy/80 border border-white/10 flex items-center justify-center p-4">
+                            <img
+                                src={recommendation.image}
+                                alt={recommendation.name}
+                                className="w-full h-full object-contain filter drop-shadow-2xl"
+                            />
+                        </div>
 
-                            <button type="submit" disabled={isSubmitting} className="btn-primary w-full mt-6 disabled:opacity-50 disabled:cursor-not-allowed">
-                                {isSubmitting ? (
-                                    <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Sending...</>
-                                ) : (
-                                    <>Submit Request <Send className="w-4 h-4 ml-2" /></>
-                                )}
-                            </button>
-                        </form>
+                        <Link
+                            href={`/machines/${recommendation.slug}`}
+                            className="w-full flex items-center justify-between px-6 py-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold transition-colors group"
+                        >
+                            <span>View Full Specifications</span>
+                            <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                    </div>
+
+                    {/* Action Cards */}
+                    <div className="grid grid-cols-2 gap-4">
+                        <button 
+                            onClick={handleSubmitQuoteRequest}
+                            disabled={submitting}
+                            className="col-span-2 flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-white text-bvm-navy hover:bg-gray-100 font-bold transition-all shadow-xl hover:-translate-y-1 disabled:opacity-75 disabled:hover:translate-y-0"
+                        >
+                            {submitting ? (
+                                <span className="flex items-center gap-2">
+                                    <div className="w-5 h-5 border-2 border-bvm-navy/30 border-t-bvm-navy rounded-full animate-spin" />
+                                    Sending...
+                                </span>
+                            ) : (
+                                <>
+                                    <Mail className="w-5 h-5" />
+                                    Request Formal Quote
+                                </>
+                            )}
+                        </button>
+                    </div>
+
+                    {/* Secondary Actions */}
+                    <div className="flex justify-center border-t border-white/10 pt-6 mt-6">
+                        <button
+                            onClick={resetConfigurator}
+                            className="flex items-center gap-2 text-bvm-text-muted hover:text-white transition-colors text-sm font-medium"
+                        >
+                            <ArrowLeft className="w-4 h-4" /> Start New Configuration
+                        </button>
                     </div>
                 </div>
-            )}
+            </div>
         </RevealSection>
     );
 };

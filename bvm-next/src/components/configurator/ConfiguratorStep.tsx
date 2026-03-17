@@ -20,7 +20,7 @@ const ConfiguratorStep = ({ title, description, children, isValid, stepNumber }:
     return (
         <RevealSection className="w-full max-w-4xl mx-auto bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl backdrop-blur-sm">
             <div className="mb-10 text-center">
-                <span className="text-bvm-blue font-bold tracking-widest uppercase text-sm mb-2 block">Step {stepNumber} of 4</span>
+                <span className="text-bvm-blue font-bold tracking-widest uppercase text-sm mb-2 block">Step {stepNumber} of 8</span>
                 <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-4">{title}</h2>
                 <p className="text-bvm-text-muted text-lg max-w-2xl mx-auto">{description}</p>
             </div>
