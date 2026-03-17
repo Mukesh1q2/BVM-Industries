@@ -3,15 +3,19 @@ import { useConfigurator, Material } from './ConfiguratorContext';
 import ConfiguratorStep from './ConfiguratorStep';
 import { Box } from 'lucide-react';
 
-const materials: { id: Material; label: string; desc: string }[] = [
-    { id: 'PP', label: 'PP', desc: 'Polypropylene - High clarity and rigidity' },
-    { id: 'LDPE', label: 'LDPE', desc: 'Low-Density Polyethylene - Excellent flexibility' },
-    { id: 'PE', label: 'PE', desc: 'Polyethylene - Standard industrial choice' },
-    { id: 'Customized LDPE', label: 'Customized LDPE', desc: 'Tailored blend for specific barrier properties' },
+const allMaterials: { id: Material; label: string; desc: string; validFor: string[] }[] = [
+    { id: 'PP', label: 'PP', desc: 'Polypropylene - High clarity and rigidity', validFor: ['BFS'] },
+    { id: 'LDPE', label: 'LDPE', desc: 'Low-Density Polyethylene - Excellent flexibility', validFor: ['BFS', 'FFS'] },
+    { id: 'Customized LDPE', label: 'Customized LDPE', desc: 'Tailored blend for specific barrier properties', validFor: ['FFS'] },
+    { id: 'PE', label: 'PE', desc: 'Polyethylene - Standard industrial choice', validFor: ['FFS'] },
 ];
 
 const StepMaterial = () => {
     const { state, setMaterial, nextStep } = useConfigurator();
+
+    const options = allMaterials.filter(mat => 
+        state.machineType ? mat.validFor.includes(state.machineType) : true
+    );
 
     return (
         <ConfiguratorStep
@@ -21,7 +25,7 @@ const StepMaterial = () => {
             isValid={state.material !== null}
         >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {materials.map((mat) => (
+                {options.map((mat) => (
                     <button
                         key={mat.id}
                         onClick={() => { setMaterial(mat.id); setTimeout(nextStep, 250); }}

@@ -1,13 +1,1 @@
-src/components/configurator/ConfiguratorResults.tsx(113,42): error TS2686: 'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
-src/components/configurator/StepProduct.tsx(3,15): error TS2305: Module '"./ConfiguratorContext"' has no exported member 'ProductType'.
-src/components/configurator/StepProduct.tsx(16,20): error TS2339: Property 'setProductType' does not exist on type 'ConfiguratorContextType'.
-src/components/configurator/StepProduct.tsx(23,28): error TS2339: Property 'productType' does not exist on type 'ConfiguratorState'.
-src/components/configurator/StepProduct.tsx(27,46): error TS2339: Property 'productType' does not exist on type 'ConfiguratorState'.
-src/components/configurator/StepSpeed.tsx(3,15): error TS2305: Module '"./ConfiguratorContext"' has no exported member 'SpeedRequirement'.
-src/components/configurator/StepSpeed.tsx(29,20): error TS2339: Property 'setSpeed' does not exist on type 'ConfiguratorContextType'.
-src/components/configurator/StepSpeed.tsx(36,28): error TS2339: Property 'speed' does not exist on type 'ConfiguratorState'.
-src/components/configurator/StepSpeed.tsx(40,46): error TS2339: Property 'speed' does not exist on type 'ConfiguratorState'.
-src/components/configurator/StepVolume.tsx(3,15): error TS2305: Module '"./ConfiguratorContext"' has no exported member 'VolumeRange'.
-src/components/configurator/StepVolume.tsx(32,20): error TS2339: Property 'setVolumeRange' does not exist on type 'ConfiguratorContextType'.
-src/components/configurator/StepVolume.tsx(39,28): error TS2339: Property 'volumeRange' does not exist on type 'ConfiguratorState'.
-src/components/configurator/StepVolume.tsx(43,46): error TS2339: Property 'volumeRange' does not exist on type 'ConfiguratorState'.
+src/app/build-your-line/ClientPage.tsx(7,28): error TS2307: Cannot find module '@/components/configurator/StepDeflashing' or its corresponding type declarations.

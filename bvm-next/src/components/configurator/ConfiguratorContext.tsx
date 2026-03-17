@@ -3,13 +3,12 @@ import { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
 
 export type MachineType = 'BFS' | 'FFS' | null;
-export type ProductCategory = 'LVP' | 'SVP' | 'Eye Drops' | 'Cosmetics' | 'Agro Products' | null;
+export type ProductCategory = 'LVP' | 'SVP' | 'Eye Drop' | 'Respules' | 'Oral Liquids' | 'Cosmetics' | 'Agro Products' | null;
 export type FillVolume = string | null;
 export type Material = 'PP' | 'LDPE' | 'PE' | 'Customized LDPE' | null;
 export type DeflashingType = 'Automatic' | 'Manual' | null;
 export type StationType = 'Single Station' | 'Double Station' | null;
 export type ProductionCapacity = string | null;
-// Addons can be any string from the options
 export type Addon = string;
 
 export interface ConfiguratorState {
@@ -56,19 +55,34 @@ const ConfiguratorContext = createContext<ConfiguratorContextType | undefined>(u
 export const ConfiguratorProvider = ({ children }: { children: ReactNode }) => {
     const [state, setState] = useState<ConfiguratorState>(initialState);
 
-    // If machineType or productCategory changes, we might need to reset dependent fields
     const setMachineType = (type: MachineType) => {
         setState((s) => ({
             ...s,
             machineType: type,
-            // Reset dependent fields if changing root type
+            // Reset dependent fields when top level changes
+            productCategory: s.machineType && s.machineType !== type ? null : s.productCategory,
             fillVolume: s.machineType && s.machineType !== type ? null : s.fillVolume,
+            material: s.machineType && s.machineType !== type ? null : s.material,
             capacity: s.machineType && s.machineType !== type ? null : s.capacity,
         }));
     };
 
-    const setProductCategory = (category: ProductCategory) => setState((s) => ({ ...s, productCategory: category }));
-    const setFillVolume = (volume: FillVolume) => setState((s) => ({ ...s, fillVolume: volume }));
+    const setProductCategory = (category: ProductCategory) => {
+        setState((s) => ({
+            ...s,
+            productCategory: category,
+            fillVolume: s.productCategory && s.productCategory !== category ? null : s.fillVolume,
+        }));
+    };
+
+    const setFillVolume = (volume: FillVolume) => {
+        setState((s) => ({
+            ...s,
+            fillVolume: volume,
+            capacity: s.fillVolume && s.fillVolume !== volume ? null : s.capacity,
+        }));
+    };
+
     const setMaterial = (material: Material) => setState((s) => ({ ...s, material: material }));
     const setDeflashing = (type: DeflashingType) => setState((s) => ({ ...s, deflashing: type }));
     const setStationType = (type: StationType) => setState((s) => ({ ...s, stationType: type }));
@@ -83,7 +97,7 @@ export const ConfiguratorProvider = ({ children }: { children: ReactNode }) => {
         }));
     };
 
-    const nextStep = () => setState((s) => ({ ...s, step: Math.min(s.step + 1, 9) })); // 8 steps + 1 result
+    const nextStep = () => setState((s) => ({ ...s, step: Math.min(s.step + 1, 9) }));
     const prevStep = () => setState((s) => ({ ...s, step: Math.max(s.step - 1, 1) }));
     const resetConfigurator = () => setState(initialState);
 

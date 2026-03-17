@@ -19,8 +19,8 @@ const ClientStripSection = () => {
     return (
         <section className="bg-bvm-navy overflow-hidden py-8 sm:py-12 border-y border-white/5 z-20 relative">
             <div 
-                className="w-full flex space-x-12 sm:space-x-24 group" 
-                style={{ animation: 'marquee 15s linear infinite' }}
+                className="w-full flex space-x-12 sm:space-x-24 group animate-marquee" 
+                style={{ animationDuration: '15s' }}
             >
                 {[...clientLogos, ...clientLogos].map((logo, index) => (
                     <div

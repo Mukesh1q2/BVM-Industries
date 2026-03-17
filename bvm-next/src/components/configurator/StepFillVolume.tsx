@@ -3,16 +3,34 @@ import { useConfigurator } from './ConfiguratorContext';
 import ConfiguratorStep from './ConfiguratorStep';
 import { Droplet } from 'lucide-react';
 
-const bfsLvpVolumes = ['100 ml', '250 ml', '300 ml', '500 ml', '1 L', '3 L', '100–500 ml (custom range)'];
-const ffsSvpVolumes = ['5 ml', '10 ml', '20 ml', '30 ml', '50 ml', '5–30 ml (range)'];
+const getVolumeOptions = (machineType: string | null, productCategory: string | null): string[] => {
+    if (machineType === 'BFS') {
+        return ['100 ml', '250 ml', '300 ml', '500 ml', '1 L', '3 L', '100–500 ml (Range)'];
+    }
+    
+    if (machineType === 'FFS') {
+        switch (productCategory) {
+            case 'SVP':
+                return ['5 ml', '10 ml', '20 ml', '30 ml', '5–30 ml (Range)', '50 ml'];
+            case 'Eye Drop':
+                return ['5 ml', '10 ml'];
+            case 'Respules':
+                return ['0.5–3 ml', '0.5–5 ml'];
+            case 'Oral Liquids':
+            case 'Cosmetics':
+            case 'Agro Products':
+                return ['5 ml', '10 ml', '20 ml', '30 ml', '50 ml'];
+            default:
+                return ['5 ml', '10 ml', '20 ml', '30 ml', '50 ml']; // Fallback FFS
+        }
+    }
+    
+    return []; // Fallback empty
+};
 
 const StepFillVolume = () => {
     const { state, setFillVolume, nextStep } = useConfigurator();
-
-    // Determine which list to show based on MachineType (fallback to generic if neither selected yet, though usually prevented by Step 1)
-    const options = state.machineType === 'FFS' || state.productCategory === 'SVP' 
-        ? ffsSvpVolumes 
-        : bfsLvpVolumes;
+    const options = getVolumeOptions(state.machineType, state.productCategory);
 
     return (
         <ConfiguratorStep

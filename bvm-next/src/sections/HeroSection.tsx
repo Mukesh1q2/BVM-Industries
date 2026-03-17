@@ -3,6 +3,7 @@ import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
 
 // Issue 1 fix: guard so plugin only registers in the browser (not during SSR)
 if (typeof window !== 'undefined') {
@@ -145,13 +146,13 @@ const HeroSection = () => {
       />
 
       {/* Hero product image */}
-      <img
+      <Image
         ref={imageRef}
         src="/new_assets/optimized/lvp-svp-multidose-infusion-ophthalmic-eye-dropper.png"
         alt="BVM Industries precision pharmaceutical bottles produced by Blow-Fill-Seal technology"
         width={520}
         height={780}
-        fetchPriority="high"
+        priority={true}
         className="absolute"
         style={{
           right: '4vw',
