@@ -34,7 +34,7 @@ const StepCapacity = () => {
     const handleManualSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (manualValue.trim()) {
-            setCapacity(`${manualValue} units/hour (Manual)`);
+            setCapacity(`${manualValue} units/day (Manual)`);
             setTimeout(nextStep, 250);
         }
     };
@@ -51,7 +51,7 @@ const StepCapacity = () => {
                     <p className="text-yellow-200/80 text-sm font-medium flex items-start gap-2">
                         <span className="text-yellow-500">⚠️</span>
                         <span>
-                            <strong className="text-yellow-400">Production Note:</strong> Maximum output reaches up to <strong>400,000 units/hour</strong> for volumes ≤ 10 ml, and up to <strong>300,000 units/hour</strong> for volumes ≤ 30 ml.
+                            <strong className="text-yellow-400">Production Note:</strong> Maximum output reaches up to <strong>400,000 units/day</strong> for volumes ≤ 10 ml, and up to <strong>300,000 units/day</strong> for volumes ≤ 30 ml.
                         </span>
                     </p>
                 </div>
@@ -98,7 +98,7 @@ const StepCapacity = () => {
                             autoFocus
                         />
                         <div className="absolute right-6 top-1/2 -translate-y-1/2 text-bvm-text-muted font-medium pointer-events-none">
-                            units/hour
+                            units/day
                         </div>
                     </div>
                     

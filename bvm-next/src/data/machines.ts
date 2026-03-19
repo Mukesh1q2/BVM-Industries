@@ -41,7 +41,7 @@ export const machines: MachineData[] = [
                 {
                     title: 'Filling Ranges',
                     icon: 'Settings',
-                    description: '<strong class="text-white block mb-1">SVP / Eye/Ear drops:</strong> 0.2 mL to 30 mL<br /><strong class="text-white block mt-2 mb-1">LVP / IV fluids:</strong> 50 mL to 3,000 mL'
+                    description: '<strong class="text-white block mb-1">SVP / Eye/Ear drops:</strong> 0.2 mL to 50 mL'
                 },
                 {
                     title: 'Aseptic Integration',
@@ -57,26 +57,8 @@ export const machines: MachineData[] = [
         },
         specTables: [
             {
-                title: 'Large Volume Parenterals (LVP)',
-                image: '/new_assets/optimized/large-volume-parenterals-lvp.webp',
-                headers: [
-                    { key: 'model', label: 'Product Name' },
-                    { key: 'small', label: 'IV Fluids (Small)' },
-                    { key: 'medium', label: 'IV Fluids (Medium)' },
-                    { key: 'large', label: 'IV Fluids (Large)' }
-                ],
-                rows: [
-                    { model: 'MODEL 540', data: { small: '50ML/ 100ML', medium: '100ML/ 300ML/ 500ML', large: '100/ 300/ 500/ 1000ML' } },
-                    { model: 'Cavities', data: { small: '12', medium: '8', large: '6' } },
-                    { model: 'Capacity / Hr', isHighlight: true, data: { small: '3350', medium: '2050', large: '1500' } },
-                    { model: 'MODEL 940', data: { small: '50ML/ 100ML', medium: '100ML/ 300ML/ 500ML', large: '100/ 300/ 500/ 1000ML' } },
-                    { model: 'Cavities', data: { small: '24', medium: '16', large: '12' } },
-                    { model: 'Capacity / Hr', isHighlight: true, data: { small: '6700', medium: '4100', large: '3000' } }
-                ]
-            },
-            {
                 title: 'Small Volume Parenterals (SVP)',
-                image: '/new_assets/optimized/small-volume-parenterals-svp-blow-fill-seal-bfs.webp',
+                image: '/new_assets/optimized/ophthalmic-eye-dropper-bottles.webp',
                 headers: [
                     { key: 'model', label: 'Product Name' },
                     { key: 'units', label: 'Units' },
@@ -95,7 +77,7 @@ export const machines: MachineData[] = [
             }
         ],
         compatibleApplications: [
-            'Injectables (LVP / SVP)',
+            'Injectables (SVP / Eye/Ear Drops)',
             'Ophthalmic Solutions',
             'Respiratory Unit Dose',
             'Nasal Sprays',
@@ -140,16 +122,10 @@ export const machines: MachineData[] = [
             title: 'Applications & Range',
             items: [
                 {
-                    title: 'Ophthalmic / SVP Formats',
-                    icon: 'Droplet',
-                    image: '/new_assets/optimized/ophthalmic-eye-dropper-bottles.webp',
-                    description: 'High-precision SVPs (0.5 mL to 100 mL) utilizing configurable 50-Cavity Ophthalmic Molds (e.g., 5 vials x 10 parisons).'
-                },
-                {
-                    title: 'Respiratory & LVP Formats',
+                    title: 'LVP / IV Fluids Formats',
                     icon: 'Activity',
                     image: '/new_assets/optimized/multi-dose-infusion-irrigation-bottles.webp',
-                    description: 'Large Volume Parenterals (250 mL to 1000 mL) optimized for intravenous fluids, irrigation solutions, and nebulizers.'
+                    description: 'Large Volume Parenterals (50 mL to 3,000 mL) optimized for intravenous fluids and irrigation solutions.'
                 }
             ]
         },
@@ -174,11 +150,8 @@ export const machines: MachineData[] = [
             }
         ],
         compatibleApplications: [
-            'Injectables (LVP / SVP)',
-            'Ophthalmic Solutions',
-            'Respiratory Unit Dose',
-            'Nasal Sprays',
-            'Oral Liquids'
+            'Injectables (LVP / IV Fluids)',
+            'Irrigation Solutions'
         ]
     },
     {

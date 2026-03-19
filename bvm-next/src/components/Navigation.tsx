@@ -73,6 +73,8 @@ const Navigation = () => {
               <div
                 key={item.label}
                 className="relative"
+                onMouseEnter={() => item.type && setActiveDropdown(item.label)}
+                onMouseLeave={() => setActiveDropdown(null)}
               >
                 <div className="px-3 py-2 cursor-pointer group flex items-center gap-1">
                   {item.href ? (
