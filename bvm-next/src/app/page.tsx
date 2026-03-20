@@ -2,7 +2,6 @@ import HeroSection from '@/sections/HeroSection';
 import TrustBar from '@/components/TrustBar';
 import EngineeredSection from '@/sections/EngineeredSection';
 import ProductsSection from '@/sections/ProductsSection';
-import MachineFeatureSection from '@/sections/MachineFeatureSection';
 import ServicesSection from '@/sections/ServicesSection';
 import CapabilitiesSection from '@/sections/CapabilitiesSection';
 import IndustriesSection from '@/sections/IndustriesSection';
@@ -15,11 +14,10 @@ export default function Home() {
     <div className="relative">
       <HeroSection />
       <TrustBar />
+      <ProductsSection />
       <EngineeredSection />
       <ClientStripSection />
-      <ProductsSection />
       <ServicesSection />
-      <MachineFeatureSection />
       <CapabilitiesSection />
       <IndustriesSection />
       <QualitySection />

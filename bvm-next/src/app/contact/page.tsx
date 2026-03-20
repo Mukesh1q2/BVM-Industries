@@ -223,7 +223,7 @@ const ContactPage = () => {
                   className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-bvm-blue transition-colors"
                 >
                   <option value="" className="bg-bvm-navy">Select a specialized system</option>
-                  <option value="ffs-system" className="bg-bvm-navy">7.0-Ton Form-Fill-Seal (FFS) System</option>
+                  <option value="ffs-system" className="bg-bvm-navy">Form-Fill-Seal (FFS) System</option>
                   <option value="bfs-system" className="bg-bvm-navy">Blow-Fill-Seal (BFS) Aseptic Packaging</option>
                   <option value="euro-cap-sealing" className="bg-bvm-navy">Euro Cap Sealing / Welding Machine</option>
                   <option value="pet-moulds" className="bg-bvm-navy">Precision PET / BFS Moulds (SS316L/AB2)</option>

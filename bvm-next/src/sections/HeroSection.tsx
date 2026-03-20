@@ -148,7 +148,7 @@ const HeroSection = () => {
       {/* Hero product image */}
       <Image
         ref={imageRef}
-        src="/new_assets/optimized/lvp-svp-multidose-infusion-ophthalmic-eye-dropper.png"
+        src="/new_assets/optimized/hero-section-new.webp"
         alt="BVM Industries precision pharmaceutical bottles produced by Blow-Fill-Seal technology"
         width={520}
         height={780}
@@ -158,8 +158,8 @@ const HeroSection = () => {
           right: '4vw',
           top: '50%',
           transform: 'translateY(-50%)',
-          width: '38vw',
-          maxWidth: '600px',
+          width: '42vw',
+          maxWidth: '650px',
           height: 'auto',
           zIndex: 3,
         }}
@@ -177,8 +177,8 @@ const HeroSection = () => {
           ref={headlineRef}
           className="hero-headline max-w-[44vw] mb-8"
         >
-          <span className="word inline-block">Precision</span>{' '}
           <span className="word inline-block">Engineering</span>{' '}
+          <span className="word inline-block">Precision</span>{' '}
           <span className="word inline-block">for</span>{' '}
           <span className="word inline-block">Aseptic</span>{' '}
           <span className="word inline-block text-bvm-blue">Packaging</span>
@@ -189,9 +189,7 @@ const HeroSection = () => {
           ref={bodyRef}
           className="hero-body max-w-[34vw] mb-8"
         >
-          BVM Industries engineers 7.0-Ton FFS & BFS platforms, integrating Class 100
-          sterile chambers and precision SS316L tooling for the world's most demanding
-          pharmaceutical and aseptic production environments.
+          BVM Industries delivers high-performance BFS and FFS machinery, precision molds, and filling heads tailored for sterile pharmaceutical environments. From Euro Cap Sealing to custom tool-room engineering, we integrate cGMP standards with advanced technical expertise to optimize your production line’s efficiency, ensuring zero-contamination packaging solutions for the most demanding global industries.
         </p>
 
         {/* CTAs */}

@@ -55,7 +55,7 @@ const QualityPage = () => {
                         At BVM Industries, quality assurance is an uncompromising protocol.
                         From the metallurgical integrity of our SS316L manifolds to the final
                         software validation of Siemens PLC systems, we mandate zero-defect
-                        execution across our entire 7.0-Ton manufacturing footprint.
+                        execution across our entire manufacturing footprint.
                     </p>
                 </RevealSection>
 

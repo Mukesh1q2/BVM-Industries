@@ -13,28 +13,28 @@ const MouldsPage = () => {
             title: "Aluminium Bronze Moulds",
             description: "Premium material chosen for superior heat transfer, strength, and wear resistance. Ideal for high-speed FFS & BFS operations.",
             icon: <Box className="w-6 h-6" />,
-            image: "/new_assets/optimized/mould-lvp.webp",
+            image: "/new_assets/optimized/mold-lvp-new.webp",
             features: ["Superior heat transfer (Faster cycle times)", "High corrosion resistance", "Excellent durability"]
         },
         {
             title: "Stavax (Stainless Tool Steel)",
             description: "High-grade stainless tool steel known for exceptional polishability. Recommended for sterile and hygienic pharmaceutical applications.",
             icon: <Layers className="w-6 h-6" />,
-            image: "/products/pet-mould-100ml.webp",
+            image: "/new_assets/optimized/stavax-mold.webp",
             features: ["Resistant to rust & chemicals", "High surface finish for clarity", "Strong dimensional stability"]
         },
         {
             title: "Custom Design & Development",
             description: "Complete customization for Bottles, Vials, and Ampoules. Our engineering team optimizes mould design for cycle time and quality.",
             icon: <Zap className="w-6 h-6" />,
-            image: "/products/injection-mould.webp",
+            image: "/new_assets/optimized/mold-lvp-alt.webp",
             features: ["Reverse engineering capabilities", "Multi-cavity configurations", "Specialized neck & closure designs"]
         },
         {
             title: "Quality Assurance",
             description: "Every mould undergoes rigorous inspection for dimensional accuracy, leak-proof sealing, and smooth demoulding performance.",
             icon: <PenTool className="w-6 h-6" />,
-            image: "/new_assets/optimized/mould-svp.webp",
+            image: "/new_assets/optimized/svp-moulds-eye-drops.webp",
             features: ["Strict dimensional validation", "Surface polishing options", "Long operational life"]
         }
     ];

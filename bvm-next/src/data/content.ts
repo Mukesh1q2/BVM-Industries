@@ -3,22 +3,29 @@ import { Compass, Cog, ClipboardCheck, Shield, Clock, Headphones } from 'lucide-
 export const COMPANY_CAPABILITIES = [
     {
         id: 1,
-        title: 'Design & Engineering',
-        description: 'CAD/CAM, mould flow, and prototyping.',
+        title: 'Advanced Design & Simulation',
+        description: 'We utilize high-end 3D CAD/CAM and Mould Flow Analysis to transition from initial concepts to precision-engineered prototypes. Our design phase focuses on optimizing cycle times and ensuring material integrity before a single piece of steel is cut.',
         image: '/capability_design.webp',
         icon: Compass
     },
     {
         id: 2,
-        title: 'Precision Machining',
-        description: 'CNC, EDM, and surface finishing.',
+        title: 'High-Precision Machining',
+        description: 'Our in-house tool room is equipped with state-of-the-art CNC, EDM, and Surface Finishing technology. We achieve mirror-finish accuracy on SS316L components, ensuring that every B.F.S. mold and filling head meets the rigorous demands of aseptic production.',
         image: '/capability_machining.webp',
         icon: Cog
     },
     {
         id: 3,
-        title: 'Validation & Support',
-        description: 'DQ/IQ/OQ/PQ documentation and 24/7 global support.',
+        title: 'Sterile Integration (Class 100)',
+        description: 'BVM platforms are engineered for high-level cleanroom compatibility. We integrate Class 100 Aseptic Chambers and CIP/SIP-friendly (Clean-in-Place/Steam-in-Place) architectures, adhering to strict 21 CFR Part 11 and global regulatory standards.',
+        image: '/capability_assembly.webp',
+        icon: Shield
+    },
+    {
+        id: 4,
+        title: 'Full-Scale Validation & Support',
+        description: 'Every machine undergoes a rigorous DQ/IQ/OQ/PQ validation process. Our commitment doesn’t end at delivery; we provide 24/7 global technical support, spare parts management, and on-site training to ensure your production line never stops.',
         image: '/capability_assembly.webp',
         icon: ClipboardCheck
     }

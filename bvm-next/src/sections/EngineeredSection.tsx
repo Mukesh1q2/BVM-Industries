@@ -1,95 +1,103 @@
 "use client";
 import { useRef, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight } from 'lucide-react';
+import { Settings, Cpu, HardDrive, Target, Scissors, Hammer, MonitorCheck, LayoutGrid, GitMerge, FileDigit, Zap } from 'lucide-react';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+const toolRoomMachines = [
+  { name: '4 VMC Machines', icon: MonitorCheck },
+  { name: '2 CNC Machines', icon: Cpu },
+  { name: '3 Milling Machines', icon: HardDrive },
+  { name: '3 Lathe Machines', icon: Settings },
+  { name: 'Wire Cut Machine', icon: Scissors },
+  { name: 'EDM Machine', icon: Zap },
+  { name: 'Radial Drill Machine', icon: Target },
+  { name: 'Table Drill Machine', icon: LayoutGrid },
+  { name: 'Micro Drilling Machine', icon: FileDigit },
+  { name: 'Automatic Surface Grinder', icon: GitMerge },
+  { name: 'Band Saw Cutter', icon: Hammer },
+];
+
 const EngineeredSection = () => {
-  const headlineRef = useRef<HTMLHeadingElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      if (!headlineRef.current) return;
-      const words = headlineRef.current.querySelectorAll('.word');
-      gsap.fromTo(words,
-        { opacity: 0, y: 24 },
+      if (!containerRef.current) return;
+      const items = containerRef.current.querySelectorAll('.tool-item');
+      gsap.fromTo(items,
+        { opacity: 0, scale: 0.95, y: 30 },
         {
           opacity: 1,
+          scale: 1,
           y: 0,
           duration: 0.5,
-          stagger: 0.1,
+          stagger: 0.05,
           ease: 'power2.out',
           scrollTrigger: {
-            trigger: headlineRef.current,
-            start: 'top 85%',
+            trigger: containerRef.current,
+            start: 'top 80%',
           }
         }
       );
-    }, headlineRef);
+    }, containerRef);
     return () => ctx.revert();
   }, []);
 
-  const router = useRouter();
-
   return (
-    <section
-      className="relative bg-bvm-navy py-24 lg:py-32 min-h-[70vh] flex items-center z-20 overflow-hidden"
-    >
-      {/* Diagonal image panel */}
-      <div
-        className="absolute right-0 top-0 h-full overflow-hidden"
-        style={{
-          width: '55vw',
-          clipPath: 'polygon(12% 0%, 100% 0%, 100% 100%, 0% 100%)',
-          zIndex: 2,
-        }}
-      >
-        <img
-          src="/machine_feature_bg.webp"
-          alt="Industrial machinery features"
-          width={1200}
-          height={800}
-          loading="lazy"
-          className="w-full h-full object-cover"
-          style={{
-            transform: 'scale(1.1) translateX(-5%)',
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-bvm-navy via-bvm-navy/50 to-transparent" />
-      </div>
+    <section className="relative bg-bvm-navy-light py-24 lg:py-32 border-y border-white/5 overflow-hidden">
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-bvm-blue/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+      
+      <div className="max-w-[1920px] mx-auto px-4 sm:px-8 lg:px-[8vw] z-10 relative flex flex-col xl:flex-row gap-16 xl:gap-24">
+        
+        {/* Text Side */}
+        <div className="xl:w-5/12 shrink-0">
+          <div className="sticky top-32">
+            <span className="text-bvm-blue font-mono text-sm uppercase mb-4 block tracking-wider">INFRASTRUCTURE</span>
+            <h2 className="headline-md text-white mb-6">
+              Advanced In-House Tool Room & Precision Manufacturing
+            </h2>
+            <div className="space-y-6 text-bvm-gray text-lg leading-relaxed">
+              <p>
+                Our company is supported by a fully integrated in-house tool room, enabling complete control over the precision manufacturing of molds, machine components, and customized parts. Equipped with advanced machining technology and operated by skilled technicians, our facility ensures high accuracy, consistency, and superior manufacturing quality.
+              </p>
+              <p>
+                The availability of a comprehensive range of machining equipment allows us to efficiently handle complex engineering requirements and deliver reliable solutions for BFS and FFS machine components.
+              </p>
+              <div className="h-px w-24 bg-bvm-blue/30 my-8" />
+              <p className="text-white font-medium border-l-2 border-bvm-blue pl-4">
+                This robust manufacturing setup enables us to develop high-precision molds, machine parts, and custom tooling solutions, ensuring consistent performance and long-term reliability of our machines.
+              </p>
+            </div>
+          </div>
+        </div>
 
-      {/* Text block */}
-      <div className="relative z-10 px-4 sm:px-8 lg:px-[8vw] max-w-full lg:max-w-[50vw]">
-        <h2 ref={headlineRef} className="headline-lg text-white mb-8">
-          <span className="word inline-block">Engineered</span>{' '}
-          <span className="word inline-block">for</span>{' '}
-          <span className="word inline-block">Reliability,</span>
-          <br />
-          <span className="word inline-block">Built</span>{' '}
-          <span className="word inline-block">for</span>{' '}
-          <span className="word inline-block">Scale.</span>
-        </h2>
+        {/* Grid Side */}
+        <div className="xl:w-7/12" ref={containerRef}>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {toolRoomMachines.map((machine, idx) => {
+              const Icon = machine.icon;
+              return (
+                <div 
+                  key={idx} 
+                  className="tool-item group p-6 bg-bvm-navy border border-white/5 rounded-2xl hover:bg-white/5 hover:border-bvm-blue/30 hover:shadow-glow-blue transition-all duration-300 flex flex-col items-center justify-center text-center gap-4"
+                >
+                  <div className="p-3 rounded-xl bg-white/5 text-bvm-gray group-hover:bg-bvm-blue group-hover:text-white transition-colors duration-300">
+                    <Icon className="w-6 h-6" />
+                  </div>
+                  <span className="font-display font-medium text-white/90 leading-tight">
+                    {machine.name}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
 
-        <p className="body-text max-w-full lg:max-w-[32vw] mb-8">
-          From custom moulds to complete blow-fill-seal integrations, we optimize
-          for output, repeatability, and cleanroom-ready performance. Our machines
-          are designed to meet cGMP norms and deliver consistent results.
-        </p>
-
-        <button
-          onClick={() => {
-            document.querySelector('#capabilities')?.scrollIntoView({ behavior: 'smooth' });
-          }}
-          className="text-bvm-blue hover:text-white font-medium flex items-center gap-2 transition-colors group"
-        >
-          See our capabilities
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-        </button>
       </div>
     </section>
   );

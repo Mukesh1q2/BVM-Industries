@@ -67,7 +67,7 @@ const AboutPage = () => {
                   Our operational baseline is uncompromising engineering. What began as a specialized focus on high-throughput blow moulding has evolved into a comprehensive machinery portfolio.
                 </p>
                 <p>
-                  Today, our <strong className="text-white font-medium">7.0-Ton capacity Blow-Fill-Seal (BFS) systems</strong>, precision Stainless Steel 316L manifolds, and rigid Class 100 aseptic integrations set the standard for zero-defect production lines across India.
+                  Today, our <strong className="text-white font-medium">high-capacity Blow-Fill-Seal (BFS) systems</strong>, precision Stainless Steel 316L manifolds, and rigid Class 100 aseptic integrations set the standard for zero-defect production lines across India.
                 </p>
                 <p>
                   Under the strategic leadership of Rahul Kumar Singh, BVM Industries continues

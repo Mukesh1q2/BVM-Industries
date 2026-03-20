@@ -12,7 +12,7 @@ export interface Product {
 export const machineSeries = [
   {
     id: 'ffs',
-    title: 'F.F.S Machines',
+    title: 'FFS Machine Systems',
     subtitle: 'Form-Fill-Seal Systems',
     description: 'Fully indigenous, cost-effective aseptic filling systems for pharmaceutical liquids. Designed for sterility and performance.',
     shortDescription: 'Advanced Form-Fill-Seal systems for sterile packaging.',
@@ -59,7 +59,7 @@ export const machineSeries = [
   },
   {
     id: 'bfs',
-    title: 'B.F.S Machines',
+    title: 'BFS Machine Manufacturing',
     subtitle: 'Blow-Fill-Seal Technology',
     description: 'Advanced cGMP compliant systems for continuous aseptic filling of small and large volume parenterals.',
     shortDescription: 'Blow-Fill-Seal technology for SVP & LVP applications.',
@@ -105,7 +105,7 @@ export const machineSeries = [
   },
   {
     id: 'euro-cap',
-    title: 'Euro Cap Sealing',
+    title: 'EURO HEAD CAP SEALING MACHINE',
     subtitle: '400 Series Sealers',
     description: 'High-speed, servo-controlled cap sealing solutions with precision repeatablity for various bottle sizes.',
     shortDescription: 'High-speed sealing & welding for plastic bottles.',
@@ -121,11 +121,11 @@ export const machineSeries = [
   },
   {
     id: 'moulds',
-    title: 'Precision Moulds',
+    title: 'Precision Mold Manufacturing',
     subtitle: 'BFS, PET & Injection Moulds',
     description: 'Custom multi-cavity mould designs for blow-fill-seal machines. Manufactured in SS316L with zero-defect tolerance.',
     shortDescription: 'High-quality moulds for BFS, PET, and Injection.',
-    image: '/new_assets/optimized/mould-lvp.webp',
+    image: '/new_assets/optimized/stavax-mold.webp',
     link: '/moulds',
     categories: [] as string[]
   }

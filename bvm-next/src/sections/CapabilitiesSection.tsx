@@ -9,16 +9,17 @@ const CapabilitiesSection = () => {
       <div className="px-4 sm:px-8 lg:px-[8vw]">
         {/* Heading block */}
         <div className="mb-12">
+          <span className="text-bvm-blue font-mono text-sm uppercase mb-2 block tracking-wider">Beyond Machinery</span>
           <h2 className="headline-md text-white mb-4">
-            Capabilities
+            Capabilities: From Concept to Validation
           </h2>
-          <p className="text-bvm-gray max-w-[52ch] text-lg">
-            Design, machining, assembly, and validation—under one roof.
+          <p className="text-bvm-gray max-w-[60ch] text-lg">
+            Integrated Engineering Solutions Under One Roof
           </p>
         </div>
 
         {/* Process steps */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-[3vw]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-[2vw]">
           {COMPANY_CAPABILITIES.map((capability) => {
             const Icon = capability.icon;
             return (
@@ -49,7 +50,7 @@ const CapabilitiesSection = () => {
                       {capability.title}
                     </h3>
                   </div>
-                  <p className="text-bvm-text-muted text-sm">
+                  <p className="text-bvm-text-muted text-sm leading-relaxed">
                     {capability.description}
                   </p>
                 </div>
