@@ -1,3 +1,33 @@
+export type SVPModel = {
+  modelNo: string;
+  cavity: string;
+  stationDetails: string;
+  applications: string[];
+  performance: { volume: string; production: number; unit: string }[];
+  badges?: string[];
+};
+
+export type LVPVariant = {
+  type: string;
+  production: number;
+  unit: string;
+};
+
+export type LVPModel = {
+  modelNo: string;
+  cavity: string;
+  volume: string;
+  variants: LVPVariant[];
+  badges?: string[];
+};
+
+export type CapWeldingModel = {
+  modelNo: string;
+  capacityRange: string;
+  modes: { mode: string; speed: number; unit: string }[];
+  badges?: string[];
+};
+
 export interface TechnicalSpec {
     model: string;
     data: Record<string, string | number>;
@@ -47,4 +77,7 @@ export interface MachineData {
     };
     specTables: SpecTable[];
     compatibleApplications?: string[];
+    svpData?: SVPModel[];
+    lvpData?: LVPModel[];
+    capWeldingData?: CapWeldingModel[];
 }

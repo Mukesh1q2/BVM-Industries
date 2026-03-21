@@ -1,4 +1,5 @@
-import type { MachineData } from '../types/machine';
+import { MachineData } from '@/types/machine';
+import { svpData, lvpData, capWeldingData } from './modelsData';
 
 export const machines: MachineData[] = [
     {
@@ -8,20 +9,21 @@ export const machines: MachineData[] = [
             subtitle: 'REVOLUTIONIZE YOUR PACKAGING OPERATIONS',
             title: 'Form Fill Seal (F.F.S) System',
             highlight: 'System',
-            description: 'State-of-the-art Form Fill Seal (F.F.S) systems that redefine efficiency and reliability. Engineered to provide a seamless solution for a wide range of products in both food and pharmaceutical applications, ensuring optimal hygiene and product integrity.',
-            image: '/new_assets/optimized/ffs-machine-dark.png',
-            brochureText: 'Download FFS Brochure'
+            description: 'A fully indigenous, cost-effective Form-Fill-Seal system. Engineered for continuous aseptic packaging of pharmaceutical liquids, ensuring product sterility and operator safety through advanced isolation technology.',
+            image: '/new_assets/optimized/ffs1.webp',
+            brochureText: 'Download FFS Technical Brochure'
         },
         features: [
             {
                 title: 'Key Features',
                 icon: 'Zap',
                 items: [
-                    'High-Speed Operation: Maximum throughput without compromising quality.',
-                    'Versatile Packaging Solutions: Handles various materials and container formats.',
-                    'Enhanced Automation: Sophisticated control systems and user-friendly interfaces minimize operator intervention.',
-                    'Precision Engineering: Precise filling and sealing processes safeguard against contamination and product loss.',
-                    'Sustainability Focus: Designed to reduce waste and improve energy efficiency.'
+                    'Continuous automated packaging process',
+                    'Accurate liquid filling systems',
+                    'Cleanroom-ready design',
+                    'Advanced PLC-based control system',
+                    'High production efficiency',
+                    'Durable and low maintenance operation'
                 ]
             },
             {
@@ -55,33 +57,14 @@ export const machines: MachineData[] = [
                 }
             ]
         },
-        specTables: [
-            {
-                title: 'Small Volume Parenterals (SVP)',
-                image: '/new_assets/optimized/ophthalmic-eye-dropper-bottles.webp',
-                headers: [
-                    { key: 'model', label: 'Product Name' },
-                    { key: 'units', label: 'Units' },
-                    { key: 'respules', label: 'Respules' },
-                    { key: 'wfi', label: 'WFI' },
-                    { key: 'eye', label: 'Eye Drops' }
-                ],
-                rows: [
-                    { model: 'MODEL 3105', data: { units: '0.5ML', respules: '3ML/ 5ML', wfi: '5ML/ 10ML', eye: '5ML/ 10ML' } },
-                    { model: 'Cavities', data: { units: '30', respules: '30', wfi: '25', eye: '18' } },
-                    { model: 'Capacity / Hr', isHighlight: true, data: { units: '7500', respules: '7500', wfi: '6500', eye: '4600' } },
-                    { model: 'MODEL 9105', data: { units: 'DOUBLE', respules: 'DOUBLE COMBO', wfi: 'DOUBLE COMBO', eye: 'DOUBLE COMBO' } },
-                    { model: 'Capacity / Hr', isHighlight: true, data: { units: '15000', respules: '15000', wfi: '13000', eye: '9200' } }
-                ],
-                note: '* Hourly output ranges typically span from 4,600 to 27,000 units/hour depending on configuration.'
-            }
-        ],
+        specTables: [],
+        svpData: svpData,
         compatibleApplications: [
-            'Injectables (SVP / Eye/Ear Drops)',
-            'Ophthalmic Solutions',
-            'Respiratory Unit Dose',
-            'Nasal Sprays',
-            'Oral Liquids'
+            'Pharmaceutical liquid packaging',
+            'Injectable drug solutions',
+            'Ophthalmic products',
+            'Respiratory medicines',
+            'Oral liquid formulations'
         ]
     },
     {
@@ -91,8 +74,8 @@ export const machines: MachineData[] = [
             subtitle: 'ADVANCED B.F.S SYSTEMS',
             title: 'Blow Fill Seal (B.F.S) Technology',
             highlight: 'Technology',
-            description: 'Elevating Pharmaceutical Standards with BVM Industries’ B.F.S Solutions tailored specifically for I.V. parenteral packaging to meet the highest standards of safety, efficiency, and regulatory compliance.',
-            image: '/new_assets/optimized/bfs-machine-dark.png',
+            description: 'Blow-Fill-Seal technology provides a fully integrated aseptic packaging process in which plastic containers are formed, filled, and sealed in a continuous sterile cycle. This advanced process minimizes human intervention and significantly reduces contamination risks. BFS machines are widely used for the production of unit-dose sterile liquids and pharmaceutical injectables.',
+            image: '/new_assets/optimized/bfs2.webp',
             brochureText: 'Download BFS Technology Brochure'
         },
         features: [
@@ -100,11 +83,13 @@ export const machines: MachineData[] = [
                 title: 'Key Features',
                 icon: 'CheckCircle',
                 items: [
-                    'Integrated Auto Deflesher System: Automates removal of excess material to optimize material utilization and minimize waste.',
-                    'Compliance with 21 CFR Part 11: Electronic records and signatures are secure, reliable, and readily auditable.',
-                    'Continuous Production Efficiency: Designed for non-stop operation to enhance production throughput.',
-                    'Aseptic Processing for Sterile Environments: Significantly reduces contamination risk for sensitive I.V. solutions.',
-                    'Flexible Container Formats: Accommodates ampoules, vials, and customized designs.'
+                    'Advanced Control Architecture: Equipped with a comprehensive Mitsubishi Automation Suite for seamless cycle synchronization.',
+                    'High-Speed Connectivity: Full Ethernet-based communication for real-time SCADA/MES integration.',
+                    'Precision Pneumatic Systems: Utilizing industry-leading Festo & SMC pneumatic components.',
+                    'Aseptic Motion Control: High-torque Servo Cylinders and THK Linear Track Bearings.',
+                    'Superior Container Versatility: Highly adaptable Multiple Container Design for various LVP bottle shapes.',
+                    'Industry-Leading Efficiency: Fastest mold changeover time to maximize throughput.',
+                    'Sustainable & Clean Operation: Elimination of traditional lubricants ensures a completely contamination-free zone.'
                 ]
             },
             {
@@ -130,28 +115,17 @@ export const machines: MachineData[] = [
             ]
         },
         constructionStandards: {
-            title: 'Construction Standards',
-            description: 'All product-contact components are fabricated from <span class="text-white font-semibold">Stainless Steel 316L</span>. The design strictly adheres to cGMP norms, minimizing dead legs and supporting sanitary flow.'
+            title: 'Construction Standards for B.F.S. Machine',
+            description: 'Engineered to meet the most stringent global regulatory requirements (USFDA, EU-GMP, PICS). We prioritize a "Sterile-First" construction philosophy.<br/><br/><strong class="text-white block mt-3">1. Material Integrity & Surface Finish:</strong> All contact parts are SS 316L (Ra < 0.4 µm). External framework is high-grade SS 304.<br/><strong class="text-white block mt-3">2. Advanced Sterile Architecture:</strong> Critical filling zone is protected by an integrated Class A LAF system with oil-free pneumatics.<br/><strong class="text-white block mt-3">3. CIP/SIP Optimized Design:</strong> Fully automated zero dead-leg architecture with sanitary fittings.<br/><strong class="text-white block mt-3">4. Smart Control Systems:</strong> 21 CFR Part 11 Compliance with real-time HMI monitoring.<br/><strong class="text-white block mt-3">5. Ergonomics & Maintenance:</strong> Cleanroom compatible layout with integrated stainless steel utility pendants.'
         },
-        specTables: [
-            {
-                title: 'Representative Models & Performance',
-                headers: [
-                    { key: 'model', label: 'Model' },
-                    { key: 'type', label: 'Type' },
-                    { key: 'features', label: 'Key Features' },
-                    { key: 'capacity', label: 'Capacity Range' }
-                ],
-                rows: [
-                    { model: 'BFS-8166', data: { type: 'SVP High-Speed', features: 'Servo motions, auto CIP/SIP, online monitoring, 21 CFR Part 11', capacity: 'Up to 13,500/hr' } },
-                    { model: 'BFS-540', data: { type: 'LVP Standard', features: 'Hydraulic motion option, Siemens S7-1500, maintenance-friendly', capacity: '~3,350/hr (12 Cav)' } },
-                    { model: '940 Series', data: { type: 'LVP High-Output', features: 'Multiple cavity configurations, high throughput capacity', capacity: 'Up to 6,700/hr' } }
-                ]
-            }
-        ],
+        specTables: [],
+        lvpData: lvpData,
         compatibleApplications: [
-            'Injectables (LVP / IV Fluids)',
-            'Irrigation Solutions'
+            'Sterile injectable solutions',
+            'Respiratory unit dose solutions',
+            'Eye and ear drops',
+            'Sterile water for injection',
+            'Pharmaceutical liquid formulations'
         ]
     },
     {
@@ -159,31 +133,39 @@ export const machines: MachineData[] = [
         slug: 'euro-cap-sealing',
         hero: {
             subtitle: 'ELEVATING INDUSTRY STANDARDS',
-            title: 'Euro Cap Sealing / Welding',
-            highlight: 'Machine',
-            description: 'A state-of-the-art fully automatic solution tailored for the I.V. parenteral packaging sector. Available in high-performance Semi-Automatic and Fully Automatic models, delivering precision, consistency, and efficiency in cap sealing operations.',
+            title: 'Euro Cap Sealing & Welding System',
+            highlight: 'System',
+            description: 'A high-precision, fully automated system designed for the hermetic sealing and welding of Euro Caps onto L.V.P. (I.V.) bottles. Engineered to integrate seamlessly with our B.F.S. lines, this machine ensures that the final primary packaging remains tamper-proof and sterile throughout its lifecycle.',
             image: '/new_assets/optimized/cap-sealing-machine.webp',
             brochureText: 'Download Sealing Specs'
         },
         features: [
             {
-                title: 'Semi-Automatic Model',
-                icon: 'Settings',
+                title: 'Precision Welding Technology',
+                icon: 'Zap',
                 items: [
-                    'Ideal for small to medium production volumes where flexibility is essential.',
-                    'User-friendly operation with adjustable torque control for accurate sealing.',
-                    'Suitable for multiple container sizes and IV FLUID BOTTLES 50 ML – 3000ML.',
-                    'Compact design with minimal floor space requirement, low maintenance, and easy cleaning.'
+                    'Thermal Fusion Excellence: Creates a molecular bond between the bottle neck and the Euro Cap.',
+                    'Servo-Controlled Precision: High-precision servo motors guarantee consistent pressure and contact time.',
+                    'Non-Contact Heating: Heating process is carefully managed to avoid any physical contact with the sterile liquid path.'
                 ]
             },
             {
-                title: 'Fully Automatic Model',
-                icon: 'Zap',
+                title: 'Technical Features & Excellence',
+                icon: 'Shield',
                 items: [
-                    'High-speed continuous operation seamlessly integrated with filling systems.',
-                    'Automatic cap feeding and placement system with precision torque control.',
-                    'PLC-based control with HMI interface.',
-                    'Integrated rejection system for faulty caps (optional) and online inspection compatible.'
+                    'World-Class Automation: Powered by a complete Mitsubishi PLC and HMI system.',
+                    'Sanitary Architecture: Constructed from SS 316L and SS 304 with a crevice-free design (Grade C/D compatible).',
+                    'Aseptic Pneumatics: High-performance Festo & SMC pneumatic systems.',
+                    'Frictionless Motion: THK Linear Guides ensure a smooth, vibration-free container transport.'
+                ]
+            },
+            {
+                title: 'Operational Versatility',
+                icon: 'Settings',
+                items: [
+                    'Multi-Format Compatibility: Easily adaptable for capacities from 100ml to 1000ml.',
+                    'Smart Feedback Loop: Real-time sensors detect and reject any bottles with missing caps.',
+                    'Ethernet Integrated: Full data logging supporting 21 CFR Part 11 compliance.'
                 ]
             }
         ],
@@ -191,21 +173,8 @@ export const machines: MachineData[] = [
             title: 'Technical Highlights',
             description: '<span class="text-white font-semibold">Robust stainless-steel construction</span> with vibration-free performance. Features adjustable height, conveyor synchronization, and compliance with industry safety and hygiene standards. Customization available as per container specifications.'
         },
-        specTables: [
-            {
-                title: '400 Series Specifications',
-                headers: [
-                    { key: 'model', label: 'Model' },
-                    { key: 'range', label: 'Bottle Range (ml)' },
-                    { key: 'capacity', label: 'Capacity / Hr' }
-                ],
-                rows: [
-                    { model: 'MODEL - 416', data: { range: '50 / 100 / 300 / 500 / 1000', capacity: '2000' } },
-                    { model: 'MODEL - 421', data: { range: '50 / 100 / 300 / 500', capacity: '2500' } },
-                    { model: 'MODEL - 420', data: { range: '50 / 100', capacity: '3200' } }
-                ]
-            }
-        ],
+        specTables: [],
+        capWeldingData: capWeldingData,
         compatibleApplications: [
             'IV Fluid Bottles (LVP)',
             'Ophthalmic Drops',

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   FileText,
   Phone,
@@ -81,6 +81,31 @@ const QuotationPage = () => {
     items: [{ id: "1", description: "", quantity: 1, unitPrice: 0 }],
     notes: "",
   });
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const model = params.get("model");
+      const title = params.get("title");
+
+      if (model || title) {
+        const productTitle = title ? title.replace(/-/g, " ").toUpperCase() + " SYSTEM" : "";
+        setFormData((prev) => ({
+          ...prev,
+          modelNumber: model || prev.modelNumber,
+          productName: productTitle || prev.productName,
+          items: [
+            {
+              id: "1",
+              description: title ? `${productTitle} - MODEL: ${model || ""}` : prev.items[0].description,
+              quantity: 1,
+              unitPrice: 0,
+            },
+          ],
+        }));
+      }
+    }
+  }, []);
 
   const [showPreview, setShowPreview] = useState(false);
   const [activeTab, setActiveTab] = useState<"client" | "specs" | "pricing">(
@@ -663,7 +688,7 @@ const QuotationPage = () => {
                       {/* Import logo styling mimicking main site header */}
                       <div className="w-48">
                         <img
-                          src="/new_logo.png"
+                          src="/new_assets/optimized/bvm-industries-logo-final.webp"
                           alt="BVM Industries"
                           className="w-full h-auto"
                         />

@@ -51,7 +51,7 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center mb-4">
               <img
-                src="/new_logo.png"
+                src="/new_assets/optimized/bvm-industries-logo-final.webp"
                 alt="BVM Industries"
                 width={360}
                 height={128}

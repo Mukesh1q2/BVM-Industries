@@ -5,7 +5,10 @@ import RevealSection from '@/components/RevealSection';
 import Machine3DViewer from '@/components/3d/Machine3DViewer';
 import CanvasScrollScrubber from '@/components/CanvasScrollScrubber';
 import VideoScrollScrubber from '@/components/VideoScrollScrubber';
-import { ArrowRight, CheckCircle, Shield, Zap, Settings, Activity, Server, Droplet, Cpu } from 'lucide-react';
+import SVPCard from '@/components/machine-cards/SVPCard';
+import LVPVariantCard from '@/components/machine-cards/LVPVariantCard';
+import CapWeldingCard from '@/components/machine-cards/CapWeldingCard';
+import { ArrowRight, CheckCircle, Shield, Zap, Settings, Activity, Server, Droplet, Cpu, Maximize } from 'lucide-react';
 import { Metadata } from 'next';
 
 const iconMap: Record<string, any> = {
@@ -122,65 +125,78 @@ export default async function MachineDetailsPage({ params }: { params: Promise<{
 
                 <RevealSection className="space-y-8" delay={200}>
                     <Machine3DViewer />
-
-                    {machine.processCapabilities && (
-                        <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
-                            <h3 className="text-xl font-bold text-white mb-6">{machine.processCapabilities.title}</h3>
-                            <div className="space-y-6">
-                                {machine.processCapabilities.items.map((item, idx) => {
-                                    const ItemIcon = iconMap[item.icon] || Activity;
-                                    return (
-                                        <div key={idx} className="flex flex-col sm:flex-row gap-6 items-start">
-                                            <div className="flex-1">
-                                                <div className="flex items-center gap-3 mb-2 text-bvm-blue">
-                                                    <ItemIcon className="w-5 h-5" />
-                                                    <span className="font-semibold text-white">{item.title}</span>
-                                                </div>
-                                                <p
-                                                    className="text-bvm-text-muted pl-8"
-                                                    dangerouslySetInnerHTML={{ __html: item.description }}
-                                                />
-                                            </div>
-                                            {item.image && (
-                                                <div className="w-full sm:w-1/3 shrink-0 rounded-lg overflow-hidden border border-white/10 mt-4 sm:mt-0 aspect-auto">
-                                                    <img src={item.image} alt={item.title} className="w-full h-auto object-cover opacity-90 hover:opacity-100 transition-opacity" />
-                                                </div>
-                                            )}
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                    )}
-
-                    {machine.compatibleApplications && (
-                        <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
-                            <h3 className="text-xl font-bold text-white mb-6">Compatible Applications</h3>
-                            <ul className="space-y-4">
-                                {machine.compatibleApplications.map((app, idx) => (
-                                    <li key={idx} className="flex items-center gap-3 text-bvm-text-muted">
-                                        <CheckCircle className="w-5 h-5 text-bvm-blue shrink-0" />
-                                        <span className="font-medium text-white/90">{app}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-
-                    {machine.constructionStandards && (
-                        <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
-                            <h3 className="text-xl font-bold text-white mb-6">{machine.constructionStandards.title}</h3>
-                            <p
-                                className="text-bvm-text-muted leading-relaxed mb-4"
-                                dangerouslySetInnerHTML={{ __html: machine.constructionStandards.description }}
-                            />
-                        </div>
-                    )}
                 </RevealSection>
             </RevealSection>
 
-            {/* Specifications Tables */}
-            {machine.specTables.map((table, tblIdx) => (
+            {/* Secondary Technical Information Grid */}
+            {(machine.processCapabilities || machine.compatibleApplications || machine.constructionStandards) && (
+                <RevealSection className="px-4 sm:px-8 lg:px-[8vw] mb-20 grid grid-cols-1 lg:grid-cols-2 items-start gap-8 lg:gap-[4vw]" delay={300}>
+                    
+                    {/* Left Column: Process Capabilities */}
+                    <div className="space-y-8">
+                        {machine.processCapabilities && (
+                            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 h-full">
+                                <h3 className="text-xl font-bold text-white mb-6">{machine.processCapabilities.title}</h3>
+                                <div className="space-y-6">
+                                    {machine.processCapabilities.items.map((item, idx) => {
+                                        const ItemIcon = iconMap[item.icon] || Activity;
+                                        return (
+                                            <div key={idx} className="flex flex-col sm:flex-row gap-6 items-start">
+                                                <div className="flex-1">
+                                                    <div className="flex items-center gap-3 mb-2 text-bvm-blue">
+                                                        <ItemIcon className="w-5 h-5" />
+                                                        <span className="font-semibold text-white">{item.title}</span>
+                                                    </div>
+                                                    <p
+                                                        className="text-bvm-text-muted pl-8"
+                                                        dangerouslySetInnerHTML={{ __html: item.description }}
+                                                    />
+                                                </div>
+                                                {item.image && (
+                                                    <div className="w-full sm:w-1/3 shrink-0 rounded-lg overflow-hidden border border-white/10 mt-4 sm:mt-0 aspect-auto">
+                                                        <img src={item.image} alt={item.title} className="w-full h-auto object-cover opacity-90 hover:opacity-100 transition-opacity" />
+                                                    </div>
+                                                )}
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Right Column: Applications & Construction Standards */}
+                    <div className="space-y-8 flex flex-col h-full">
+                        {machine.compatibleApplications && (
+                            <div className="flex-1 bg-white/5 border border-white/10 rounded-2xl p-8">
+                                <h3 className="text-xl font-bold text-white mb-6">Compatible Applications</h3>
+                                <ul className="space-y-4">
+                                    {machine.compatibleApplications.map((app, idx) => (
+                                        <li key={idx} className="flex items-center gap-3 text-bvm-text-muted">
+                                            <CheckCircle className="w-5 h-5 text-bvm-blue shrink-0" />
+                                            <span className="font-medium text-white/90">{app}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+
+                        {machine.constructionStandards && (
+                            <div className="flex-1 bg-white/5 border border-white/10 rounded-2xl p-8">
+                                <h3 className="text-xl font-bold text-white mb-6">{machine.constructionStandards.title}</h3>
+                                <p
+                                    className="text-bvm-text-muted leading-relaxed mb-4"
+                                    dangerouslySetInnerHTML={{ __html: machine.constructionStandards.description }}
+                                />
+                            </div>
+                        )}
+                    </div>
+                    
+                </RevealSection>
+            )}
+
+            {/* Specifications Tables (Legacy Pattern Fallback) */}
+            {machine.specTables?.map((table, tblIdx) => (
                 <RevealSection key={tblIdx} className="px-4 sm:px-8 lg:px-[8vw] mb-20">
                     <div className="flex flex-col lg:flex-row gap-8 items-start mb-8">
                         <div className="flex-1">
@@ -224,6 +240,49 @@ export default async function MachineDetailsPage({ params }: { params: Promise<{
                     )}
                 </RevealSection>
             ))}
+
+            {/* New Interactive Machine Modules */}
+            {machine.svpData && machine.svpData.length > 0 && (
+                <RevealSection className="px-4 sm:px-8 lg:px-[8vw] mb-20">
+                    <div className="flex items-center gap-3 mb-8">
+                        <div className="w-8 h-8 rounded-lg bg-bvm-blue/20 flex items-center justify-center">
+                            <Activity className="w-4 h-4 text-bvm-blue" />
+                        </div>
+                        <h2 className="text-3xl font-display font-bold text-white">SVP Performance Matrix</h2>
+                    </div>
+                    <div className="space-y-4">
+                        {machine.svpData.map(model => <SVPCard key={model.modelNo} model={model} machineSlug={machine.slug} />)}
+                    </div>
+                </RevealSection>
+            )}
+
+            {machine.lvpData && machine.lvpData.length > 0 && (
+                <RevealSection className="px-4 sm:px-8 lg:px-[8vw] mb-20">
+                    <div className="flex items-center gap-3 mb-8">
+                        <div className="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center">
+                            <Maximize className="w-4 h-4 text-purple-400" />
+                        </div>
+                        <h2 className="text-3xl font-display font-bold text-white">LVP Variant Comparison</h2>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {machine.lvpData.map(model => <LVPVariantCard key={model.modelNo} model={model} machineSlug={machine.slug} />)}
+                    </div>
+                </RevealSection>
+            )}
+
+            {machine.capWeldingData && machine.capWeldingData.length > 0 && (
+                <RevealSection className="px-4 sm:px-8 lg:px-[8vw] mb-20">
+                    <div className="flex items-center gap-3 mb-8">
+                        <div className="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center">
+                            <Zap className="w-4 h-4 text-amber-500" />
+                        </div>
+                        <h2 className="text-3xl font-display font-bold text-white">Cap Welding Mode Switch</h2>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {machine.capWeldingData.map(model => <CapWeldingCard key={model.modelNo} model={model} machineSlug={machine.slug} />)}
+                    </div>
+                </RevealSection>
+            )}
 
             <div className="px-4 sm:px-8 lg:px-[8vw] mb-12 flex justify-center">
                 <Link href="/machines" className="text-bvm-blue hover:text-white transition-colors flex items-center gap-2 font-medium">

@@ -61,7 +61,7 @@ const Navigation = () => {
           {/* Logo — strictly dark mode for premium brand consistency */}
           <Link href="/" className="relative z-50 flex items-center" onClick={() => setActiveDropdown(null)}>
             <img
-              src="/new_logo.png"
+              src="/new_assets/optimized/bvm-industries-logo-final.webp"
               alt="BVM Logo"
               className="w-auto object-contain h-[44px]"
             />

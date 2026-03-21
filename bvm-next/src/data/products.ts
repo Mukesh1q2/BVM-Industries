@@ -16,7 +16,7 @@ export const machineSeries = [
     subtitle: 'Form-Fill-Seal Systems',
     description: 'Fully indigenous, cost-effective aseptic filling systems for pharmaceutical liquids. Designed for sterility and performance.',
     shortDescription: 'Advanced Form-Fill-Seal systems for sterile packaging.',
-    image: '/new_assets/optimized/ffs-machine.webp',
+    image: '/new_assets/optimized/ffs1.webp',
     link: '/machines/ffs',
     categories: ['injectables', 'ophthalmic', 'respiratory'],
     applications: [
@@ -63,7 +63,7 @@ export const machineSeries = [
     subtitle: 'Blow-Fill-Seal Technology',
     description: 'Advanced cGMP compliant systems for continuous aseptic filling of small and large volume parenterals.',
     shortDescription: 'Blow-Fill-Seal technology for SVP & LVP applications.',
-    image: '/new_assets/optimized/bfs-machine.webp',
+    image: '/new_assets/optimized/bfs1.webp',
     link: '/machines/bfs',
     categories: ['injectables', 'ophthalmic', 'respiratory'],
     applications: [

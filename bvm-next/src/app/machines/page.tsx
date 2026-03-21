@@ -43,12 +43,21 @@ const MachinesContent = () => {
         <div className="pt-24 pb-20 bg-bvm-navy min-h-screen">
             {/* Header Section */}
             <RevealSection className="max-w-4xl mx-auto text-center mb-12 px-4">
-                <h1 className="text-4xl md:text-6xl font-display font-bold text-white mb-6">
-                    Advanced Pharmaceutical <span className="text-bvm-blue">Solutions</span>
+                <span className="text-bvm-blue font-medium tracking-wider uppercase mb-4 block">Advanced Aseptic Machinery for Injectable Pharmaceutical Production</span>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6">
+                    Injectable Packaging Machinery
                 </h1>
-                <p className="text-xl text-bvm-gray max-w-2xl mx-auto leading-relaxed">
-                    Discover our range of precision machinery designed for aseptic integrity and high-speed performance.
-                </p>
+                <div className="space-y-4 text-lg text-bvm-gray max-w-3xl mx-auto leading-relaxed">
+                    <p>
+                        Our injectable packaging machines are engineered to deliver high-precision, contamination-free production of sterile pharmaceutical liquids. Designed for integration in aseptic manufacturing environments, these systems ensure reliable performance, consistent filling accuracy, and compliance with global pharmaceutical manufacturing standards.
+                    </p>
+                    <p>
+                        From Blow-Fill-Seal (BFS) technology to Form-Fill-Seal (FFS) systems, our equipment enables pharmaceutical manufacturers to achieve efficient, automated, and sterile packaging processes for a wide range of injectable products.
+                    </p>
+                    <p>
+                        Our machines are built with advanced engineering, precision tooling, and automated process control, making them suitable for modern pharmaceutical facilities operating under cGMP and international regulatory guidelines.
+                    </p>
+                </div>
             </RevealSection>
 
             {/* Filter Tabs */}
@@ -140,6 +149,91 @@ const MachinesContent = () => {
                         <button onClick={() => handleFilterChange('all')} className="text-bvm-blue mt-4 hover:underline">View All Machines</button>
                     </div>
                 )}
+            </div>
+
+            {/* Extended Capabilities & Compliance Sections */}
+            <div className="max-w-6xl mx-auto px-4 sm:px-8 mt-32 space-y-24 mb-12">
+                
+                {/* Section 1: Why Choose */}
+                <RevealSection>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h2 className="text-3xl font-display font-bold text-white mb-6">Why Choose Our Injectable Packaging Machines</h2>
+                            <p className="text-bvm-gray text-lg mb-8 leading-relaxed">
+                                Our machines are designed with a strong focus on precision engineering, operational reliability, and pharmaceutical compliance.
+                            </p>
+                            <ul className="space-y-4">
+                                {[
+                                    'Designed for aseptic pharmaceutical manufacturing',
+                                    'Built according to international engineering standards',
+                                    'High accuracy filling systems',
+                                    'Advanced automation and process monitoring',
+                                    'Reduced contamination risk',
+                                    'Long-term operational reliability',
+                                    'Efficient and scalable production capability'
+                                ].map((advantage, idx) => (
+                                    <li key={idx} className="flex items-start gap-4 text-bvm-text-muted">
+                                        <div className="mt-1.5 w-2 h-2 rounded-full bg-bvm-blue flex-shrink-0" />
+                                        <span className="text-lg">{advantage}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div className="relative h-[400px] rounded-2xl overflow-hidden border border-white/10 group">
+                            <img src="/new_assets/optimized/bfs-machine-dark.png" alt="Aseptic Manufacturing" className="w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-transform duration-700" />
+                            <div className="absolute inset-0 bg-bvm-navy/30" />
+                        </div>
+                    </div>
+                </RevealSection>
+
+                {/* Section 2: Engineering & Standards */}
+                <RevealSection>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <div className="bg-white/5 border border-white/10 rounded-2xl p-10 hover:border-bvm-blue/50 transition-colors">
+                            <h3 className="text-2xl font-bold text-white mb-4">Engineering & Manufacturing Excellence</h3>
+                            <p className="text-bvm-gray text-lg leading-relaxed mb-4">
+                                All machinery is designed and manufactured using advanced CAD/CAM engineering, precision machining, and rigorous quality control processes. Our in-house tool room and manufacturing facilities enable us to deliver high-performance molds, filling systems, and critical machine components with exceptional accuracy.
+                            </p>
+                            <p className="text-bvm-gray text-lg leading-relaxed">
+                                Our engineering team continuously works to develop innovative and reliable machinery solutions that meet the evolving needs of the pharmaceutical industry.
+                            </p>
+                        </div>
+                        <div className="bg-white/5 border border-white/10 rounded-2xl p-10 hover:border-bvm-blue/50 transition-colors">
+                            <h3 className="text-2xl font-bold text-white mb-4">Compliance & Quality Standards</h3>
+                            <p className="text-bvm-gray text-lg leading-relaxed mb-6">
+                                Our injectable packaging machinery is designed to meet the requirements of modern pharmaceutical manufacturing environments. Designed in accordance with:
+                            </p>
+                            <ul className="space-y-3">
+                                {[
+                                    'cGMP manufacturing standards',
+                                    'WHO-GMP pharmaceutical guidelines',
+                                    'International sterile production practices',
+                                    'Cleanroom compatible equipment design'
+                                ].map((standard, idx) => (
+                                    <li key={idx} className="flex items-center gap-3 text-bvm-text-muted">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-bvm-blue flex-shrink-0" />
+                                        <span className="text-lg">{standard}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </RevealSection>
+
+                {/* Section 3: CTA */}
+                <RevealSection className="text-center bg-bvm-blue/10 border border-bvm-blue/20 rounded-3xl p-12 lg:p-20 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-bvm-blue/5 to-transparent pointer-events-none" />
+                    <div className="relative z-10 max-w-3xl mx-auto">
+                        <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-6">Request Technical Consultation</h2>
+                        <p className="text-bvm-gray text-lg mb-10 leading-relaxed">
+                            If you are planning to set up or upgrade your injectable pharmaceutical production line, our technical team can assist you in selecting the right machinery solution based on your product type, production capacity, and facility requirements.
+                        </p>
+                        <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-bvm-blue text-white rounded-lg font-medium hover:bg-blue-600 transition-colors text-lg">
+                            Contact Engineering Team
+                            <ArrowRight className="w-5 h-5" />
+                        </Link>
+                    </div>
+                </RevealSection>
             </div>
         </div>
     );
